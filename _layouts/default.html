@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>{{page.title}}</title>
+    <meta name="author" content="Joe Corcoran">
+    <link rel="stylesheet" href="/css/main.css" type="text/css" />
+    <link rel="stylesheet" href="/css/solarized-dark.css" type="text/css" />
+    {% include ga.html %}
+  </head>
+  <body>
+    <div id="container">
+      <header>
+        <h1>{{page.title}}</h1>
+        <time datetime="{{ page.date | date_to_xmlschema }}">{{ page.date | date: "%d %B %Y" }}<time>
+        {% include tags.html %}
+      </header>
+      {{ content }}
+      <section class="comments">
+        {% include disqus.html %}
+      </section>
+      <footer>
+        <p>
+          <a href="/" class="back">Back to index</a>
+        </p>
+        <h2>Related posts</h2>
+        <section class="posts">
+          {% for post in site.related_posts limit:4 %}
+            {% if post.title != page.title %}
+              {% include post_article.html %}
+            {% endif %}
+          {% endfor %}
+        <section>
+      </footer>
+    </div>
+  </body>
+</html>

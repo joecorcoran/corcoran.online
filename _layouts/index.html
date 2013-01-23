@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>{{page.title}}</title>
+    <meta name="author" content="Joe Corcoran">
+    <link rel="stylesheet" href="/css/main.css" type="text/css" />
+    {% include ga.html %}
+  </head>
+  <body>
+    <div id="container">
+      <header>
+        <h1>
+          {% if page.link_title != false %}
+            <a href="/">{{ page.title }}</a>
+          {% else %}
+            {{ page.title }}
+          {% endif %}
+        </h1>
+        <p class="subtitle">{{ site.subtitle }}</p>
+      </header>
+      {{ content }}
+    </div>
+  </body>
+</html>

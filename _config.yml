@@ -1,0 +1,10 @@
+markdown: redcarpet
+pygments: true
+permalink: /:year/:month/:day/:title
+server: true
+auto: true
+lsi: true
+tag_layout: tag
+tag_directory: tags
+title: "Joe Corcoran"
+subtitle: "Lapping it up with open arms"
