@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>When Sammy Met Jasmine</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="author" content="Joe Corcoran">
+    <link rel="stylesheet" href="/css/main.css" type="text/css" />
+    <link rel="stylesheet" href="/css/solarized-dark.css" type="text/css" />
+    <script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-3245696-4']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>
+  </head>
+  <body>
+    <div id="container">
+      <header>
+        <h1>When Sammy Met Jasmine</h1>
+        <time datetime="2010-09-01T21:37:00+01:00">01 September 2010<time>
+        
+
+  <ul class="tags">
+    
+      <li>
+        <a href="/tags/javascript">javascript</a>
+      </li>
+    
+      <li>
+        <a href="/tags/sammy">sammy</a>
+      </li>
+    
+      <li>
+        <a href="/tags/testing">testing</a>
+      </li>
+    
+      <li>
+        <a href="/tags/bdd">bdd</a>
+      </li>
+    
+      <li>
+        <a href="/tags/jasmine">jasmine</a>
+      </li>
+    
+      <li>
+        <a href="/tags/jquery">jquery</a>
+      </li>
+    
+  </ul>
+
+      </header>
+      <h2>Testing Sammy JavaScript apps with Pivotal Labs&#39; Jasmine BDD framework</h2>
+
+<p>Aaron Quint&#39;s route-driven JavaScript framework <a href="http://github.com/quirkey/sammy" title="Sammy framework on GitHub">Sammy</a>, ships with <a href="http://github.com/jquery/qunit/" title="QUnit jQuery testing framework on GitHub">QUnit</a> tests. This is an obvious choice, since QUnit is jQuery&#39;s test framework and Sammy depends on jQuery. I, however, am not the biggest fan of QUnit. It works really well, but I find the syntax a little unwieldy.  On a recent project, I thought I&#39;d try out <a href="http://github.com/pivotal/jasmine">Jasmine &#8211; a library-independent JavaScript <acronym title="Behaviour Driven Development">BDD</acronym> framework</a> with a more readable syntax.</p>
+
+<p>In this post I&#39;ll run through some typical Sammy scenarios and show you how I&#39;ve written the corresponding Jasmine tests.  For reference, I&#39;m using Jasmine 0.11.1 and Sammy 0.5.4.</p>
+
+<!--more-->
+
+<h2>Setting up Sammy</h2>
+
+<p>Let&#39;s start with a fairly simple Sammy app with some common features.</p>
+
+<!--  gist 560735 app.js  -->
+
+<p>At the top of the app, the <code>context</code> variable is assigned, providing easy and unambiguous access to the <code>Sammy.Application</code> instance itself, for use elsewhere.  A GET route is declared, which simply triggers an event named <code>myEvent</code>.  The second argument to <code>trigger</code> passes an object to the event:</p>
+
+<!--  gist 560735 app_pt1.js  -->
+
+<p>Here is the event that was triggered in the GET route.  Bound events accept a custom object as their second argument, which is used in this example to pass in some arbitrary values:</p>
+
+<!--  gist 560735 app_pt2.js  -->
+
+<p>Here, a (very) rough example of a modular design pattern is established for any non-event driven parts of the app.  I like to group functions by similarity of purpose.</p>
+
+<!--  gist 560735 app_pt3.js  -->
+
+<h3>An aside: Can I read all this shit easily?</h3>
+
+<p>I&#39;ve started to ask myself this question frequently.  If the answer is no, it&#39;s time to abstract.</p>
+
+<p>Particularly where jQuery is involved, I often find code that looks similar to this:</p>
+
+<!--  gist 563595 chain_soup.js  -->
+
+<p>It only takes a few lines of jQuery, chained to the hilt, to achieve a lot.  This is seen as an advantage, and rightly so for small pieces of UI scripting, but it&#39;s a huge pain when testing larger applications since it leads to bloated specs.  Imagine trying to test the above example &#8211; a long list of calls needs a long list of assertions.  But testing needn&#39;t be a chore!  Whichever way a JavaScript project is structured, from fully modular and enclosed to fly-open-for-everyone-to-see, keeping functions succinct and limited in purpose makes for much easier testing.  Readable code == readable tests == clear statement of intentions to leave for future developers == painless development.</p>
+
+<h2>Testing with Jasmine</h2>
+
+<p>Here&#39;s an initial attempt at testing the above Sammy app using Jasmine.  The specs are within <code>describe</code> blocks.  These aren&#39;t strictly necessary but nesting them helps to describe your tests in relation to the structure of your app.  See how the nesting follows the namespacing of the <code>url.build</code> function, for example:</p>
+
+<!--  gist 560735 appSpecWithout.js  -->
+
+<p>Since the app involves <acronym title="Document Object Model">DOM</acronym> insertion, it&#39;s clear that some kind of setup and teardown of temporary DOM elements is required.  Using Jasmine&#39;s <code>beforeEach</code> method, the relevant elements are inserted into the DOM before each spec is run. Since each spec within this <code>describe</code> block refers to the same event, the event trigger is here as well, to avoid repetition.  The DOM elements are cleaned up using <code>afterEach</code>.</p>
+
+<!--  gist 560735 appSpecWithout_wrap.js  -->
+
+<p>Specs are enclosed in the <code>it</code> blocks and assertions/expectations are made using <code>expect</code>.  The syntax, when read out loud, sounds pretty close to how I&#39;d describe my tests.  &quot;It <em>should etc.</em>&quot;; &quot;Expect <em>actual</em> to match <em>expression</em>&quot;.  <a href="http://pivotal.github.com/jasmine/jsdoc/symbols/jasmine.Matchers.html">Jasmine has various matcher methods</a> such as <code>toMatch</code>.</p>
+
+<!--  gist 560735 appSpecWithout_spec1.js  -->
+
+<h3>Befriending the DOM</h3>
+
+<p>There&#39;s something a little clunky about certain aspects of the above tests.  In particular the DOM-related areas look a little hacky.  It would be unfair to call this a fault of the testing framework &#8211; DOM manipulation isn&#39;t even on the Jasmine agenda.  So this is where <a href="http://github.com/velesin/jasmine-jquery">velesin&#39;s jasmine-jquery extensions</a> step in.</p>
+
+<p>jasmine-jquery allows for various improvements on the original tests:</p>
+
+<!--  gist 560735 appSpec.js  -->
+
+<p>Firstly, the manual setup and teardown is no longer required, thanks to <code>loadFixtures</code>, which loads in the necessary DOM elements from an external file, inserts them into a wrapper div inside the document body, and cleans up automatically after each spec is run.  Big win.  People who are really smart might even try to load fixtures in from the same files as partials to avoid duplication (I have a feeling this could all come together beautifully with <a href="http://code.quirkey.com/sammy/docs/api.html#Sammy.Meld">Sammy&#39;s new Meld feature</a>&hellip;).  An alternative is to use <code>setFixtures</code>, which accepts either an HTML string or a jQuery element as its only argument rather than loading from an external file.</p>
+
+<!--  gist 560735 appSpec_fixture.js  -->
+
+<p>jasmine-jquery also provides a set of <a href="http://github.com/velesin/jasmine-jquery#readme">custom matchers</a>.  Here, for example, there&#39;s no need for the workaround of checking the innerHtml of an element against a regular expression, when <code>toHaveText</code> does the trick.</p>
+
+<!--  gist 560735 appSpec_matchers.js  -->
+
+<h2>Conclusions</h2>
+
+<p>The Jasmine documentation could really do with a spruce up &#8211; especially in the less immediately obvious areas like spying, mocking and stubbing.  It&#39;s possible to bundle through and get some pretty nifty async tests running (blog post on this topic pending) but clearer instructions would be a big help.  I&#39;m sure better docs are in the pipeline with version 1.0.0 proper due to be released soon.</p>
+
+<p>I find testing with Jasmine a more pleasant experience than any I&#39;ve had with another JavaScript testing framework.  The only thing that has come close for me is <a href="http://visionmedia.github.com/jspec/" title="JSpec testing framework on GitHub">JSpec</a>, which has very similar syntax to Jasmine if you eschew the custom Rubyesque grammar.</p>
+
+<p>Provided you structure your Sammy application in a sensible way, it&#39;s easily testable with Jasmine.  I&#39;d like a way of testing the Sammy routes themselves, something akin to functional testing as apposed to unit testing.  But I&#39;m happy enough with relying on the Sammy internal tests and keeping the routes as simple trigger calls.</p>
+
+      <section class="comments">
+        <p>
+  <a href="#" id="show_comments">Show comments</a>
+</p>
+<div id="disqus_thread"></div>
+<script type="text/javascript">
+var disqus_shortname = 'joecorcoran',
+    disqus_title     = 'When Sammy Met Jasmine - Lapping it up with open arms',
+    showComments     = function() {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    },
+    commentsLink = document.getElementById('show_comments');
+commentsLink.onclick = function() {
+  showComments();
+  commentsLink.style.display = 'none';
+  return false;
+};
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+      </section>
+      <footer>
+        <p>
+          <a href="/" class="back">Back to index</a>
+        </p>
+        <h2>Related posts</h2>
+        <section class="posts">
+          
+            
+          
+            
+              <article>
+  <time datetime="2009-07-02T00:00:00+01:00">02 July 2009</time>
+  <div class="content">
+    <a href=/2009/07/02/practical-uses-for-sammy>Practical uses for Sammy</a>
+    
+
+  <ul class="tags">
+    
+      <li>
+        <a href="/tags/sammy">sammy</a>
+      </li>
+    
+      <li>
+        <a href="/tags/javascript">javascript</a>
+      </li>
+    
+      <li>
+        <a href="/tags/jquery">jquery</a>
+      </li>
+    
+      <li>
+        <a href="/tags/cycle">cycle</a>
+      </li>
+    
+      <li>
+        <a href="/tags/accordion">accordion</a>
+      </li>
+    
+      <li>
+        <a href="/tags/rest">rest</a>
+      </li>
+    
+  </ul>
+
+  </div>
+</article>
+            
+          
+            
+              <article>
+  <time datetime="2011-11-15T00:00:00+00:00">15 November 2011</time>
+  <div class="content">
+    <a href=/2011/11/15/judge-simple-javascript-form-validation-for-rails>Judge: Simple JavaScript form validation for Rails</a>
+    
+
+  <ul class="tags">
+    
+      <li>
+        <a href="/tags/judge">judge</a>
+      </li>
+    
+      <li>
+        <a href="/tags/javascript">javascript</a>
+      </li>
+    
+      <li>
+        <a href="/tags/ruby">ruby</a>
+      </li>
+    
+      <li>
+        <a href="/tags/rails">rails</a>
+      </li>
+    
+      <li>
+        <a href="/tags/activerecord">activerecord</a>
+      </li>
+    
+      <li>
+        <a href="/tags/validation">validation</a>
+      </li>
+    
+  </ul>
+
+  </div>
+</article>
+            
+          
+            
+              <article>
+  <time datetime="2010-02-01T00:00:00+00:00">01 February 2010</time>
+  <div class="content">
+    <a href=/2010/02/01/announcing-tweet-fighter>Announcing Tweet Fighter</a>
+    
+
+  <ul class="tags">
+    
+      <li>
+        <a href="/tags/twitter">twitter</a>
+      </li>
+    
+      <li>
+        <a href="/tags/ruby">ruby</a>
+      </li>
+    
+      <li>
+        <a href="/tags/sinatra">sinatra</a>
+      </li>
+    
+      <li>
+        <a href="/tags/sequel">sequel</a>
+      </li>
+    
+      <li>
+        <a href="/tags/projects">projects</a>
+      </li>
+    
+      <li>
+        <a href="/tags/thin">thin</a>
+      </li>
+    
+  </ul>
+
+  </div>
+</article>
+            
+          
+        <section>
+      </footer>
+    </div>
+  </body>
+</html>

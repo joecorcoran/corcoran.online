@@ -1,0 +1,125 @@
+html {
+  font-size: 20px;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  background: #F5F5F5;
+  color: #222;
+  line-height: 1.5em;
+  font-weight: 300;
+}
+
+a {
+  color: #0066CC;
+  text-decoration: none;
+}
+
+a:hover {
+  color: #1E90FF;
+}
+
+h1, h2, h3, h4 {
+  letter-spacing: 1px;
+  font-weight: 300;
+  margin-top: 1em;
+  margin-bottom: 0.5em;
+  line-height: 1.1em;
+}
+
+h1 {
+  font-size: 2.75em;
+}
+
+h2 {
+  font-size: 1.8em;
+}
+
+h3 {
+  font-size: 1.4em;
+}
+
+h4 {
+  font-size: 1.2em;
+}
+
+ul {
+  padding-left: 20px;
+}
+
+pre {
+  padding: 10px 15px;
+  overflow-x: auto;
+  line-height: 1.2em;
+  font-size: 0.8em;
+}
+
+code {
+  font-family: Consolas, "Liberation Mono", Courier, monospace;
+  color: #444;
+}
+
+time, .subtitle {
+  letter-spacing: 1px;
+  color: #666;
+}
+
+footer, .comments {
+  border-top: 1px solid #CCC;
+  margin-top: 40px;
+  padding-top: 20px;
+}
+
+#container {
+  width: 700px;
+  margin: 0 auto;
+  padding-bottom: 50px;
+}
+
+.back:before {
+  content: '\2190\00A0';
+}
+
+.posts {
+  margin-bottom: 20px;
+}
+
+.posts article {
+  border-top: 1px solid #CCC;
+  position: relative;
+}
+
+.posts article:first-child {
+  border: 0;
+}
+
+.posts article time {
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 200px;
+  padding: 10px 0;
+}
+
+.posts article .content {
+  display: block;
+  padding-left: 220px;
+  padding: 10px 0 10px 220px;
+}
+
+.tags {
+  margin: 0;
+  padding: 0;
+}
+
+.tags li {
+  display: inline;
+  font-size: 0.75em;
+  color: #666;
+}
+
+.tags a {
+  color: #666;
+}
+
+.tags a:hover {
+  color: #222;
+}
