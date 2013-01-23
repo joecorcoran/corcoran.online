@@ -1,7 +1,6 @@
 markdown: redcarpet
 pygments: true
 permalink: /:year/:month/:day/:title
-server: true
 auto: true
 lsi: true
 tag_layout: tag
