@@ -1,8 +1,9 @@
 markdown: redcarpet
+redcarpet:
+  extensions: ["no_intra_emphasis", "fenced_code_blocks", "strikethrough", "superscript"]
 pygments: true
 permalink: /:year/:month/:day/:title
 auto: true
-lsi: true
 tag_layout: tag
 tag_directory: tags
 title: "Joe Corcoran"

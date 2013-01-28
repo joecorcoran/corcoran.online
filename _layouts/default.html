@@ -22,14 +22,6 @@
         <p>
           <a href="/" class="back">Back to index</a>
         </p>
-        <h2>Related posts</h2>
-        <section class="posts">
-          {% for post in site.related_posts limit:4 %}
-            {% if post.title != page.title %}
-              {% include post_article.html %}
-            {% endif %}
-          {% endfor %}
-        <section>
       </footer>
     </div>
   </body>

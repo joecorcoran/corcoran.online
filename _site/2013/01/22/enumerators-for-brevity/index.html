@@ -47,7 +47,6 @@
 <!--more-->
 
 <p><code>Enumerator#each_with_index</code> allows us to iterate through a collection of objects, with access to the index of each object.</p>
-
 <div class="highlight"><pre><code class="ruby"><span class="n">numbers</span> <span class="o">=</span> <span class="o">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="o">]</span>
 <span class="n">numbers</span><span class="o">.</span><span class="n">each_with_index</span> <span class="k">do</span> <span class="o">|</span><span class="n">number</span><span class="p">,</span> <span class="n">idx</span><span class="o">|</span>
   <span class="nb">puts</span> <span class="s2">&quot;</span><span class="si">#{</span><span class="n">number</span><span class="si">}</span><span class="s2"> at index </span><span class="si">#{</span><span class="n">idx</span><span class="si">}</span><span class="s2">&quot;</span>
@@ -56,20 +55,14 @@
 <span class="c1"># 2 at index 1</span>
 <span class="c1"># etc.</span>
 </code></pre></div>
-
 <p>Passing the index into the block like that can be really useful, but <code>#each_with_index</code> is on its own; other common <code>Enumerable</code> methods are not afforded this kind of special extended treatment. Thankfully though, some of these methods return an <code>Enumerator</code> when they are used without a block.</p>
-
 <div class="highlight"><pre><code class="ruby"><span class="n">numbers</span><span class="o">.</span><span class="n">map</span> <span class="c1"># =&gt; #&lt;Enumerator: [1, 2, 3, 4, 5]:map&gt;</span>
 </code></pre></div>
-
 <p>This means we can chain <code>Enumerator</code> methods like <code>#with_index</code>.</p>
-
 <div class="highlight"><pre><code class="ruby"><span class="n">numbers</span><span class="o">.</span><span class="n">map</span><span class="o">.</span><span class="n">with_index</span>
 <span class="c1"># =&gt; #&lt;Enumerator: #&lt;Enumerator: [1, 2, 3, 4, 5]:map&gt;:with_index&gt;</span>
 </code></pre></div>
-
 <p>It&#39;s especially useful in places where you might otherwise use a placeholder array.</p>
-
 <div class="highlight"><pre><code class="ruby"><span class="n">cities</span>    <span class="o">=</span> <span class="o">[</span><span class="s1">&#39;New York City&#39;</span><span class="p">,</span> <span class="s1">&#39;Oslo&#39;</span><span class="o">]</span>
 <span class="n">countries</span> <span class="o">=</span> <span class="o">[</span><span class="s1">&#39;USA&#39;</span><span class="p">,</span> <span class="s1">&#39;Norway&#39;</span><span class="o">]</span>
 
@@ -86,7 +79,6 @@
 <span class="n">places</span>
 <span class="c1"># =&gt; [&#39;New York City, USA&#39;, &#39;Oslo, Norway&#39;]</span>
 </code></pre></div>
-
 <p>Check out just how many <code>Enumerable</code> methods return an <code>Enumerator</code> by <a href="http://www.ruby-doc.org/core-1.9.3/Enumerable.html">searching this page</a> for &quot;an_enumerator&quot;.</p>
 
 <p>There&#39;s more reading on this topic, including a decent explanation of the external iteration features introduced in 1.9, <a href="http://en.wikibooks.org/wiki/Ruby_Programming/Reference/Objects/Enumerable">over at Wikibooks</a>.</p>
@@ -117,133 +109,6 @@ commentsLink.onclick = function() {
         <p>
           <a href="/" class="back">Back to index</a>
         </p>
-        <h2>Related posts</h2>
-        <section class="posts">
-          
-            
-          
-            
-              <article>
-  <time datetime="2011-11-15T00:00:00+00:00">15 November 2011</time>
-  <div class="content">
-    <a href=/2011/11/15/judge-simple-javascript-form-validation-for-rails>Judge: Simple JavaScript form validation for Rails</a>
-    
-
-  <ul class="tags">
-    
-      <li>
-        <a href="/tags/judge">judge</a>
-      </li>
-    
-      <li>
-        <a href="/tags/javascript">javascript</a>
-      </li>
-    
-      <li>
-        <a href="/tags/ruby">ruby</a>
-      </li>
-    
-      <li>
-        <a href="/tags/rails">rails</a>
-      </li>
-    
-      <li>
-        <a href="/tags/activerecord">activerecord</a>
-      </li>
-    
-      <li>
-        <a href="/tags/validation">validation</a>
-      </li>
-    
-  </ul>
-
-  </div>
-</article>
-            
-          
-            
-              <article>
-  <time datetime="2010-09-01T21:37:00+01:00">01 September 2010</time>
-  <div class="content">
-    <a href=/2010/09/01/when-sammy-met-jasmine>When Sammy Met Jasmine</a>
-    
-
-  <ul class="tags">
-    
-      <li>
-        <a href="/tags/javascript">javascript</a>
-      </li>
-    
-      <li>
-        <a href="/tags/sammy">sammy</a>
-      </li>
-    
-      <li>
-        <a href="/tags/testing">testing</a>
-      </li>
-    
-      <li>
-        <a href="/tags/bdd">bdd</a>
-      </li>
-    
-      <li>
-        <a href="/tags/jasmine">jasmine</a>
-      </li>
-    
-      <li>
-        <a href="/tags/jquery">jquery</a>
-      </li>
-    
-  </ul>
-
-  </div>
-</article>
-            
-          
-            
-              <article>
-  <time datetime="2012-04-13T00:00:00+01:00">13 April 2012</time>
-  <div class="content">
-    <a href=/2012/04/13/an-update-on-judge>An update on Judge</a>
-    
-
-  <ul class="tags">
-    
-      <li>
-        <a href="/tags/judge">judge</a>
-      </li>
-    
-      <li>
-        <a href="/tags/ruby">ruby</a>
-      </li>
-    
-      <li>
-        <a href="/tags/javascript">javascript</a>
-      </li>
-    
-      <li>
-        <a href="/tags/activerecord">activerecord</a>
-      </li>
-    
-      <li>
-        <a href="/tags/i18n">i18n</a>
-      </li>
-    
-      <li>
-        <a href="/tags/rails">rails</a>
-      </li>
-    
-      <li>
-        <a href="/tags/validation">validation</a>
-      </li>
-    
-  </ul>
-
-  </div>
-</article>
-            
-          
-        <section>
       </footer>
     </div>
   </body>
