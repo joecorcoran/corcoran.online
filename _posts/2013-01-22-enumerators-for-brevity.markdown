@@ -43,17 +43,17 @@ It's especially useful in places where you might otherwise use a placeholder arr
 cities    = ['New York City', 'Oslo']
 countries = ['USA', 'Norway']
 
-places = []
+places_1 = []
 cities.each_with_index do |city, idx|
-  places << "#{city}, #{countries[idx]}"
+  places_1 << "#{city}, #{countries[idx]}"
 end
-places
+# places_1
 # => ['New York City, USA', 'Oslo, Norway']
 
-places = cities.map.with_index do |city, idx|
+places_2 = cities.map.with_index do |city, idx|
   "#{city}, #{countries[idx]}"
 end
-places
+# places_2
 # => ['New York City, USA', 'Oslo, Norway']
 ```
 
