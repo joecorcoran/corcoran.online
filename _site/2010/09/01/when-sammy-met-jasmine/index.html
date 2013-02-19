@@ -4,6 +4,7 @@
     <title>When Sammy Met Jasmine</title>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="author" content="Joe Corcoran">
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" href="/css/main.css" type="text/css" />
     <link rel="stylesheet" href="/css/solarized-dark.css" type="text/css" />
     <script type="text/javascript">
@@ -19,10 +20,22 @@
 </script>
   </head>
   <body>
-    <div id="container">
+    <header role="banner" class="banner">
+  <div class="banner-content">
+    <h1><a href="/">Joe Corcoran</a></h1>
+    <nav>
+      <ul>
+        <li><a href="/" class="active">Blog</a></li>
+        <li><a href="/about" >About</a></li>
+        <li><a href="/projects" >Projects</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+    <article class="post">
       <header>
         <h1>When Sammy Met Jasmine</h1>
-        <time datetime="2010-09-01T21:37:00+01:00">01 September 2010<time>
+        <time datetime="2010-09-01T21:37:00+01:00">01 September 2010</time>
         
 
   <ul class="tags">
@@ -100,7 +113,7 @@
 
 <!--  gist 560735 appSpecWithout_wrap.js  -->
 
-<p>Specs are enclosed in the <code>it</code> blocks and assertions/expectations are made using <code>expect</code>.  The syntax, when read out loud, sounds pretty close to how I&#39;d describe my tests.  &quot;It <em>should etc.</em>&quot;; &quot;Expect <em>actual</em> to match <em>expression</em>&quot;.  <a href="http://pivotal.github.com/jasmine/jsdoc/symbols/jasmine.Matchers.html">Jasmine has various matcher methods</a> such as <code>toMatch</code>.</p>
+<p>Specs are enclosed in the <code>it</code> blocks and assertions/expectations are made using <code>expect</code>.  The syntax, when read out loud, sounds pretty close to how I&#39;d describe my tests.  &ldquo;It <em>should etc.</em>&rdquo;; &ldquo;Expect <em>actual</em> to match <em>expression</em>&rdquo;.  <a href="http://pivotal.github.com/jasmine/jsdoc/symbols/jasmine.Matchers.html">Jasmine has various matcher methods</a> such as <code>toMatch</code>.</p>
 
 <!--  gist 560735 appSpecWithout_spec1.js  -->
 
@@ -155,6 +168,7 @@ commentsLink.onclick = function() {
           <a href="/" class="back">Back to index</a>
         </p>
       </footer>
-    </div>
+    </article>
+    
   </body>
 </html>

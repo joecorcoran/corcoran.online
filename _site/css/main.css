@@ -1,23 +1,54 @@
 html {
   font-size: 20px;
-  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-  background: #F5F5F5;
-  color: #222;
-  line-height: 1.5em;
+  font-family: 'Open Sans', Helvetica, Arial, sans-serif;
+  color: #EEE;
+  line-height: 1.6em;
   font-weight: 300;
+  background: #285777;
+}
+
+body {
+  margin: 0 0 80px;
+  position: relative;
+}
+
+body > footer {
+  width: 100%;
+  clear: both;
+  background: transparent;
+  padding: 50px 0 50px;
+}
+
+body > footer .footer-content {
+  width: 700px;
+  margin: 0 auto;
+  border-top: 5px solid #224D67;
+}
+
+body > footer ul {
+  margin: 0;
+  padding: 0;
+}
+
+body > footer li {
+  display: inline;
+  font-size: 0.75em;
+}
+
+p {
+  margin: 0 0 1em;
 }
 
 a {
-  color: #0066CC;
+  color: #94C5DB;
   text-decoration: none;
 }
 
 a:hover {
-  color: #1E90FF;
+  color: #FFF;
 }
 
 h1, h2, h3, h4 {
-  letter-spacing: 1px;
   font-weight: 300;
   margin-top: 1em;
   margin-bottom: 0.5em;
@@ -48,61 +79,151 @@ pre {
   padding: 10px 15px;
   overflow-x: auto;
   line-height: 1.2em;
-  font-size: 0.8em;
 }
 
 code {
-  font-family: Consolas, "Liberation Mono", Courier, monospace;
-  color: #444;
+  font-family: Consolas, 'Liberation Mono', Courier, monospace;
+  color: #FFF;
+  font-size: 1.1em;
+}
+
+pre code {
+  font-size: 0.8em;
+}
+
+.highlight pre {
+  border-radius: 2px;
 }
 
 time, .subtitle {
-  letter-spacing: 1px;
-  color: #666;
+  color: #;
 }
 
-footer, .comments {
-  border-top: 1px solid #CCC;
+article > footer, .comments {
+  border-top: 2px solid #224D67;
   margin-top: 40px;
-  padding-top: 20px;
+  padding-top: 40px;
 }
 
-#container {
+.post, .index {
+  z-index: 1;
+  width: 700px;
+  margin: 50px auto 0;
+}
+
+.post header time {
+  display: block;
+  margin-bottom: 10px;
+}
+
+.post header .tags {
+  margin-bottom: 20px;
+}
+
+.banner {
+  z-index: 2;
+  background: #2F668E;
+  border-bottom: 10px solid #94C5DB;
+  width: 100%;
+  padding: 40px 0;
+  font-size: 1em;
+  color: #F5F5F5;
+  line-height: 1em;
+  box-shadow: 0 10px 0 0 #224D67;
+}
+
+.banner-content {
   width: 700px;
   margin: 0 auto;
-  padding-bottom: 50px;
+  position: relative;
+}
+
+.banner h1 {
+  font-size: inherit;
+  line-height: inherit;
+  padding: 0;
+  margin: 0;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.banner nav ul {
+  margin: 0;
+  padding: 0;
+  text-align: right;
+
+}
+
+.banner nav li {
+  display: inline;
+  margin: 0;
+  padding: 0;
+}
+
+.banner nav a {
+  padding-left: 20px;
+  display: inline-block;
+}
+
+.banner a {
+  color: #EEE;
+  display: inline-block;
+  padding: 0 2px 0;
+}
+
+.banner nav .active {
+  color: #94C5DB;
+}
+
+.banner a:hover {
+  color: #FFF;
+}
+
+.top-nav li:first-child a {
+  padding-left: 0;
 }
 
 .back:before {
   content: '\2190\00A0';
 }
 
-.posts {
-  margin-bottom: 20px;
-}
-
 .posts article {
-  border-top: 1px solid #CCC;
+  border-top: 2px solid #224D67;
   position: relative;
-}
-
-.posts article:first-child {
-  border: 0;
+  padding: 10px 0 15px;
 }
 
 .posts article time {
   display: block;
   position: absolute;
-  top: 0;
+  top: 10px;
   left: 0;
   width: 200px;
-  padding: 10px 0;
+  padding: 0;
+  font-weight: 300;
+}
+
+.posts article:first-child {
+  border: 0;
+  padding-top: 0;
+}
+
+.posts article:first-child time {
+  top: 0;
 }
 
 .posts article .content {
   display: block;
   padding-left: 220px;
-  padding: 10px 0 10px 220px;
+}
+
+.posts article .content > a {
+  color: #EEE;
+}
+
+.posts article .content > a:hover {
+  color: #94C5DB;
 }
 
 .tags {
@@ -114,12 +235,44 @@ footer, .comments {
   display: inline;
   font-size: 0.75em;
   color: #666;
+  font-weight: 300;
 }
 
 .tags a {
-  color: #666;
+  padding: 1px 6px 3px;
+  background: #224D67;
+  border-radius: 2px;
 }
 
 .tags a:hover {
-  color: #222;
+  color: #FFF;
+}
+
+.projects ul {
+  margin: 20px 0 0;
+  padding: 0;
+}
+
+.projects li {
+  display: inline;
+  margin: 0;
+  padding: 0;
+}
+
+.projects li a {
+  padding: 6px 12px;
+  background: #224D67;
+  white-space: nowrap;
+  display: inline-block;
+  border-radius: 3px;
+}
+
+.about .splash {
+  width: 696px;
+  margin: 0 0 20px;
+  border: 2px solid #224D67;
+}
+
+.about li {
+  list-style-type: square;
 }

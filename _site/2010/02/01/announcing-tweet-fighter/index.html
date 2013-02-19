@@ -4,6 +4,7 @@
     <title>Announcing Tweet Fighter</title>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="author" content="Joe Corcoran">
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" href="/css/main.css" type="text/css" />
     <link rel="stylesheet" href="/css/solarized-dark.css" type="text/css" />
     <script type="text/javascript">
@@ -19,10 +20,22 @@
 </script>
   </head>
   <body>
-    <div id="container">
+    <header role="banner" class="banner">
+  <div class="banner-content">
+    <h1><a href="/">Joe Corcoran</a></h1>
+    <nav>
+      <ul>
+        <li><a href="/" class="active">Blog</a></li>
+        <li><a href="/about" >About</a></li>
+        <li><a href="/projects" >Projects</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+    <article class="post">
       <header>
         <h1>Announcing Tweet Fighter</h1>
-        <time datetime="2010-02-01T00:00:00+00:00">01 February 2010<time>
+        <time datetime="2010-02-01T00:00:00+00:00">01 February 2010</time>
         
 
   <ul class="tags">
@@ -60,7 +73,7 @@
 
 <h2>Concept</h2>
 
-<p>You submit two <a href="http://twitter.com">Twitter</a> users, who are then queried a handful of times through the Twitter <acronym title="Application Programming Interface">API</acronym> and a &quot;fight&quot; of sorts is created between the two users.  They are attributed points based on various &quot;fight&quot;-worthy criteria: bad language; negative language (words like &quot;kill&quot; or &quot;hate&quot;, for instance); previous Tweet Fighter fight record; and &#8211; this being Twitter &#8211; number of followers and number of tweets to date.  The (fuzzy) thinking behind this is that, along with the fighting talk, the mouthiest users with the most backup from their group would have an advantage in a fight situation.</p>
+<p>You submit two <a href="http://twitter.com">Twitter</a> users, who are then queried a handful of times through the Twitter <acronym title="Application Programming Interface">API</acronym> and a &ldquo;fight&rdquo; of sorts is created between the two users.  They are attributed points based on various &ldquo;fight&rdquo;-worthy criteria: bad language; negative language (words like &ldquo;kill&rdquo; or &ldquo;hate&rdquo;, for instance); previous Tweet Fighter fight record; and &#8211; this being Twitter &#8211; number of followers and number of tweets to date.  The (fuzzy) thinking behind this is that, along with the fighting talk, the mouthiest users with the most backup from their group would have an advantage in a fight situation.</p>
 
 <p>It&#39;s pretty silly, I know.  I considered hacking away at some kind of worthy cause, but I&#39;m a big kid.  Maybe I&#39;ll get around to creating a parking metre/carbon emissions cross-referencing Google Maps mashup one day when I&#39;m older and crabbier.  Hopefully nobody reading this will assume that I&#39;m advocating random violence by making a fight-based application, but we&#39;ll see.</p>
 
@@ -117,6 +130,7 @@ commentsLink.onclick = function() {
           <a href="/" class="back">Back to index</a>
         </p>
       </footer>
-    </div>
+    </article>
+    
   </body>
 </html>

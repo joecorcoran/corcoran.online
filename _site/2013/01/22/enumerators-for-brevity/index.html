@@ -4,6 +4,7 @@
     <title>Enumerators for brevity</title>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="author" content="Joe Corcoran">
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" href="/css/main.css" type="text/css" />
     <link rel="stylesheet" href="/css/solarized-dark.css" type="text/css" />
     <script type="text/javascript">
@@ -19,10 +20,22 @@
 </script>
   </head>
   <body>
-    <div id="container">
+    <header role="banner" class="banner">
+  <div class="banner-content">
+    <h1><a href="/">Joe Corcoran</a></h1>
+    <nav>
+      <ul>
+        <li><a href="/" class="active">Blog</a></li>
+        <li><a href="/about" >About</a></li>
+        <li><a href="/projects" >Projects</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+    <article class="post">
       <header>
         <h1>Enumerators for brevity</h1>
-        <time datetime="2013-01-22T00:00:00+00:00">22 January 2013<time>
+        <time datetime="2013-01-22T00:00:00+00:00">22 January 2013</time>
         
 
   <ul class="tags">
@@ -79,7 +92,7 @@
 <span class="c1"># places_2</span>
 <span class="c1"># =&gt; [&#39;New York City, USA&#39;, &#39;Oslo, Norway&#39;]</span>
 </code></pre></div>
-<p>Check out just how many <code>Enumerable</code> methods return an <code>Enumerator</code> by <a href="http://www.ruby-doc.org/core-1.9.3/Enumerable.html">searching this page</a> for &quot;an_enumerator&quot;.</p>
+<p>Check out just how many <code>Enumerable</code> methods return an <code>Enumerator</code> by <a href="http://www.ruby-doc.org/core-1.9.3/Enumerable.html">searching this page</a> for &ldquo;an_enumerator&rdquo;.</p>
 
 <p>There&#39;s more reading on this topic, including a decent explanation of the external iteration features introduced in 1.9, <a href="http://en.wikibooks.org/wiki/Ruby_Programming/Reference/Objects/Enumerable">over at Wikibooks</a>.</p>
 
@@ -110,6 +123,7 @@ commentsLink.onclick = function() {
           <a href="/" class="back">Back to index</a>
         </p>
       </footer>
-    </div>
+    </article>
+    
   </body>
 </html>
