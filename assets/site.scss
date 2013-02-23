@@ -1,10 +1,15 @@
+$bg-blue: #285777;
+$border-blue: #224D67;
+$link-blue: #94C5DB;
+$banner-blue: #2F668E;
+
 html {
   font-size: 20px;
   font-family: 'Open Sans', Helvetica, Arial, sans-serif;
   color: #EEE;
   line-height: 1.6em;
   font-weight: 300;
-  background: #285777;
+  background: $bg-blue;
 }
 
 body {
@@ -18,7 +23,7 @@ body {
     .footer-content {
       width: 700px;
       margin: 0 auto;
-      border-top: 5px solid #224D67;
+      border-top: 5px solid $border-blue;
     }
     ul {
       margin: 0;
@@ -36,7 +41,7 @@ p {
 }
 
 a {
-  color: #94C5DB;
+  color: $link-blue;
   text-decoration: none;
 }
 
@@ -91,7 +96,7 @@ pre {
 }
 
 article > footer, .comments {
-  border-top: 2px solid #224D67;
+  border-top: 2px solid $border-blue;
   margin-top: 40px;
   padding-top: 40px;
 }
@@ -114,14 +119,14 @@ article > footer, .comments {
 
 .banner {
   z-index: 2;
-  background: #2F668E;
-  border-bottom: 10px solid #94C5DB;
+  background: $banner-blue;
+  border-bottom: 10px solid $link-blue;
   width: 100%;
   padding: 40px 0;
   font-size: 1em;
   color: #F5F5F5;
   line-height: 1em;
-  box-shadow: 0 10px 0 0 #224D67;
+  box-shadow: 0 10px 0 0 $border-blue;
   h1 {
     font-size: inherit;
     line-height: inherit;
@@ -147,7 +152,7 @@ article > footer, .comments {
       display: inline-block;
     }
     .active {
-      color: #94C5DB;
+      color: $link-blue;
     }
   }
   a {
@@ -175,7 +180,7 @@ article > footer, .comments {
 }
 
 .posts article {
-  border-top: 2px solid #224D67;
+  border-top: 2px solid $border-blue;
   position: relative;
   padding: 10px 0 15px;
   &:first-child {
@@ -200,7 +205,7 @@ article > footer, .comments {
     > a {
       color: #EEE;
       &:hover {
-        color: #94C5DB;
+        color: $link-blue;
       }
     }
   }
@@ -220,7 +225,7 @@ article > footer, .comments {
 
 .tags a {
   padding: 1px 6px 3px;
-  background: #224D67;
+  background: $border-blue;
   border-radius: 2px;
 }
 
@@ -239,7 +244,7 @@ article > footer, .comments {
     padding: 0;
     a {
       padding: 6px 12px;
-      background: #224D67;
+      background: $border-blue;
       white-space: nowrap;
       display: inline-block;
       border-radius: 3px;
@@ -250,7 +255,7 @@ article > footer, .comments {
 .about .splash {
   width: 696px;
   margin: 0 0 20px;
-  border: 2px solid #224D67;
+  border: 2px solid $border-blue;
 }
 
 .about li {
