@@ -1,15 +1,24 @@
----
-layout: index
-title: Joe Corcoran
----
-<h1>Posts tagged with {{ page.tag }}</h1>
-<section class=posts>
-  {% for post in page.posts %}
-    {% include post_article.html %}
-  {% endfor %}
-</section>
-<footer>
-  <p>
-    <a href="/" class="back">Back to index</a>
-  </p>
-</footer>
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>{{ page.tag }} :: Joe Corcoran</title>
+    {% include head.html %}
+  </head>
+  <body>
+    {% include banner.html %}
+    <div class="index">
+      <h1>Posts tagged with {{ page.tag }}</h1>
+      <section class=posts>
+        {% for post in page.posts %}
+          {% include post_article.html %}
+        {% endfor %}
+      </section>
+      <footer>
+        <p>
+          <a href="/" class="back">Back to index</a>
+        </p>
+      </footer>
+    </div>
+    {% include footer.html %}
+  </body>
+</html>

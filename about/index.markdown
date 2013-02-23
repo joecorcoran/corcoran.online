@@ -1,6 +1,7 @@
 ---
 layout: about
 section: about
+title: About
 ---
 
 I'm a web application developer and I live in London, UK. I currently build things with Ruby and JavaScript at [Tribesports](http://tribesports.com). You can see [my open-source work on GitHub](http://github.com/joecorcoran).

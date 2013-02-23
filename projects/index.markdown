@@ -1,6 +1,7 @@
 ---
 layout: index
 section: projects
+title: Projects
 ---
 
 # Judge

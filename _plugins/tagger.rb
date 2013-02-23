@@ -40,14 +40,4 @@ module Jekyll
     end
 
   end
-
-  module TagFilters
-
-    def tag_link(input)
-      "#{input} FARTS"
-    end
-
-  end
 end
-
-Liquid::Template.register_filter(Jekyll::TagFilters)
