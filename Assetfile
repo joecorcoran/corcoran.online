@@ -1,0 +1,11 @@
+require 'rake-pipeline-web-filters'
+
+output 'public'
+
+input 'assets' do
+  match "**/*.scss" do
+    sass
+    concat 'main.css'
+    yui_css
+  end
+end
