@@ -1,7 +1,6 @@
 $bg-blue: #285777;
 $border-blue: #224D67;
 $link-blue: #94C5DB;
-$banner-blue: #2F668E;
 
 html {
   font-size: 20px;
@@ -119,14 +118,14 @@ article > footer, .comments {
 
 .banner {
   z-index: 2;
-  background: $banner-blue;
-  border-bottom: 10px solid $link-blue;
+  background: $bg-blue;
+  border-bottom: 3px solid $link-blue;
   width: 100%;
   padding: 40px 0;
   font-size: 1em;
   color: #F5F5F5;
   line-height: 1em;
-  box-shadow: 0 10px 0 0 $border-blue;
+  box-shadow: 0 3px 0 0 $border-blue;
   h1 {
     font-size: inherit;
     line-height: inherit;
