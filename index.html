@@ -5,6 +5,8 @@ link_title: false
 ---
 <section class=posts>
   {% for post in site.posts %}
-    {% include post_article.html %}
+    {% if post.hidden != true %}
+      {% include post_article.html %}
+    {% endif %}  
   {% endfor %}
 </section>
