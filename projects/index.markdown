@@ -12,6 +12,13 @@ Judge allows easy client side form validation in Rails 3, by porting many `Activ
 * [GitHub](https://github.com/joecorcoran/judge)
 * [Rubygems](https://rubygems.org/gems/judge)
 
+# Hideable
+
+A Rubygem that provides an `ActiveRecord` mixin for hiding records without overriding any standard behaviour. Often when dealing with user-generated content, hiding a record is better than deleting it.
+
+* [GitHub](https://github.com/joecorcoran/hideable)
+* [Rubygems](https://rubygems.org/gems/hideable)
+
 # SemanticVersioning
 
 A Rubygem for working with software version numbers as specified by [Semantic Versioning 2.0.0-rc.1](http://semver.org/). It passes every example given in the specification to date and is not tied to Rake, nor any particular task involving versioning. Plain old Ruby objects.
