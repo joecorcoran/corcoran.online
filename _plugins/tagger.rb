@@ -21,7 +21,7 @@ module Jekyll
             'posts'  => posts.sort.reverse!,
             'tag'    => tag
           }
-          @site.pages << TagPage.new(@site, @site.source, "#{@site.config["tag_directory"]}/#{tag}", 'index.html', data)
+          @site.pages << TagPage.new(@site, @site.source, "#{@site.config["tag_directory"]}/#{tag.gsub(/\s+/, '+')}", 'index.html', data)
         end
       end
 
