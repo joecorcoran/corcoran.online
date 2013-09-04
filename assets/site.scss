@@ -2,13 +2,15 @@ $bg-blue: #285777;
 $border-blue: #224D67;
 $link-blue: #94C5DB;
 $content-width: 800px;
+$calluna: 'calluna', Georgia, Times New Roman, serif;
+$franklin-gothic: 'franklin-gothic-urw', Helvetica, Arial, sans-serif;
 
 html {
-  font-size: 20px;
-  font-family: 'Open Sans', Helvetica, Arial, sans-serif;
+  font-size: 22px;
+  font-family: $calluna;
   color: #EEE;
   line-height: 1.6em;
-  font-weight: 300;
+  font-weight: 400;
   background: $bg-blue;
 }
 
@@ -40,6 +42,10 @@ p {
   margin: 0 0 1em;
 }
 
+strong, b {
+  font-weight: 700;
+}
+
 a, a code {
   color: $link-blue;
   text-decoration: none;
@@ -50,7 +56,8 @@ a:hover, a:hover code {
 }
 
 h1, h2, h3, h4 {
-  font-weight: 300;
+  font-family: $franklin-gothic;
+  font-weight: 500;
   margin-top: 1em;
   margin-bottom: 0.5em;
   line-height: 1.1em;
@@ -95,6 +102,10 @@ pre {
   border-radius: 2px;
 }
 
+time {
+  font-weight: 300;
+}
+
 article > footer, .comments {
   border-top: 2px solid $border-blue;
   margin-top: 40px;
@@ -123,6 +134,7 @@ article > footer, .comments {
   border-bottom: 3px solid $link-blue;
   width: 100%;
   padding: 40px 0;
+  font-family: $franklin-gothic;
   font-size: 1em;
   color: #F5F5F5;
   line-height: 1em;
@@ -135,8 +147,10 @@ article > footer, .comments {
     position: absolute;
     top: 0;
     left: 0;
+    font-weight: 400;
   }
   nav {
+    font-weight: 400;
     ul {
       margin: 0;
       padding: 0;
@@ -197,7 +211,6 @@ article > footer, .comments {
     left: 0;
     width: 200px;
     padding: 0;
-    font-weight: 300;
   }
   .content {
     display: block;
@@ -214,13 +227,15 @@ article > footer, .comments {
 .tags {
   margin: 0;
   padding: 0;
+  font-family: $franklin-gothic;
+  font-style: italic;
 }
 
 .tags li {
   display: inline;
   font-size: 0.75em;
   color: #666;
-  font-weight: 300;
+  font-weight: 400;
 }
 
 .tags a {
@@ -237,6 +252,7 @@ article > footer, .comments {
   ul {
     margin: 20px 0 0;
     padding: 0;
+    font-family: $franklin-gothic;
   }
   li {
     display: inline;
