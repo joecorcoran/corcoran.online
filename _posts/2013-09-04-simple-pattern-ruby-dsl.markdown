@@ -147,7 +147,7 @@ end
 
 The delegator class is created when the `dsl` class method is used. The class is assigned to the constant `DSLDelegator` and namespaced under the extending class.
 
-The main thing I like about this approach is my newfound clarity of thought. Simply having a clear place for the DSL methods to live and having them on hand in the same file as the class to which they relate has made iterative development on the project a little quicker and lot more enjoyable.
+My favourite thing about this approach is that it brings added clarity of thought. Simply having a clear place for the DSL methods to live and having them on hand in the same file as the class to which they relate has made iterative development on the project a little quicker and lot more enjoyable.
 
 [dsl]: http://en.wikipedia.org/wiki/Domain-specific_language
 [bui]: http://en.wikipedia.org/wiki/Builder_pattern
