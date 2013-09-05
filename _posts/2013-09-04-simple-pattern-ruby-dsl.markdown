@@ -13,8 +13,7 @@ tags:
 I've recently been working on a project that involved building a Ruby [DSL][dsl]. As an experiment, I decided to use only [Cucumber][cuc] to describe the behaviour of the code and leave the unit tests until later. I quite enjoyed this way of
 working at first, as it forced me to maintain focus on the end user experience and worry less about describing the stuff underneath.
 
-A negative side effect of this approach was that &#8212; in lieu of a separate
-class responsible for DSL behaviour &#8212; DSL methods ended up sitting alongside non-DSL methods and sometimes the DSL methods would be the only entry point to a particular feature.
+A negative side effect of this approach was that without unit tests keeping me in check, things got a little messy. In lieu of a separate class responsible for DSL behaviour, DSL methods ended up sitting alongside non-DSL methods without much indication of their intended use to users or future maintainers. Worse, sometimes the DSL methods would be the only entry point to a particular feature.
 
 The following code demonstrates the problem on a small scale. I'll leave it up to you to imagine the same situation with four or five times the number of methods.
 
