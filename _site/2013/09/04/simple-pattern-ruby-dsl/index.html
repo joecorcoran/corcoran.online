@@ -100,9 +100,9 @@ class responsible for DSL behaviour &#8212; DSL methods ended up sitting alongsi
   <span class="n">files</span> <span class="s1">&#39;foo.bar&#39;</span><span class="p">,</span> <span class="s1">&#39;baz/qux.quux&#39;</span>
 <span class="k">end</span>
 </code></pre></div>
-<p>Fine. But we hit an issue when a user would rather not use the code in this manner. Ideally, a block-based DSL like this would be an optional nicety and not the sole way of getting things done.</p>
+<p>Fine. But we have a problem when a user would rather not use the code in this manner. Ideally, a block-based DSL like this would be an optional nicety and not the sole way of getting things done.</p>
 
-<p>This issue becomes even more obvious when we come to write unit tests &#8212; we are users of our own code, after all &#8212; and it&#39;s necessary keep on initializing new objects in various states of configuration by using the block that was only intended for use in a DSL-appropriate environment. Not to mention that passing mock objects around is made extra difficult in this case thanks to the altered scope from <code>instance_eval</code>.</p>
+<p>This problem becomes even more obvious when writing unit tests &#8212; we are users of our own code, after all &#8212; and it&#39;s necessary to keep on initializing new objects in various states of configuration by using the DSL block. Not to mention that use of mock objects is made practically impossible in this case thanks to the altered scope from <code>instance_eval</code>.</p>
 
 <p>To fix this, I settled on the following solution.</p>
 <div class="highlight"><pre><code class="ruby"><span class="nb">require</span> <span class="s1">&#39;delegate&#39;</span>
@@ -145,9 +145,9 @@ class responsible for DSL behaviour &#8212; DSL methods ended up sitting alongsi
 
 <p>By using a <a href="http://www.ruby-doc.org/stdlib-2.0.0/libdoc/delegate/rdoc/Delegator.html">delegator object</a> we can isolate the DSL methods, making them only available inside the <code>build</code> block. The footprint of the DSL is now clearer, since DSL methods are defined on the delegator class.</p>
 
-<p>Ruby DSL behavior frequently deviates considerably from the concept of simply <a href="http://www.purl.org/stefan_ram/pub/doc_kay_oop_en">contructing objects and passing messages between them</a>. In the interest of providing a simple user experience there can be quite complex behaviour inside a DSL method. Separating the concerns presents the opportunity to keep a watchful eye on this complexity as it inevitably grows.</p>
+<p>Ruby DSL behavior frequently deviates considerably from the concept of simply <a href="http://www.purl.org/stefan_ram/pub/doc_kay_oop_en">constructing objects and passing messages between them</a>. In the interest of providing a simple user experience, we are tempted to write complex behaviour into a DSL method. Separating our concerns presents the opportunity to keep a watchful eye on this complexity as it inevitably grows.</p>
 
-<p>Cleaning up like this also allows for better unit testing. In the example above, the action of adding paths can be isolated without having to touch the DSL at all. What&#39;s more, the user can construct a <code>Config</code> object without the DSL if they wish.</p>
+<p>Cleaning up like this also allows for better unit testing. In the example above, the action of adding paths can be isolated without having to touch the DSL at all. What&#39;s more, the user can ignore the DSL completely if they wish.</p>
 <div class="highlight"><pre><code class="ruby"><span class="n">config</span> <span class="o">=</span> <span class="no">Config</span><span class="o">.</span><span class="n">new</span>
 <span class="n">config</span><span class="o">.</span><span class="n">add_paths</span><span class="p">(</span><span class="s1">&#39;foo.bar&#39;</span><span class="p">,</span> <span class="s1">&#39;baz/qux.quux&#39;</span><span class="p">)</span>
 <span class="n">config</span><span class="o">.</span><span class="n">save!</span>
@@ -171,9 +171,7 @@ class responsible for DSL behaviour &#8212; DSL methods ended up sitting alongsi
     <span class="nb">self</span><span class="o">.</span><span class="n">const_set</span><span class="p">(</span><span class="s1">&#39;DSLDelegator&#39;</span><span class="p">,</span> <span class="n">delegator_klass</span><span class="p">)</span>
   <span class="k">end</span>
 <span class="k">end</span>
-</code></pre></div>
-<p>The delegator class is created when the <code>dsl</code> class method is used. The class is assigned to the constant <code>DSLDelegator</code> and namespaced under the extending class.</p>
-<div class="highlight"><pre><code class="ruby"><span class="k">class</span> <span class="nc">Config</span>
+</code></pre></div><div class="highlight"><pre><code class="ruby"><span class="k">class</span> <span class="nc">Config</span>
   <span class="kp">extend</span> <span class="no">DSL</span>
   <span class="c1"># ...</span>
   <span class="n">dsl</span> <span class="k">do</span>
@@ -181,6 +179,10 @@ class responsible for DSL behaviour &#8212; DSL methods ended up sitting alongsi
   <span class="k">end</span>
 <span class="k">end</span>
 </code></pre></div>
+<p>The delegator class is created when the <code>dsl</code> class method is used. The class is assigned to the constant <code>DSLDelegator</code> and namespaced under the extending class.</p>
+
+<p>My favourite thing about this approach is that it brings added clarity of thought. Simply having a clear place for the DSL methods to live and having them on hand in the same file as the class to which they relate has made iterative development on the project a little quicker and lot more enjoyable.</p>
+
       <section class="comments">
         <p>
   <a href="#" id="show_comments">Show comments</a>
