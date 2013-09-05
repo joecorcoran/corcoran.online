@@ -102,7 +102,7 @@ I'm sure the idea is nothing new, but it has a number of benefits.
 
 By using a [delegator object][del] we can isolate the DSL methods, making them only available inside the `build` block. The footprint of the DSL is now clearer, since DSL methods are defined on the delegator class.
 
-Ruby DSL behavior frequently deviates considerably from the concept of simply [contructing objects and passing messages between them][kay]. In the interest of providing a simple user experience there can be quite complex behaviour inside a DSL method. Separating the concerns presents the opportunity to keep a watchful eye on this complexity as it inevitably grows.
+Ruby DSL behavior frequently deviates considerably from the concept of simply [constructing objects and passing messages between them][kay]. In the interest of providing a simple user experience there can be quite complex behaviour inside a DSL method. Separating the concerns presents the opportunity to keep a watchful eye on this complexity as it inevitably grows.
 
 Cleaning up like this also allows for better unit testing. In the example above, the action of adding paths can be isolated without having to touch the DSL at all. What's more, the user can construct a `Config` object without the DSL if they wish.
 
