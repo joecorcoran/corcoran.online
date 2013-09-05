@@ -51,9 +51,9 @@ Config.new do
 end
 ```
 
-Fine. But we hit an issue when a user would rather not use the code in this manner. Ideally, a block-based DSL like this would be an optional nicety and not the sole way of getting things done.
+Fine. But we have a problem when a user would rather not use the code in this manner. Ideally, a block-based DSL like this would be an optional nicety and not the sole way of getting things done.
 
-This issue becomes even more obvious when we come to write unit tests &#8212; we are users of our own code, after all &#8212; and it's necessary keep on initializing new objects in various states of configuration by using the block that was only intended for use in a DSL-appropriate environment. Not to mention that passing mock objects around is made extra difficult in this case thanks to the altered scope from `instance_eval`.
+This problem becomes even more obvious when writing unit tests &#8212; we are users of our own code, after all &#8212; and it's necessary to keep on initializing new objects in various states of configuration by using the DSL block. Not to mention that use of mock objects is made practically impossible in this case thanks to the altered scope from `instance_eval`.
 
 To fix this, I settled on the following solution.
 
@@ -102,9 +102,9 @@ I'm sure the idea is nothing new, but it has a number of benefits.
 
 By using a [delegator object][del] we can isolate the DSL methods, making them only available inside the `build` block. The footprint of the DSL is now clearer, since DSL methods are defined on the delegator class.
 
-Ruby DSL behavior frequently deviates considerably from the concept of simply [constructing objects and passing messages between them][kay]. In the interest of providing a simple user experience there can be quite complex behaviour inside a DSL method. Separating the concerns presents the opportunity to keep a watchful eye on this complexity as it inevitably grows.
+Ruby DSL behavior frequently deviates considerably from the concept of simply [constructing objects and passing messages between them][kay]. In the interest of providing a simple user experience, we are tempted to write complex behaviour into a DSL method. Separating our concerns presents the opportunity to keep a watchful eye on this complexity as it inevitably grows.
 
-Cleaning up like this also allows for better unit testing. In the example above, the action of adding paths can be isolated without having to touch the DSL at all. What's more, the user can construct a `Config` object without the DSL if they wish.
+Cleaning up like this also allows for better unit testing. In the example above, the action of adding paths can be isolated without having to touch the DSL at all. What's more, the user can ignore the DSL completely if they wish.
 
 ```ruby
 config = Config.new
@@ -135,8 +135,6 @@ module DSL
 end
 ```
 
-The delegator class is created when the `dsl` class method is used. The class is assigned to the constant `DSLDelegator` and namespaced under the extending class.
-
 ```ruby
 class Config
   extend DSL
@@ -146,6 +144,10 @@ class Config
   end
 end
 ```
+
+The delegator class is created when the `dsl` class method is used. The class is assigned to the constant `DSLDelegator` and namespaced under the extending class.
+
+The main thing I like about this approach is my newfound clarity of thought. Simply having a clear place for the DSL methods to live and having them on hand in the same file as the class to which they relate has made iterative development on the project a little quicker and lot more enjoyable.
 
 [dsl]: http://en.wikipedia.org/wiki/Domain-specific_language
 [bui]: http://en.wikipedia.org/wiki/Builder_pattern
