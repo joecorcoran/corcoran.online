@@ -7,5 +7,4 @@ auto: true
 tag_layout: tag
 tag_directory: tags
 title: "Joe Corcoran"
-subtitle: "Lapping it up with open arms"
 exclude: ["Capfile", "Gemfile", "Gemfile.lock", "Assetfile", "assets", "bin"]
