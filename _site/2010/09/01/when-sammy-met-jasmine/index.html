@@ -71,15 +71,15 @@
       </header>
       <h2>Testing Sammy JavaScript apps with Pivotal Labs&#39; Jasmine BDD framework</h2>
 
-<p>Aaron Quint&#39;s route-driven JavaScript framework <a href="http://github.com/quirkey/sammy" title="Sammy framework on GitHub">Sammy</a>, ships with <a href="http://github.com/jquery/qunit/" title="QUnit jQuery testing framework on GitHub">QUnit</a> tests. This is an obvious choice, since QUnit is jQuery&#39;s test framework and Sammy depends on jQuery. I, however, am not the biggest fan of QUnit. It works really well, but I find the syntax a little unwieldy.  On a recent project, I thought I&#39;d try out <a href="http://github.com/pivotal/jasmine">Jasmine &#8211; a library-independent JavaScript <acronym title="Behaviour Driven Development">BDD</acronym> framework</a> with a more readable syntax.</p>
+<p>Aaron Quint&rsquo;s route-driven JavaScript framework <a href="http://github.com/quirkey/sammy" title="Sammy framework on GitHub">Sammy</a>, ships with <a href="http://github.com/jquery/qunit/" title="QUnit jQuery testing framework on GitHub">QUnit</a> tests. This is an obvious choice, since QUnit is jQuery&rsquo;s test framework and Sammy depends on jQuery. I, however, am not the biggest fan of QUnit. It works really well, but I find the syntax a little unwieldy.  On a recent project, I thought I&rsquo;d try out <a href="http://github.com/pivotal/jasmine">Jasmine &#8211; a library-independent JavaScript <acronym title="Behaviour Driven Development">BDD</acronym> framework</a> with a more readable syntax.</p>
 
-<p>In this post I&#39;ll run through some typical Sammy scenarios and show you how I&#39;ve written the corresponding Jasmine tests.  For reference, I&#39;m using Jasmine 0.11.1 and Sammy 0.5.4.</p>
+<p>In this post I&rsquo;ll run through some typical Sammy scenarios and show you how I&rsquo;ve written the corresponding Jasmine tests.  For reference, I&rsquo;m using Jasmine 0.11.1 and Sammy 0.5.4.</p>
 
 <!--more-->
 
 <h2>Setting up Sammy</h2>
 
-<p>Let&#39;s start with a fairly simple Sammy app with some common features.</p>
+<p>Let&rsquo;s start with a fairly simple Sammy app with some common features.</p>
 
 <!--  gist 560735 app.js  -->
 
@@ -97,51 +97,51 @@
 
 <h3>An aside: Can I read all this shit easily?</h3>
 
-<p>I&#39;ve started to ask myself this question frequently.  If the answer is no, it&#39;s time to abstract.</p>
+<p>I&rsquo;ve started to ask myself this question frequently.  If the answer is no, it&rsquo;s time to abstract.</p>
 
 <p>Particularly where jQuery is involved, I often find code that looks similar to this:</p>
 
 <!--  gist 563595 chain_soup.js  -->
 
-<p>It only takes a few lines of jQuery, chained to the hilt, to achieve a lot.  This is seen as an advantage, and rightly so for small pieces of UI scripting, but it&#39;s a huge pain when testing larger applications since it leads to bloated specs.  Imagine trying to test the above example &#8211; a long list of calls needs a long list of assertions.  But testing needn&#39;t be a chore!  Whichever way a JavaScript project is structured, from fully modular and enclosed to fly-open-for-everyone-to-see, keeping functions succinct and limited in purpose makes for much easier testing.  Readable code == readable tests == clear statement of intentions to leave for future developers == painless development.</p>
+<p>It only takes a few lines of jQuery, chained to the hilt, to achieve a lot.  This is seen as an advantage, and rightly so for small pieces of UI scripting, but it&rsquo;s a huge pain when testing larger applications since it leads to bloated specs.  Imagine trying to test the above example &#8211; a long list of calls needs a long list of assertions.  But testing needn&rsquo;t be a chore!  Whichever way a JavaScript project is structured, from fully modular and enclosed to fly-open-for-everyone-to-see, keeping functions succinct and limited in purpose makes for much easier testing.  Readable code == readable tests == clear statement of intentions to leave for future developers == painless development.</p>
 
 <h2>Testing with Jasmine</h2>
 
-<p>Here&#39;s an initial attempt at testing the above Sammy app using Jasmine.  The specs are within <code>describe</code> blocks.  These aren&#39;t strictly necessary but nesting them helps to describe your tests in relation to the structure of your app.  See how the nesting follows the namespacing of the <code>url.build</code> function, for example:</p>
+<p>Here&rsquo;s an initial attempt at testing the above Sammy app using Jasmine.  The specs are within <code>describe</code> blocks.  These aren&rsquo;t strictly necessary but nesting them helps to describe your tests in relation to the structure of your app.  See how the nesting follows the namespacing of the <code>url.build</code> function, for example:</p>
 
 <!--  gist 560735 appSpecWithout.js  -->
 
-<p>Since the app involves <acronym title="Document Object Model">DOM</acronym> insertion, it&#39;s clear that some kind of setup and teardown of temporary DOM elements is required.  Using Jasmine&#39;s <code>beforeEach</code> method, the relevant elements are inserted into the DOM before each spec is run. Since each spec within this <code>describe</code> block refers to the same event, the event trigger is here as well, to avoid repetition.  The DOM elements are cleaned up using <code>afterEach</code>.</p>
+<p>Since the app involves <acronym title="Document Object Model">DOM</acronym> insertion, it&rsquo;s clear that some kind of setup and teardown of temporary DOM elements is required.  Using Jasmine&rsquo;s <code>beforeEach</code> method, the relevant elements are inserted into the DOM before each spec is run. Since each spec within this <code>describe</code> block refers to the same event, the event trigger is here as well, to avoid repetition.  The DOM elements are cleaned up using <code>afterEach</code>.</p>
 
 <!--  gist 560735 appSpecWithout_wrap.js  -->
 
-<p>Specs are enclosed in the <code>it</code> blocks and assertions/expectations are made using <code>expect</code>.  The syntax, when read out loud, sounds pretty close to how I&#39;d describe my tests.  &ldquo;It <em>should etc.</em>&rdquo;; &ldquo;Expect <em>actual</em> to match <em>expression</em>&rdquo;.  <a href="http://pivotal.github.com/jasmine/jsdoc/symbols/jasmine.Matchers.html">Jasmine has various matcher methods</a> such as <code>toMatch</code>.</p>
+<p>Specs are enclosed in the <code>it</code> blocks and assertions/expectations are made using <code>expect</code>.  The syntax, when read out loud, sounds pretty close to how I&rsquo;d describe my tests.  &ldquo;It <em>should etc.</em>&rdquo;; &ldquo;Expect <em>actual</em> to match <em>expression</em>&rdquo;.  <a href="http://pivotal.github.com/jasmine/jsdoc/symbols/jasmine.Matchers.html">Jasmine has various matcher methods</a> such as <code>toMatch</code>.</p>
 
 <!--  gist 560735 appSpecWithout_spec1.js  -->
 
 <h3>Befriending the DOM</h3>
 
-<p>There&#39;s something a little clunky about certain aspects of the above tests.  In particular the DOM-related areas look a little hacky.  It would be unfair to call this a fault of the testing framework &#8211; DOM manipulation isn&#39;t even on the Jasmine agenda.  So this is where <a href="http://github.com/velesin/jasmine-jquery">velesin&#39;s jasmine-jquery extensions</a> step in.</p>
+<p>There&rsquo;s something a little clunky about certain aspects of the above tests.  In particular the DOM-related areas look a little hacky.  It would be unfair to call this a fault of the testing framework &#8211; DOM manipulation isn&rsquo;t even on the Jasmine agenda.  So this is where <a href="http://github.com/velesin/jasmine-jquery">velesin&rsquo;s jasmine-jquery extensions</a> step in.</p>
 
 <p>jasmine-jquery allows for various improvements on the original tests:</p>
 
 <!--  gist 560735 appSpec.js  -->
 
-<p>Firstly, the manual setup and teardown is no longer required, thanks to <code>loadFixtures</code>, which loads in the necessary DOM elements from an external file, inserts them into a wrapper div inside the document body, and cleans up automatically after each spec is run.  Big win.  People who are really smart might even try to load fixtures in from the same files as partials to avoid duplication (I have a feeling this could all come together beautifully with <a href="http://code.quirkey.com/sammy/docs/api.html#Sammy.Meld">Sammy&#39;s new Meld feature</a>&hellip;).  An alternative is to use <code>setFixtures</code>, which accepts either an HTML string or a jQuery element as its only argument rather than loading from an external file.</p>
+<p>Firstly, the manual setup and teardown is no longer required, thanks to <code>loadFixtures</code>, which loads in the necessary DOM elements from an external file, inserts them into a wrapper div inside the document body, and cleans up automatically after each spec is run.  Big win.  People who are really smart might even try to load fixtures in from the same files as partials to avoid duplication (I have a feeling this could all come together beautifully with <a href="http://code.quirkey.com/sammy/docs/api.html#Sammy.Meld">Sammy&rsquo;s new Meld feature</a>&hellip;).  An alternative is to use <code>setFixtures</code>, which accepts either an HTML string or a jQuery element as its only argument rather than loading from an external file.</p>
 
 <!--  gist 560735 appSpec_fixture.js  -->
 
-<p>jasmine-jquery also provides a set of <a href="http://github.com/velesin/jasmine-jquery#readme">custom matchers</a>.  Here, for example, there&#39;s no need for the workaround of checking the innerHtml of an element against a regular expression, when <code>toHaveText</code> does the trick.</p>
+<p>jasmine-jquery also provides a set of <a href="http://github.com/velesin/jasmine-jquery#readme">custom matchers</a>.  Here, for example, there&rsquo;s no need for the workaround of checking the innerHtml of an element against a regular expression, when <code>toHaveText</code> does the trick.</p>
 
 <!--  gist 560735 appSpec_matchers.js  -->
 
 <h2>Conclusions</h2>
 
-<p>The Jasmine documentation could really do with a spruce up &#8211; especially in the less immediately obvious areas like spying, mocking and stubbing.  It&#39;s possible to bundle through and get some pretty nifty async tests running (blog post on this topic pending) but clearer instructions would be a big help.  I&#39;m sure better docs are in the pipeline with version 1.0.0 proper due to be released soon.</p>
+<p>The Jasmine documentation could really do with a spruce up &#8211; especially in the less immediately obvious areas like spying, mocking and stubbing.  It&rsquo;s possible to bundle through and get some pretty nifty async tests running (blog post on this topic pending) but clearer instructions would be a big help.  I&rsquo;m sure better docs are in the pipeline with version 1.0.0 proper due to be released soon.</p>
 
-<p>I find testing with Jasmine a more pleasant experience than any I&#39;ve had with another JavaScript testing framework.  The only thing that has come close for me is <a href="http://visionmedia.github.com/jspec/" title="JSpec testing framework on GitHub">JSpec</a>, which has very similar syntax to Jasmine if you eschew the custom Rubyesque grammar.</p>
+<p>I find testing with Jasmine a more pleasant experience than any I&rsquo;ve had with another JavaScript testing framework.  The only thing that has come close for me is <a href="http://visionmedia.github.com/jspec/" title="JSpec testing framework on GitHub">JSpec</a>, which has very similar syntax to Jasmine if you eschew the custom Rubyesque grammar.</p>
 
-<p>Provided you structure your Sammy application in a sensible way, it&#39;s easily testable with Jasmine.  I&#39;d like a way of testing the Sammy routes themselves, something akin to functional testing as apposed to unit testing.  But I&#39;m happy enough with relying on the Sammy internal tests and keeping the routes as simple trigger calls.</p>
+<p>Provided you structure your Sammy application in a sensible way, it&rsquo;s easily testable with Jasmine.  I&rsquo;d like a way of testing the Sammy routes themselves, something akin to functional testing as apposed to unit testing.  But I&rsquo;m happy enough with relying on the Sammy internal tests and keeping the routes as simple trigger calls.</p>
 
       <section class="comments">
         <p>

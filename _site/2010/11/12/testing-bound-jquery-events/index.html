@@ -65,17 +65,17 @@
 
 
       </header>
-      <p>I&#39;ve been using <a href="http://pivotal.github.com/jasmine/">Jasmine</a>, along with velesin&#39;s <a href="https://github.com/velesin/jasmine-jquery">jasmine-jquery</a>, to test all of my JavaScript work recently.  jasmine-jquery provides some really handy matchers, but one thing that&#39;s missing is the ability to test whether an element has a bound event.</p>
+      <p>I&rsquo;ve been using <a href="http://pivotal.github.com/jasmine/">Jasmine</a>, along with velesin&rsquo;s <a href="https://github.com/velesin/jasmine-jquery">jasmine-jquery</a>, to test all of my JavaScript work recently.  jasmine-jquery provides some really handy matchers, but one thing that&rsquo;s missing is the ability to test whether an element has a bound event.</p>
 
 <!--more-->
 
-<p>I&#39;ve come up with the following matcher to do just that:</p>
+<p>I&rsquo;ve come up with the following matcher to do just that:</p>
 
 <!--  gist 674339 toHaveEvent.js  -->
 
 <p>Use it like so: <code>expect($(&#39;input#foo&#39;)).toHaveEvent(&#39;keyup&#39;);</code></p>
 
-<p>I&#39;d be interested to hear of any thoughts or improvements.  Likewise, I&#39;ve started work on testing for events attached using <code>$.fn.live()</code>.  These are handled a bit differently, since live events aren&#39;t actually bound to the selected element.  Instead they sit there, bound to the <code>document</code>, listening for the event to bubble up the <acronym title="Document Object Model">DOM</acronym> tree.</p>
+<p>I&rsquo;d be interested to hear of any thoughts or improvements.  Likewise, I&rsquo;ve started work on testing for events attached using <code>$.fn.live()</code>.  These are handled a bit differently, since live events aren&rsquo;t actually bound to the selected element.  Instead they sit there, bound to the <code>document</code>, listening for the event to bubble up the <acronym title="Document Object Model">DOM</acronym> tree.</p>
 
 <!--  gist 674339 toHaveLive.js  -->
 

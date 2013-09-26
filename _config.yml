@@ -3,7 +3,6 @@ redcarpet:
   extensions: ["no_intra_emphasis", "fenced_code_blocks", "strikethrough", "superscript", "smart"]
 pygments: true
 permalink: /:year/:month/:day/:title
-auto: true
 tag_layout: tag
 tag_directory: tags
 title: "Joe Corcoran"

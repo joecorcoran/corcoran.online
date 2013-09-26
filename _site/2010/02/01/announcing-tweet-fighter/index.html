@@ -69,7 +69,7 @@
 
 
       </header>
-      <p>Firstly: allow me to bash the bible for a few lines.  Over the past year or so I&#39;ve become enamoured with <a href="http://www.sinatrarb.com/" title="Sinatra, a Ruby HTTP framework">Sinatra, the Ruby microframework</a>.  I&#39;ve toyed with it, pushed it around, made it do things it didn&#39;t want to do, locked it out in the cold and like a terminally happy pet, it still keeps coming back for more.  Sinatra&#39;s versatility is a product of its simplicity &#8211; it does its job well and the rest is up to you.  Anyway, enough proselytising&hellip; on to <a href="http://tweetfight.me">Tweet Fighter</a>.</p>
+      <p>Firstly: allow me to bash the bible for a few lines.  Over the past year or so I&rsquo;ve become enamoured with <a href="http://www.sinatrarb.com/" title="Sinatra, a Ruby HTTP framework">Sinatra, the Ruby microframework</a>.  I&rsquo;ve toyed with it, pushed it around, made it do things it didn&rsquo;t want to do, locked it out in the cold and like a terminally happy pet, it still keeps coming back for more.  Sinatra&rsquo;s versatility is a product of its simplicity &#8211; it does its job well and the rest is up to you.  Anyway, enough proselytising&hellip; on to <a href="http://tweetfight.me">Tweet Fighter</a>.</p>
 
 <!--more-->
 
@@ -77,19 +77,19 @@
 
 <p>You submit two <a href="http://twitter.com">Twitter</a> users, who are then queried a handful of times through the Twitter <acronym title="Application Programming Interface">API</acronym> and a &ldquo;fight&rdquo; of sorts is created between the two users.  They are attributed points based on various &ldquo;fight&rdquo;-worthy criteria: bad language; negative language (words like &ldquo;kill&rdquo; or &ldquo;hate&rdquo;, for instance); previous Tweet Fighter fight record; and &#8211; this being Twitter &#8211; number of followers and number of tweets to date.  The (fuzzy) thinking behind this is that, along with the fighting talk, the mouthiest users with the most backup from their group would have an advantage in a fight situation.</p>
 
-<p>It&#39;s pretty silly, I know.  I considered hacking away at some kind of worthy cause, but I&#39;m a big kid.  Maybe I&#39;ll get around to creating a parking metre/carbon emissions cross-referencing Google Maps mashup one day when I&#39;m older and crabbier.  Hopefully nobody reading this will assume that I&#39;m advocating random violence by making a fight-based application, but we&#39;ll see.</p>
+<p>It&rsquo;s pretty silly, I know.  I considered hacking away at some kind of worthy cause, but I&rsquo;m a big kid.  Maybe I&rsquo;ll get around to creating a parking metre/carbon emissions cross-referencing Google Maps mashup one day when I&rsquo;m older and crabbier.  Hopefully nobody reading this will assume that I&rsquo;m advocating random violence by making a fight-based application, but we&rsquo;ll see.</p>
 
-<p>I lifted the visuals from <a href="http://en.wikipedia.org/wiki/Street_Fighter_II" title="Street Fighter II on Wikipedia">Street Fighter II</a>, which was one of my favourite games as a kid (please don&#39;t cease-and-desist me, <a href="http://en.wikipedia.org/wiki/Capcom" title="Capcom on Wikipedia">Capcom</a>.  It&#39;s a tribute).  I seem to remember playing as <a href="http://en.wikipedia.org/wiki/Vega_%28Street_Fighter%29" title="Vega, the Street Fighter character, on Wikipedia">Vega</a> a lot, despite him not being very good.</p>
+<p>I lifted the visuals from <a href="http://en.wikipedia.org/wiki/Street_Fighter_II" title="Street Fighter II on Wikipedia">Street Fighter II</a>, which was one of my favourite games as a kid (please don&rsquo;t cease-and-desist me, <a href="http://en.wikipedia.org/wiki/Capcom" title="Capcom on Wikipedia">Capcom</a>.  It&rsquo;s a tribute).  I seem to remember playing as <a href="http://en.wikipedia.org/wiki/Vega_%28Street_Fighter%29" title="Vega, the Street Fighter character, on Wikipedia">Vega</a> a lot, despite him not being very good.</p>
 
 <h2>Inside</h2>
 
 <p>As mentioned before, Tweet Fighter is written in Ruby, on Sinatra.  My <acronym title="Object Relational Mapping">ORM</acronym> buddy of choice right now is <a href="http://sequel.rubyforge.org/" title="Sequel at Rubyforge">Sequel</a>.  I like the intuitive, chainable query syntax.  As such, I was happy to see the recent announcement regarding <a href="http://m.onkey.org/2010/1/22/active-record-query-interface" title="Pratik's post about the future of the Active Record's query interface">plans to make Active Record more, well&hellip; Sequel-esque</a>.</p>
 
-<p>I&#39;m also using <a href="http://github.com/jnunemaker/httparty" title="httparty source code at GitHub">httparty</a> to allow users to tweet directly from their fight pages &#8211; basic authorisation is easy with httparty and it felt like a much better fit than overkilling the project with <a href="http://oauth.net/" title="OAuth, the open authorisation protocol">OAuth</a>.</p>
+<p>I&rsquo;m also using <a href="http://github.com/jnunemaker/httparty" title="httparty source code at GitHub">httparty</a> to allow users to tweet directly from their fight pages &#8211; basic authorisation is easy with httparty and it felt like a much better fit than overkilling the project with <a href="http://oauth.net/" title="OAuth, the open authorisation protocol">OAuth</a>.</p>
 
 <h2>Issues</h2>
 
-<p>Overall, the Twitter API is easy to work with.  It&#39;s a little weird having the search API split away from the remainder of it, but it&#39;s no big deal.  One major limitation of the Twitter <acronym title="Application Programming Interface">API</acronym> &#8211; the unsearchable nature of any status updates over a certain age &#8211; actually turned out to be a blessing.  It means that fights involving the same Twitter users will be different from week to week (or even day to day), depending on how sweary/misanthropic the users have been feeling recently.  Sure, follower counts will remain roughly the same for weeks on end, but a couple of good old blue-tinted rants about your local transport provider will have you beating opponents in no time.</p>
+<p>Overall, the Twitter API is easy to work with.  It&rsquo;s a little weird having the search API split away from the remainder of it, but it&rsquo;s no big deal.  One major limitation of the Twitter <acronym title="Application Programming Interface">API</acronym> &#8211; the unsearchable nature of any status updates over a certain age &#8211; actually turned out to be a blessing.  It means that fights involving the same Twitter users will be different from week to week (or even day to day), depending on how sweary/misanthropic the users have been feeling recently.  Sure, follower counts will remain roughly the same for weeks on end, but a couple of good old blue-tinted rants about your local transport provider will have you beating opponents in no time.</p>
 
 <h2>Future</h2>
 
@@ -99,11 +99,11 @@
 
 <h2>Update, 12 Feb 2010</h2>
 
-<p>I&#39;ve just read that <a href="http://groups.google.com/group/twitter-development-talk/browse_thread/thread/c2c4963061422f28?pli=1" title="Twitter Development Talk on Google Groups">Twitter is phasing out basic authentication</a> much sooner than I&#39;d anticipated.  Will have to get cracking on OAuth!</p>
+<p>I&rsquo;ve just read that <a href="http://groups.google.com/group/twitter-development-talk/browse_thread/thread/c2c4963061422f28?pli=1" title="Twitter Development Talk on Google Groups">Twitter is phasing out basic authentication</a> much sooner than I&rsquo;d anticipated.  Will have to get cracking on OAuth!</p>
 
 <h2>Update, 18 June 2010</h2>
 
-<p>I stripped out the basic auth tweet form and replaced it with a TweetBox from Twitter&#39;s <a href="http://dev.twitter.com/anywhere" title="@Anywhere">@Anywhere</a> platform.  Pro: Trading a controller action and two gems for a few lines of JavaScript isn&#39;t bad at all;  Con: non-JS users miss out again.</p>
+<p>I stripped out the basic auth tweet form and replaced it with a TweetBox from Twitter&rsquo;s <a href="http://dev.twitter.com/anywhere" title="@Anywhere">@Anywhere</a> platform.  Pro: Trading a controller action and two gems for a few lines of JavaScript isn&rsquo;t bad at all;  Con: non-JS users miss out again.</p>
 
       <section class="comments">
         <p>

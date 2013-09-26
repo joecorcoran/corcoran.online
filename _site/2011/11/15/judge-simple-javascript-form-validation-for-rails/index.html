@@ -69,13 +69,13 @@
 
 
       </header>
-      <p>Since version 1.0 has just been released and I&#39;ve settled on what I hope is a friendly interface, I thought it was probably time I wrote a bit about <a href="https://rubygems.org/gems/judge">Judge</a>, my client side form validation gem for Rails 3.</p>
+      <p>Since version 1.0 has just been released and I&rsquo;ve settled on what I hope is a friendly interface, I thought it was probably time I wrote a bit about <a href="https://rubygems.org/gems/judge">Judge</a>, my client side form validation gem for Rails 3.</p>
 
 <!--more-->
 
 <h2>Context</h2>
 
-<p>There are some other gems out there that attempt to solve this problem, so it would be remiss of me not to mention them. <a href="https://github.com/bcardarella/client_side_validations" title="Client Side Validations gem by Brian Cardarella">Client Side Validations</a> is feature-rich and does a lot of work for you.  There&#39;s also <a href="https://github.com/alechill/livevalidation" title="LiveValidation by Alec Hill">LiveValidation</a>, which has been around for a long time and might be a good choice for people with legacy Rails apps that need Prototype.</p>
+<p>There are some other gems out there that attempt to solve this problem, so it would be remiss of me not to mention them. <a href="https://github.com/bcardarella/client_side_validations" title="Client Side Validations gem by Brian Cardarella">Client Side Validations</a> is feature-rich and does a lot of work for you.  There&rsquo;s also <a href="https://github.com/alechill/livevalidation" title="LiveValidation by Alec Hill">LiveValidation</a>, which has been around for a long time and might be a good choice for people with legacy Rails apps that need Prototype.</p>
 
 <p>I wanted a solution that was as small as possible. This is a simple job &#8211; no need for middleware, no need for extensions to core Ruby classes.  I also wanted it to be as flexible as possible &#8211; no assumptions should be made about form markup, styles, classes and so on. I started hacking away, using the jQuery plugin pattern as a starting point for the client side code. It soon became clear that jQuery had to go. Writing Judge as a jQuery plugin was a mistake &#8211; the code I wrote ended up tightly coupled to specific event bindings, specific DOM elements etc. That kind of stuff should really be left for the user to decide.</p>
 
