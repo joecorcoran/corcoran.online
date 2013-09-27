@@ -6,4 +6,4 @@ permalink: /:year/:month/:day/:title
 tag_layout: tag
 tag_directory: tags
 title: "Joe Corcoran"
-exclude: ["Capfile", "Gemfile", "Gemfile.lock", "Assetfile", "assets", "bin"]
+exclude: ["Capfile", "Gemfile", "Gemfile.lock", "Pannierfile", "assets", "bin"]
