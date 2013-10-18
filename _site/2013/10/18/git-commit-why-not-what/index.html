@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Commit messages are for the why and not the what :: Joe Corcoran</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="author" content="Joe Corcoran">
+<script type="text/javascript" src="//use.typekit.net/lbi3uvk.js"></script>
+<script type="text/javascript">try{Typekit.load();}catch(e){}</script>
+
+<link rel="stylesheet" href="/public/main.min.css" type="text/css" />
+<script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-3245696-4']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>
+  </head>
+  <body>
+    <header role="banner" class="banner">
+  <div class="banner-content">
+    <h1><a href="/">Joe Corcoran</a></h1>
+    <nav>
+      <ul>
+        <li><a href="/" class="active">Blog</a></li>
+        <li><a href="/about" >About</a></li>
+        <li><a href="/projects" >Projects</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+    <article class="post">
+      <header>
+        <h1>Commit messages are for the why and not the what</h1>
+        <time datetime="2013-10-18T00:00:00+01:00">18 October 2013</time>
+        
+
+  <ul class="tags">
+    
+      <li>
+        <a href="/tags/git">git</a>
+      </li>
+    
+      <li>
+        <a href="/tags/habits">habits</a>
+      </li>
+    
+  </ul>
+
+
+      </header>
+      <p>I have a confession to make. Most of the commit messages I&rsquo;ve written in my
+time as a Git user have been useless. Here&rsquo;s an example.</p>
+<div class="highlight"><pre><code class="text language-text" data-lang="text">commit 3420df0c35971219d9006870200a05c53974606f
+Author: Joe Corcoran &lt;joecorcoran@gmail.com&gt;
+Date:   Sat Mar 31 10:13:28 2012 +0100
+
+    use _.has in place of hasOwnProperty
+</code></pre></div>
+<p>Here&rsquo;s part of the diff for that commit.</p>
+<div class="highlight"><pre><code class="diff language-diff" data-lang="diff"><span class="gh">diff --git a/lib/generators/judge/templates/judge.js b/lib/generators/judge/templates/judge.js</span>
+<span class="gh">index 8c3c7c8..5ca0939 100644</span>
+<span class="gd">--- a/lib/generators/judge/templates/judge.js</span>
+<span class="gi">+++ b/lib/generators/judge/templates/judge.js</span>
+<span class="gu">@@ -240,7 +238,7 @@ judge.store = (function() {</span>
+     // the given key.
+     get: function(key) {
+       if (_(key).isUndefined()) { return store; }
+<span class="gd">-      return store.hasOwnProperty(key) ? store[key] : null;</span>
+<span class="gi">+      return _(store).has(key) ? store[key] : null;</span>
+     },
+</code></pre></div>
+<p>I switched from using the native JavaScript <code>hasOwnProperty</code> function to
+the <code>has</code> function from Underscore.js. But why did I make this choice? A year
+or two down the line, the commit message tells me nothing and I have to
+seek out <a href="http://underscorejs.org/#has">the relevant part of the library documentation</a>
+to figure it out.</p>
+
+<p>Describing <em>what</em> you did in a commit message is redundant, unless what you did
+was complex enough to require a summary. It&rsquo;s much better to describe <em>why</em>
+you did it and let the diff speak for itself.</p>
+
+<p>A quick browse through some popular open source projects tells me
+I&rsquo;m not alone in this habit. We need to be kinder to our colleagues and
+future selves. One way to start is to quit using <code>git commit -m</code>.</p>
+
+      <section class="comments">
+        <p>
+  <a href="#" id="show_comments">Show comments</a>
+</p>
+<div id="disqus_thread"></div>
+<script type="text/javascript">
+var disqus_shortname = 'joecorcoran',
+    disqus_title     = 'Commit messages are for the why and not the what',
+    showComments     = function() {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    },
+    commentsLink = document.getElementById('show_comments');
+commentsLink.onclick = function() {
+  showComments();
+  commentsLink.style.display = 'none';
+  return false;
+};
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+      </section>
+      <footer>
+        <p>
+          <a href="/" class="back">Back to index</a>
+        </p>
+      </footer>
+    </article>
+    
+  </body>
+</html>
