@@ -38,9 +38,15 @@ logic. It won't be solved through inferential statistics or
 their culture. As long as every difficult conversation is dominated by
 disbelief, people will continue to be driven away.
 
+## Related reading
+
+[Empathy for the Truth-Tellers][empathytt], a post about what empathy means and
+to whom it needs to be directed.
+
 [hnnatural]: https://news.ycombinator.com/item?id=6532985
 [hnstereotype]: https://news.ycombinator.com/item?id=6533133
 [sharp]: http://www.wired.co.uk/news/archive/2013-07/22/sarah-sharp
 [adria]: http://www.theguardian.com/commentisfree/2013/mar/26/adria-richards-gets-rape-threats-for-speaking-out-about-workplace-sexism
 [nexxy]: https://gist.github.com/nexxy/3430820
 [baloney]: http://plover.net/~bonds/bdksucks.html
+[empathytt]: https://medium.com/p/816abb069ddf
