@@ -4,11 +4,17 @@ section: projects
 title: Projects
 ---
 
+# Pannier
+
+A general-purpose Ruby asset processing tool. Intended as an asset pipeline replacement that can be used in any Rack environment. Work in progress.
+
+* [GitHub](https://github.com/joecorcoran/pannier)
+* [Relish](https://www.relishapp.com/joecorcoran/pannier/docs)
+
 # Judge
 
 Judge allows easy client side form validation in Rails 3, by porting many `ActiveModel::Validation` features to JavaScript and exposing your model validations as JSON within HTML5 data attributes. It eliminates the need for code duplication or gratuitous AJAX for standard Rails validators. Where possible, it also provides an interface for adding application-specific validators to both sides of the network.
 
-* [Documentation](http://judge.joecorcoran.co.uk)
 * [GitHub](https://github.com/joecorcoran/judge)
 * [Rubygems](https://rubygems.org/gems/judge)
 
