@@ -18,6 +18,13 @@ Judge allows easy client side form validation in Rails 3, by porting many `Activ
 * [GitHub](https://github.com/joecorcoran/judge)
 * [Rubygems](https://rubygems.org/gems/judge)
 
+# Cities
+
+A Ruby interface to the free [database of world city data](http://www.maxmind.com/en/worldcities) from MaxMind. Provides information like latitude, longitude and population for every city in the world. The data was munged to JSON and is provided as a tar file external to the gem.
+
+* [GitHub](https://github.com/joecorcoran/cities)
+* [Rubygems](https://rubygems.org/gems/cities)
+
 # Hideable
 
 A Rubygem that provides an `ActiveRecord` mixin for hiding records without overriding any standard behaviour. Often when dealing with user-generated content, hiding a record is better than deleting it.
