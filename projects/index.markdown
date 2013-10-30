@@ -13,7 +13,7 @@ A general-purpose Ruby asset processing tool. Intended as an asset pipeline repl
 
 # Judge
 
-Judge allows easy client side form validation in Rails 3, by porting many `ActiveModel::Validation` features to JavaScript and exposing your model validations as JSON within HTML5 data attributes. It eliminates the need for code duplication or gratuitous AJAX for standard Rails validators. Where possible, it also provides an interface for adding application-specific validators to both sides of the network.
+Judge allows easy client side form validation in Rails 3, by porting many `ActiveModel::Validation` features to JavaScript and exposing your model validations as JSON within HTML5 data attributes. It eliminates the need for code duplication or gratuitous AJAX for standard Rails validators. It also provides an interface for adding application-specific validators to both client and server where necessary.
 
 * [GitHub](https://github.com/joecorcoran/judge)
 * [Rubygems](https://rubygems.org/gems/judge)
