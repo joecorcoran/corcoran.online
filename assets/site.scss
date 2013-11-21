@@ -1,6 +1,7 @@
 $bg-blue: #285777;
 $border-blue: #224D67;
 $link-blue: #94C5DB;
+$muted-link-blue: #4E8BA7;
 $content-width: 800px;
 $calluna: 'calluna', Georgia, Times New Roman, serif;
 $franklin-gothic: 'franklin-gothic-urw', Helvetica, Arial, sans-serif;
@@ -49,10 +50,17 @@ strong, b {
 a, a code {
   color: $link-blue;
   text-decoration: none;
+  .muted {
+    font-size: 0.75em;
+    color: $muted-link-blue;
+  }
 }
 
 a:hover, a:hover code {
   color: #FFF;
+  .muted {
+    color: #FFF;
+  }
 }
 
 h1, h2, h3, h4 {

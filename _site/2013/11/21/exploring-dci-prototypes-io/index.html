@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Exploring Data, Context and Interaction through prototypes with Io :: Joe Corcoran</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="author" content="Joe Corcoran">
+<script type="text/javascript" src="//use.typekit.net/lbi3uvk.js"></script>
+<script type="text/javascript">try{Typekit.load();}catch(e){}</script>
+
+<link rel="stylesheet" href="/public/main.min.css" type="text/css" />
+<script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-3245696-4']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>
+  </head>
+  <body>
+    <header role="banner" class="banner">
+  <div class="banner-content">
+    <h1><a href="/">Joe Corcoran</a></h1>
+    <nav>
+      <ul>
+        <li><a href="/" class="active">Blog</a></li>
+        <li><a href="/about" >About</a></li>
+        <li><a href="/projects" >Projects</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+    <article class="post">
+      <header>
+        <h1>Exploring Data, Context and Interaction through prototypes with Io</h1>
+        <time datetime="2013-11-21T00:00:00+00:00">21 November 2013</time>
+        
+
+  <ul class="tags">
+    
+      <li>
+        <a href="/tags/dci">dci</a>
+      </li>
+    
+      <li>
+        <a href="/tags/io">io</a>
+      </li>
+    
+      <li>
+        <a href="/tags/prototypes">prototypes</a>
+      </li>
+    
+      <li>
+        <a href="/tags/roles">roles</a>
+      </li>
+    
+      <li>
+        <a href="/tags/inheritance">inheritance</a>
+      </li>
+    
+  </ul>
+
+
+      </header>
+      <p><a href="http://www.artima.com/articles/dci_vision.html">Data, Context and Interaction</a> is a programming concept that was once
+picking up steam in the Ruby world. The general idea is to separate data objects
+from any code specific to the context in which the data will be used. Objects
+within a given context interact through &ldquo;roles&rdquo;, which are stateless
+representations of a set of responsibilities. <em>True DCI</em>, for the dogmatically
+inclined, has further caveats. The <a href="http://en.wikipedia.org/wiki/Data,_context_and_interaction#Description">Wikipedia article on DCI</a> gives a
+decent enough summary.</p>
+
+<p>It has since been found that the most common way of implementing DCI in Ruby,
+through mixing a module into the metaclass of an object, has
+<a href="http://tonyarcieri.com/dci-in-ruby-is-completely-broken">terrible performance implications</a>. An alternative is to
+<a href="http://evan.tiggerpalace.com/articles/2011/11/24/dci-that-respects-the-method-cache/">use delegation</a>, although in my experience delegation can lead to
+<a href="http://en.wikipedia.org/wiki/Schizophrenia_(object-oriented_programming)">confusion over object identity</a>.</p>
+
+<p>The 1991 paper
+<a href="http://cs.au.dk/%7Ehosc/local/LaSC-4-3-pp223-242.pdf">Organizing Programs Without Classes <span class="muted">(PDF)</span></a>
+makes a compelling case for the power of prototypal inheritance. It is
+contended that a combination of trait objects and prototype objects allows for
+code reuse and object composition in a more flexible way than class inheritance.</p>
+
+<p>One of the proposed benefits of traits and prototypes is the ability to
+change the &ldquo;behaviour mode&rdquo; of any data type instance at runtime through dynamic
+inheritance. Figure 5 in the paper demonstrates quite neatly the authors&#39;
+investigation into dynamic inheritance with <a href="http://selflanguage.org/">Self</a>.</p>
+
+<p>Which brings us back to the idea of roles. Roles in the DCI sense are easily
+represented as traits objects; containers for related functionality that is
+injected into a data object in a specific context. A prototypal language
+where dynamic inheritance is encouraged and comes with no performance penalty
+handles this job well.</p>
+
+<p><a href="http://iolanguage.org/">Io</a> offers a flavour of prototypal programming inspired by Self
+and others. Here&rsquo;s a run-through of a common DCI example &#8212; the
+bank transfer &#8212; using Io.</p>
+
+<p>An <code>Account</code> object, cloned from the basic <code>Object</code>, forms the basis of a bank
+account. Any clones will be initialised with an arbitrary balance.</p>
+<div class="highlight"><pre><code class="io language-io" data-lang="io"><span class="n">Account</span> <span class="o">:=</span> <span class="nb">Object</span> <span class="k">clone</span> <span class="k">do</span><span class="o">(</span>
+  <span class="n">init</span> <span class="o">:=</span> <span class="k">method</span><span class="o">(</span><span class="n">self</span> <span class="n">balance</span> <span class="o">:=</span> <span class="mf">100</span><span class="o">)</span>
+<span class="o">)</span>
+</code></pre></div>
+<p>Here&rsquo;s a traits object that handles deposits.</p>
+<div class="highlight"><pre><code class="io language-io" data-lang="io"><span class="n">DepositingAccount</span> <span class="o">:=</span> <span class="nb">Object</span> <span class="k">clone</span> <span class="k">do</span><span class="o">(</span>
+  <span class="n">deposit</span> <span class="o">:=</span> <span class="k">method</span><span class="o">(</span><span class="n">amount</span><span class="o">,</span> <span class="n">balance</span> <span class="o">=</span> <span class="n">balance</span> <span class="o">+</span> <span class="n">amount</span><span class="o">)</span>
+<span class="o">)</span>
+</code></pre></div>
+<p>A data object is cloned from <code>Account</code> and the traits object <code>DepositingAccount</code>
+is injected into it.</p>
+<div class="highlight"><pre><code class="io language-io" data-lang="io"><span class="n">account</span> <span class="o">::=</span> <span class="n">Account</span> <span class="k">clone</span>
+<span class="n">account</span> <span class="n">appendProto</span><span class="o">(</span><span class="n">DepositingAccount</span><span class="o">)</span>
+</code></pre></div>
+<p>Inheritance is most often achieved through cloning objects but through direct
+manipulation of the prototype list, objects can inherit from multiple others.</p>
+<div class="highlight"><pre><code class="io language-io" data-lang="io"><span class="n">account</span> <span class="n">protos</span>
+  <span class="c1">#==&gt; list(Account_0x7fae4acaa610, DepositingAccount_0x7fae4aca0af0)</span>
+</code></pre></div>
+<p>The data object can carry out its role&hellip;</p>
+<div class="highlight"><pre><code class="io language-io" data-lang="io"><span class="n">account</span> <span class="n">deposit</span><span class="o">(</span><span class="mf">10</span><span class="o">)</span>
+<span class="n">account</span> <span class="n">balance</span>
+  <span class="c1">#==&gt; 110</span>
+</code></pre></div>
+<p>&hellip;and the depositing capability can be removed afterwards.</p>
+<div class="highlight"><pre><code class="io language-io" data-lang="io"><span class="n">account</span> <span class="n">removeProto</span><span class="o">(</span><span class="n">DepositingAccount</span><span class="o">)</span>
+</code></pre></div>
+<p>With a traits object that adds withdrawal behaviour, it&rsquo;s easy to write the
+context for a simplified bank transfer. In this case it&rsquo;s just a <code>transfer</code>
+method in place of whatever controller or service would assemble the objects
+in the real world.</p>
+<div class="highlight"><pre><code class="io language-io" data-lang="io"><span class="n">WithdrawingAccount</span> <span class="o">:=</span> <span class="nb">Object</span> <span class="k">clone</span> <span class="k">do</span><span class="o">(</span>
+  <span class="n">canWithdraw</span> <span class="o">:=</span> <span class="k">method</span><span class="o">(</span><span class="n">amount</span><span class="o">,</span> <span class="n">balance</span> <span class="o">&gt;=</span> <span class="n">amount</span><span class="o">)</span>
+  <span class="n">withdraw</span> <span class="o">:=</span> <span class="k">method</span><span class="o">(</span><span class="n">amount</span><span class="o">,</span> <span class="n">balance</span> <span class="o">=</span> <span class="n">balance</span> <span class="o">-</span> <span class="n">amount</span><span class="o">)</span>
+<span class="o">)</span>
+</code></pre></div><div class="highlight"><pre><code class="io language-io" data-lang="io"><span class="n">transfer</span> <span class="o">:=</span> <span class="k">method</span><span class="o">(</span><span class="n">amount</span><span class="o">,</span> <span class="n">from</span><span class="o">,</span> <span class="n">to</span><span class="o">,</span>
+  <span class="n">from</span> <span class="n">appendProto</span><span class="o">(</span><span class="n">WithdrawingAccount</span><span class="o">)</span>
+  <span class="n">to</span> <span class="n">appendProto</span><span class="o">(</span><span class="n">DepositingAccount</span><span class="o">)</span>
+
+  <span class="k">if</span><span class="o">(</span><span class="n">from</span> <span class="n">canWithdraw</span><span class="o">(</span><span class="n">amount</span><span class="o">))</span> <span class="k">then</span><span class="o">(</span>
+    <span class="n">from</span> <span class="n">withdraw</span><span class="o">(</span><span class="n">amount</span><span class="o">)</span>
+    <span class="n">to</span> <span class="n">deposit</span><span class="o">(</span><span class="n">amount</span><span class="o">)</span>
+  <span class="o">)</span> <span class="k">else</span><span class="o">(</span>
+    <span class="n">message</span> <span class="o">:=</span> <span class="s">&quot;Cannot transfer #{amount}, balance is #{from balance}&quot;</span>
+    <span class="n">Exception</span> <span class="n">raise</span><span class="o">(</span><span class="n">message</span> <span class="n">interpolate</span><span class="o">)</span>
+  <span class="o">)</span>
+
+  <span class="n">from</span> <span class="n">removeProto</span><span class="o">(</span><span class="n">WithdrawingAccount</span><span class="o">)</span>
+  <span class="n">to</span> <span class="n">removeProto</span><span class="o">(</span><span class="n">DepositingAccount</span><span class="o">)</span>
+
+  <span class="nb">list</span><span class="o">(</span><span class="n">from</span><span class="o">,</span> <span class="n">to</span><span class="o">)</span>
+<span class="o">)</span>
+</code></pre></div>
+<p>Of course it&rsquo;s easy to tout the benefits of a hobbyist language and we need to
+work with the languages we have in production, but ever since investigating
+this subject I find myself wishing that the languages I work with every day
+could offer dynamic multiple inheritance like Io.</p>
+
+<p>Would we still be fastidiously moving presentational methods into decorator
+objects if Ruby had usable instance composition? Would we still have
+hundreds of attempts to wedge classes into JavaScript if its own prototype
+system was more flexible?</p>
+
+<p><em>The code from this post (with a bit of extra namespacing) is
+<a href="https://github.com/joecorcoran/dci-io">available on GitHub</a>. Credit to Fogus for
+<a href="http://blog.fogus.me/2011/09/08/10-technical-papers-every-programmer-should-read-at-least-twice/">recommending Organizing Programs Without Classes</a></em>.</p>
+
+      <section class="comments">
+        <p>
+  <a href="#" id="show_comments">Show comments</a>
+</p>
+<div id="disqus_thread"></div>
+<script type="text/javascript">
+var disqus_shortname = 'joecorcoran',
+    disqus_title     = 'Exploring Data, Context and Interaction through prototypes with Io',
+    showComments     = function() {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    },
+    commentsLink = document.getElementById('show_comments');
+commentsLink.onclick = function() {
+  showComments();
+  commentsLink.style.display = 'none';
+  return false;
+};
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+      </section>
+      <footer>
+        <p>
+          <a href="/" class="back">Back to index</a>
+        </p>
+      </footer>
+    </article>
+    
+  </body>
+</html>
