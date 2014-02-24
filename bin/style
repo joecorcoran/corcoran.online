@@ -1,0 +1,3 @@
+#!/bin/bash
+
+rerun --dir assets --pattern "**/*.scss" --no-growl "pannier process"

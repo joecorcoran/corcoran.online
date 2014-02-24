@@ -26,17 +26,17 @@
     <h1><a href="/">Joe Corcoran</a></h1>
     <nav>
       <ul>
-        <li><a href="/" class="active">Blog</a></li>
-        <li><a href="/about" >About</a></li>
+        <li><a href="/articles" class="active">Articles</a></li>
         <li><a href="/projects" >Projects</a></li>
       </ul>
     </nav>
   </div>
 </header>
+
     <article class="post">
       <header>
         <h1>Judge: Simple JavaScript form validation for Rails</h1>
-        <time datetime="2011-11-15T00:00:00+00:00">15 November 2011</time>
+        <time datetime="2011-11-15T00:00:00+01:00">15 November 2011</time>
         
 
   <ul class="tags">
@@ -85,14 +85,14 @@
 
 <p>Add validation to an attribute in your model.</p>
 
-<div class="highlight"><pre><code class="ruby"><span class="k">class</span> <span class="nc">Thing</span> <span class="o">&lt;</span> <span class="ss">ActiveRecord</span><span class="p">:</span><span class="ss">:Base</span>
+<div class="highlight"><pre><code class="ruby"><span class="k">class</span> <span class="nc">Thing</span> <span class="o">&lt;</span> <span class="no">ActiveRecord</span><span class="o">::</span><span class="no">Base</span>
   <span class="n">validates</span> <span class="ss">:name</span><span class="p">,</span> <span class="ss">:presence</span> <span class="o">=&gt;</span> <span class="kp">true</span>
 <span class="k">end</span>
 </code></pre></div>
 
 <p>Use the <code>Judge::FormBuilder</code> in your view. Add <code>:validate =&gt; true</code> to the options hash of any form element that you wish to validate on the client side.</p>
 
-<div class="highlight"><pre><code class="ruby"><span class="o">&lt;</span><span class="sx">%= form_for(@thing, :builder =</span><span class="o">&gt;</span> <span class="ss">Judge</span><span class="p">:</span><span class="ss">:FormBuilder</span><span class="p">)</span> <span class="k">do</span> <span class="o">|</span><span class="n">f</span><span class="o">|</span> <span class="sx">%&gt;</span>
+<div class="highlight"><pre><code class="ruby"><span class="o">&lt;</span><span class="sx">%= form_for(@thing, :builder =</span><span class="o">&gt;</span> <span class="no">Judge</span><span class="o">::</span><span class="no">FormBuilder</span><span class="p">)</span> <span class="k">do</span> <span class="o">|</span><span class="n">f</span><span class="o">|</span> <span class="sx">%&gt;</span>
 <span class="sx">  &lt;%= f.text_field :name, :validate =&gt;</span> <span class="kp">true</span> <span class="sx">%&gt;</span>
 <span class="sx">&lt;% end %&gt;</span>
 </code></pre></div>

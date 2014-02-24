@@ -26,17 +26,17 @@
     <h1><a href="/">Joe Corcoran</a></h1>
     <nav>
       <ul>
-        <li><a href="/" class="active">Blog</a></li>
-        <li><a href="/about" >About</a></li>
+        <li><a href="/articles" class="active">Articles</a></li>
         <li><a href="/projects" >Projects</a></li>
       </ul>
     </nav>
   </div>
 </header>
+
     <article class="post">
       <header>
         <h1>An update on Judge</h1>
-        <time datetime="2012-04-13T00:00:00+01:00">13 April 2012</time>
+        <time datetime="2012-04-13T00:00:00+02:00">13 April 2012</time>
         
 
   <ul class="tags">
@@ -114,7 +114,7 @@
 
 <p>Internationalized error messages are sweet.  Remember when Rails didn&#8217;t do this?  Oh man. Bad times. They&#8217;re still a bit confusing though. There are a lot of bad custom validator examples sitting around on the web, just waiting to be copied and pasted into some poor, unsuspecting app. Don&#8217;t do this:</p>
 
-<div class="highlight"><pre><code class="ruby"><span class="k">class</span> <span class="nc">FooValidator</span> <span class="o">&lt;</span> <span class="ss">ActiveModel</span><span class="p">:</span><span class="ss">:EachValidator</span>
+<div class="highlight"><pre><code class="ruby"><span class="k">class</span> <span class="nc">FooValidator</span> <span class="o">&lt;</span> <span class="no">ActiveModel</span><span class="o">::</span><span class="no">EachValidator</span>
   <span class="k">def</span> <span class="nf">validate_each</span><span class="p">(</span><span class="n">record</span><span class="p">,</span> <span class="n">attribute</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span>
     <span class="k">if</span> <span class="n">value</span> <span class="o">!=</span> <span class="s2">&quot;foo&quot;</span>
       <span class="n">record</span><span class="o">.</span><span class="n">errors</span><span class="o">[</span><span class="n">attribute</span><span class="o">]</span> <span class="o">&lt;&lt;</span> <span class="s2">&quot;ain&#39;t foo&quot;</span>
@@ -125,7 +125,7 @@
 
 <p><a href="http://en.wikipedia.org/wiki/Magic_number_(programming)">That rogue error message is doing nobody any favours</a>. The errors object has an <code>add</code> method which will handle i18n translation lookup for you:</p>
 
-<div class="highlight"><pre><code class="ruby"><span class="k">class</span> <span class="nc">FooValidator</span> <span class="o">&lt;</span> <span class="ss">ActiveModel</span><span class="p">:</span><span class="ss">:EachValidator</span>
+<div class="highlight"><pre><code class="ruby"><span class="k">class</span> <span class="nc">FooValidator</span> <span class="o">&lt;</span> <span class="no">ActiveModel</span><span class="o">::</span><span class="no">EachValidator</span>
   <span class="k">def</span> <span class="nf">validate_each</span><span class="p">(</span><span class="n">record</span><span class="p">,</span> <span class="n">attribute</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span>
     <span class="k">if</span> <span class="n">value</span> <span class="o">!=</span> <span class="s2">&quot;foo&quot;</span>
       <span class="n">record</span><span class="o">.</span><span class="n">errors</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">attribute</span><span class="p">,</span> <span class="ss">:not_foo</span><span class="p">)</span>
@@ -138,7 +138,7 @@
 
 <p>Since Judge is all about porting stuff from server- to client-side for great DRY justice, you can now use <code>declare_messages</code> in your custom <code>EachValidator</code> to specify which messages will be made available to your validation methods on the client-side:</p>
 
-<div class="highlight"><pre><code class="ruby"><span class="k">class</span> <span class="nc">FooValidator</span> <span class="o">&lt;</span> <span class="ss">ActiveModel</span><span class="p">:</span><span class="ss">:EachValidator</span>
+<div class="highlight"><pre><code class="ruby"><span class="k">class</span> <span class="nc">FooValidator</span> <span class="o">&lt;</span> <span class="no">ActiveModel</span><span class="o">::</span><span class="no">EachValidator</span>
   <span class="n">declare_messages</span> <span class="ss">:not_foo</span>
 
   <span class="k">def</span> <span class="nf">validate_each</span><span class="p">(</span><span class="n">record</span><span class="p">,</span> <span class="n">attribute</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span>

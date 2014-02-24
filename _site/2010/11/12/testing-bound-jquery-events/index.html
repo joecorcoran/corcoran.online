@@ -26,17 +26,17 @@
     <h1><a href="/">Joe Corcoran</a></h1>
     <nav>
       <ul>
-        <li><a href="/" class="active">Blog</a></li>
-        <li><a href="/about" >About</a></li>
+        <li><a href="/articles" class="active">Articles</a></li>
         <li><a href="/projects" >Projects</a></li>
       </ul>
     </nav>
   </div>
 </header>
+
     <article class="post">
       <header>
         <h1>Testing bound jQuery events</h1>
-        <time datetime="2010-11-12T21:29:00+00:00">12 November 2010</time>
+        <time datetime="2010-11-12T21:29:00+01:00">12 November 2010</time>
         
 
   <ul class="tags">
@@ -71,13 +71,13 @@
 
 <p>I&rsquo;ve come up with the following matcher to do just that:</p>
 
-<!--  gist 674339 toHaveEvent.js  -->
+<script src="https://gist.github.com/674339.js?file=toHaveEvent.js"> </script>
 
 <p>Use it like so: <code>expect($(&#39;input#foo&#39;)).toHaveEvent(&#39;keyup&#39;);</code></p>
 
 <p>I&rsquo;d be interested to hear of any thoughts or improvements.  Likewise, I&rsquo;ve started work on testing for events attached using <code>$.fn.live()</code>.  These are handled a bit differently, since live events aren&rsquo;t actually bound to the selected element.  Instead they sit there, bound to the <code>document</code>, listening for the event to bubble up the <acronym title="Document Object Model">DOM</acronym> tree.</p>
 
-<!--  gist 674339 toHaveLive.js  -->
+<script src="https://gist.github.com/674339.js?file=toHaveLive.js"> </script>
 
 <p>So: <code>expect($(&#39;input#bar&#39;)).toHaveLive(&#39;focus&#39;);</code></p>
 

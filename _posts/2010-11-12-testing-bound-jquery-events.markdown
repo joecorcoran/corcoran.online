@@ -17,13 +17,13 @@ I've been using <a href="http://pivotal.github.com/jasmine/">Jasmine</a>, along 
 
 I've come up with the following matcher to do just that:
 
-<!--  gist 674339 toHaveEvent.js  -->
+{% gist 674339 toHaveEvent.js %}
 
 Use it like so: <code>expect($('input#foo')).toHaveEvent('keyup');</code>
 
 I'd be interested to hear of any thoughts or improvements.  Likewise, I've started work on testing for events attached using <code>$.fn.live()</code>.  These are handled a bit differently, since live events aren't actually bound to the selected element.  Instead they sit there, bound to the <code>document</code>, listening for the event to bubble up the <acronym title="Document Object Model">DOM</acronym> tree.
 
-<!--  gist 674339 toHaveLive.js  -->
+{% gist 674339 toHaveLive.js %}
 
 So: <code>expect($('input#bar')).toHaveLive('focus');</code>
 

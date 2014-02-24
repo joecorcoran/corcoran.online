@@ -26,17 +26,17 @@
     <h1><a href="/">Joe Corcoran</a></h1>
     <nav>
       <ul>
-        <li><a href="/" class="active">Blog</a></li>
-        <li><a href="/about" >About</a></li>
+        <li><a href="/articles" class="active">Articles</a></li>
         <li><a href="/projects" >Projects</a></li>
       </ul>
     </nav>
   </div>
 </header>
+
     <article class="post">
       <header>
         <h1>When Sammy Met Jasmine</h1>
-        <time datetime="2010-09-01T21:37:00+01:00">01 September 2010</time>
+        <time datetime="2010-09-01T21:37:00+02:00">01 September 2010</time>
         
 
   <ul class="tags">
@@ -81,19 +81,19 @@
 
 <p>Let&rsquo;s start with a fairly simple Sammy app with some common features.</p>
 
-<!--  gist 560735 app.js  -->
+<script src="https://gist.github.com/560735.js?file=app.js"> </script>
 
 <p>At the top of the app, the <code>context</code> variable is assigned, providing easy and unambiguous access to the <code>Sammy.Application</code> instance itself, for use elsewhere.  A GET route is declared, which simply triggers an event named <code>myEvent</code>.  The second argument to <code>trigger</code> passes an object to the event:</p>
 
-<!--  gist 560735 app_pt1.js  -->
+<script src="https://gist.github.com/560735.js?file=app_pt1.js"> </script>
 
 <p>Here is the event that was triggered in the GET route.  Bound events accept a custom object as their second argument, which is used in this example to pass in some arbitrary values:</p>
 
-<!--  gist 560735 app_pt2.js  -->
+<script src="https://gist.github.com/560735.js?file=app_pt2.js"> </script>
 
 <p>Here, a (very) rough example of a modular design pattern is established for any non-event driven parts of the app.  I like to group functions by similarity of purpose.</p>
 
-<!--  gist 560735 app_pt3.js  -->
+<script src="https://gist.github.com/560735.js?file=app_pt3.js"> </script>
 
 <h3>An aside: Can I read all this shit easily?</h3>
 
@@ -101,7 +101,7 @@
 
 <p>Particularly where jQuery is involved, I often find code that looks similar to this:</p>
 
-<!--  gist 563595 chain_soup.js  -->
+<script src="https://gist.github.com/563595.js?file=chain_soup.js"> </script>
 
 <p>It only takes a few lines of jQuery, chained to the hilt, to achieve a lot.  This is seen as an advantage, and rightly so for small pieces of UI scripting, but it&rsquo;s a huge pain when testing larger applications since it leads to bloated specs.  Imagine trying to test the above example &#8211; a long list of calls needs a long list of assertions.  But testing needn&rsquo;t be a chore!  Whichever way a JavaScript project is structured, from fully modular and enclosed to fly-open-for-everyone-to-see, keeping functions succinct and limited in purpose makes for much easier testing.  Readable code == readable tests == clear statement of intentions to leave for future developers == painless development.</p>
 
@@ -109,15 +109,15 @@
 
 <p>Here&rsquo;s an initial attempt at testing the above Sammy app using Jasmine.  The specs are within <code>describe</code> blocks.  These aren&rsquo;t strictly necessary but nesting them helps to describe your tests in relation to the structure of your app.  See how the nesting follows the namespacing of the <code>url.build</code> function, for example:</p>
 
-<!--  gist 560735 appSpecWithout.js  -->
+<script src="https://gist.github.com/560735.js?file=appSpecWithout.js"> </script>
 
 <p>Since the app involves <acronym title="Document Object Model">DOM</acronym> insertion, it&rsquo;s clear that some kind of setup and teardown of temporary DOM elements is required.  Using Jasmine&rsquo;s <code>beforeEach</code> method, the relevant elements are inserted into the DOM before each spec is run. Since each spec within this <code>describe</code> block refers to the same event, the event trigger is here as well, to avoid repetition.  The DOM elements are cleaned up using <code>afterEach</code>.</p>
 
-<!--  gist 560735 appSpecWithout_wrap.js  -->
+<script src="https://gist.github.com/560735.js?file=appSpecWithout_wrap.js"> </script>
 
 <p>Specs are enclosed in the <code>it</code> blocks and assertions/expectations are made using <code>expect</code>.  The syntax, when read out loud, sounds pretty close to how I&rsquo;d describe my tests.  &ldquo;It <em>should etc.</em>&rdquo;; &ldquo;Expect <em>actual</em> to match <em>expression</em>&rdquo;.  <a href="http://pivotal.github.com/jasmine/jsdoc/symbols/jasmine.Matchers.html">Jasmine has various matcher methods</a> such as <code>toMatch</code>.</p>
 
-<!--  gist 560735 appSpecWithout_spec1.js  -->
+<script src="https://gist.github.com/560735.js?file=appSpecWithout_spec1.js"> </script>
 
 <h3>Befriending the DOM</h3>
 
@@ -125,15 +125,15 @@
 
 <p>jasmine-jquery allows for various improvements on the original tests:</p>
 
-<!--  gist 560735 appSpec.js  -->
+<script src="https://gist.github.com/560735.js?file=appSpec.js"> </script>
 
 <p>Firstly, the manual setup and teardown is no longer required, thanks to <code>loadFixtures</code>, which loads in the necessary DOM elements from an external file, inserts them into a wrapper div inside the document body, and cleans up automatically after each spec is run.  Big win.  People who are really smart might even try to load fixtures in from the same files as partials to avoid duplication (I have a feeling this could all come together beautifully with <a href="http://code.quirkey.com/sammy/docs/api.html#Sammy.Meld">Sammy&rsquo;s new Meld feature</a>&hellip;).  An alternative is to use <code>setFixtures</code>, which accepts either an HTML string or a jQuery element as its only argument rather than loading from an external file.</p>
 
-<!--  gist 560735 appSpec_fixture.js  -->
+<script src="https://gist.github.com/560735.js?file=appSpec_fixture.js"> </script>
 
 <p>jasmine-jquery also provides a set of <a href="http://github.com/velesin/jasmine-jquery#readme">custom matchers</a>.  Here, for example, there&rsquo;s no need for the workaround of checking the innerHtml of an element against a regular expression, when <code>toHaveText</code> does the trick.</p>
 
-<!--  gist 560735 appSpec_matchers.js  -->
+<script src="https://gist.github.com/560735.js?file=appSpec_matchers.js"> </script>
 
 <h2>Conclusions</h2>
 

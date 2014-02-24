@@ -72,11 +72,11 @@ h1, h2, h3, h4 {
 }
 
 h1 {
-  font-size: 2.5em;
+  font-size: 2.1em;
 }
 
 h2 {
-  font-size: 1.8em;
+  font-size: 1.7em;
 }
 
 h3 {
@@ -108,6 +108,11 @@ pre {
 
 .highlight pre {
   border-radius: 2px;
+}
+
+.gist {
+  font-size: 16px;
+  line-height: 1.5em;
 }
 
 time {
