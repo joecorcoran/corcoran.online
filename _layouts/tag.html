@@ -7,7 +7,7 @@
   <body>
     {% include banner.html %}
     <div class="index">
-      <h1>Posts tagged with {{ page.tag }}</h1>
+      <h1>Articles tagged with {{ page.tag }}</h1>
       <section class=posts>
         {% for post in page.posts %}
           {% if post.hidden != true %}
@@ -17,7 +17,7 @@
       </section>
       <footer>
         <p>
-          <a href="/" class="back">Back to index</a>
+          <a href="/articles" class="back">Articles</a>
         </p>
       </footer>
     </div>
