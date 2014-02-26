@@ -1,0 +1,218 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>Joe Corcoran</title>
+  <subtitle>Articles on programming</subtitle>
+  <link href="https://corcoran.io/feed.xml" rel="self" />
+  <link href="https://corcoran.io" />
+  <id>urn:uuid:6740a17a-2751-4093-bc58-f9294973ae43</id>
+  <updated>2014-02-26T13:08:10+01:00</updated>
+  
+    <entry>
+      <title>Exploring Data, Context and Interaction through prototypes with Io</title>
+      <summary type="html">Data, Context and Interaction is a programming concept that was once
+picking up steam in the Ruby world. The general idea is to separate data objects
+from any code specific to the context in which the data will be used. Objects
+within a given context interact through &amp;ldquo;roles&amp;rdquo;, which are stateless
+representations of a set of responsibilities. True DCI, for the dogmatically
+inclined, has further caveats. The Wikipedia article on DCI gives a
+decent enough summary.
+
+It has since been f...</summary>
+      <id>https://corcoran.io/2013/11/21/exploring-dci-prototypes-io</id>
+      <author>
+        <name>Joe Corcoran</name>
+        <email>joecorcoran@gmail.com</email>
+      </author>
+      <published>2013-11-21T00:00:00+01:00</published>
+      <updated>2013-11-21T00:00:00+01:00</updated>
+      <link rel="alternate" href="https://corcoran.io/2013/11/21/exploring-dci-prototypes-io" />
+    </entry>
+  
+    <entry>
+      <title>The empathy problem</title>
+      <summary type="html">Recent conversations on the topic of gender in software have had an unfortunate
+trend. There seems to be a delusion that mere dialogue about gender bias and
+related topics is somehow enough to taint the hacker culture. It is, of course,
+already tainted.
+
+The collective hacker ego is boosted by a belief that what hackers do has the power
+to change the world. The &amp;ldquo;change the world with code&amp;rdquo; meme has been floating
+around for years, reinforced in recent years by puffed-up recruitment...</summary>
+      <id>https://corcoran.io/2013/10/20/the-empathy-problem</id>
+      <author>
+        <name>Joe Corcoran</name>
+        <email>joecorcoran@gmail.com</email>
+      </author>
+      <published>2013-10-20T00:00:00+02:00</published>
+      <updated>2013-10-20T00:00:00+02:00</updated>
+      <link rel="alternate" href="https://corcoran.io/2013/10/20/the-empathy-problem" />
+    </entry>
+  
+    <entry>
+      <title>Commit messages are for the why and not the what</title>
+      <summary type="html">I have a confession to make. Most of the commit messages I&amp;rsquo;ve written in my
+time as a Git user have been useless. Here&amp;rsquo;s an example.
+commit 3420df0c35971219d9006870200a05c53974606f
+Author: Joe Corcoran &amp;lt;joecorcoran@gmail.com&amp;gt;
+Date:   Sat Mar 31 10:13:28 2012 +0100
+
+    use _.has in place of hasOwnProperty
+
+Here&amp;rsquo;s part of the diff for that commit.
+diff --git a/lib/generators/judge/templates/judge.js b/lib/generators/judge/templates/judge.js
+index 8c3c7c8..5ca0939 100644...</summary>
+      <id>https://corcoran.io/2013/10/18/git-commit-why-not-what</id>
+      <author>
+        <name>Joe Corcoran</name>
+        <email>joecorcoran@gmail.com</email>
+      </author>
+      <published>2013-10-18T00:00:00+02:00</published>
+      <updated>2013-10-18T00:00:00+02:00</updated>
+      <link rel="alternate" href="https://corcoran.io/2013/10/18/git-commit-why-not-what" />
+    </entry>
+  
+    <entry>
+      <title>A simple pattern for cleaning up your Ruby DSL</title>
+      <summary type="html">I&amp;rsquo;ve recently been working on a project that involved building a Ruby DSL. As an experiment, I decided to use only Cucumber to describe the behaviour of the code and leave the unit tests until later. I quite enjoyed this way of
+working at first, as it forced me to maintain focus on the end user experience and worry less about describing the stuff underneath.
+
+A negative side effect of this approach was that without unit tests keeping me in check, things got a little messy. In lieu of a ...</summary>
+      <id>https://corcoran.io/2013/09/04/simple-pattern-ruby-dsl</id>
+      <author>
+        <name>Joe Corcoran</name>
+        <email>joecorcoran@gmail.com</email>
+      </author>
+      <published>2013-09-04T00:00:00+02:00</published>
+      <updated>2013-09-04T00:00:00+02:00</updated>
+      <link rel="alternate" href="https://corcoran.io/2013/09/04/simple-pattern-ruby-dsl" />
+    </entry>
+  
+    <entry>
+      <title>Building a minimal JavaScript event system</title>
+      <summary type="html">This article is intended to encourage front-end developers to design and build software thoughtfully. The content assumes a basic knowledge of JavaScript and comfort running simple commands like cd at the command line. I hope the test examples in this article are straightforward, but if you&amp;rsquo;re not familiar with writing tests first, or even testing your code at all, you might want to read a little about it first. The general idea is that we make an assertion about how our code should beh...</summary>
+      <id>https://corcoran.io/2013/06/01/building-a-minimal-javascript-event-system</id>
+      <author>
+        <name>Joe Corcoran</name>
+        <email>joecorcoran@gmail.com</email>
+      </author>
+      <published>2013-06-01T00:00:00+02:00</published>
+      <updated>2013-06-01T00:00:00+02:00</updated>
+      <link rel="alternate" href="https://corcoran.io/2013/06/01/building-a-minimal-javascript-event-system" />
+    </entry>
+  
+    <entry>
+      <title>Enumerators for brevity</title>
+      <summary type="html">I&amp;rsquo;ve recently started to reach for Ruby&amp;rsquo;s Enumerator class more often and thought it was worth a quick mention. The functionality I&amp;rsquo;m focusing on here has been around since Ruby 1.8, but I rarely see it used in the wild.
+
+
+
+Enumerator#each_with_index allows us to iterate through a collection of objects, with access to the index of each object.
+numbers = [1,2,3,4,5]
+numbers.each_with_index do |number, idx|
+  puts &amp;quot;#{number} at index #{idx}&amp;quot;
+end
+# 1 at index 0
+# 2 at...</summary>
+      <id>https://corcoran.io/2013/01/22/enumerators-for-brevity</id>
+      <author>
+        <name>Joe Corcoran</name>
+        <email>joecorcoran@gmail.com</email>
+      </author>
+      <published>2013-01-22T00:00:00+01:00</published>
+      <updated>2013-01-22T00:00:00+01:00</updated>
+      <link rel="alternate" href="https://corcoran.io/2013/01/22/enumerators-for-brevity" />
+    </entry>
+  
+    <entry>
+      <title>An update on Judge</title>
+      <summary type="html">I&amp;#8217;ve just released Judge 1.5.0 and since it&amp;#8217;s been a while since the last update, I thought I&amp;#8217;d run through some of the improvements that have been made since version 1.0.0 and also introduce some ideas for future improvements.
+
+gem &amp;quot;judge&amp;quot;, &amp;quot;~&amp;gt; 1.5.0&amp;quot;
+
+
+
+
+Callbacks
+
+The various validate() methods now accept callback functions. Yep, real modern. The cool thing about this is that we can handle what happens after validation a little more elegantly. Behol...</summary>
+      <id>https://corcoran.io/2012/04/13/an-update-on-judge</id>
+      <author>
+        <name>Joe Corcoran</name>
+        <email>joecorcoran@gmail.com</email>
+      </author>
+      <published>2012-04-13T00:00:00+02:00</published>
+      <updated>2012-04-13T00:00:00+02:00</updated>
+      <link rel="alternate" href="https://corcoran.io/2012/04/13/an-update-on-judge" />
+    </entry>
+  
+    <entry>
+      <title>Using Judge with SimpleForm</title>
+      <summary type="html">Following on from my previous post about Formtastic, there&amp;#8217;s now a Judge extension gem for SimpleForm too.
+
+
+
+It&amp;#8217;s an almost identical affair.
+
+Install
+
+gem &amp;quot;judge-simple_form&amp;quot;, &amp;quot;~&amp;gt; 0.1&amp;quot;, :require =&amp;gt; &amp;quot;judge/simple_form&amp;quot;
+
+
+Read here why the require option is necessary.
+
+Update: Bundler 1.1 was released, so the require option is no longer necessary.
+
+gem &amp;quot;judge-simple_form&amp;quot;, &amp;quot;~&amp;gt; 0.1&amp;quot;
+
+
+Usage
+
+Add :validate =&gt; true to the inp...</summary>
+      <id>https://corcoran.io/2012/03/07/using-judge-with-simpleform</id>
+      <author>
+        <name>Joe Corcoran</name>
+        <email>joecorcoran@gmail.com</email>
+      </author>
+      <published>2012-03-07T00:00:00+01:00</published>
+      <updated>2012-03-07T00:00:00+01:00</updated>
+      <link rel="alternate" href="https://corcoran.io/2012/03/07/using-judge-with-simpleform" />
+    </entry>
+  
+    <entry>
+      <title>Using Judge with Formtastic</title>
+      <summary type="html">There&amp;#8217;s now an extension gem to help you use Judge for client-side validation from within your Formtastic forms.
+
+
+
+One of the modi operandi of Judge is to use the power of the FormBuilder to great effect.  Coding forms is one of the great pains of front-end web development and I feel pretty confident in saying that nobody ever gets it completely right. Formtastic can help take some of the repetition and view clutter out of the process.
+
+Adding Judge support to Formtastic turned out to ...</summary>
+      <id>https://corcoran.io/2012/03/01/using-judge-with-formtastic</id>
+      <author>
+        <name>Joe Corcoran</name>
+        <email>joecorcoran@gmail.com</email>
+      </author>
+      <published>2012-03-01T00:00:00+01:00</published>
+      <updated>2012-03-01T00:00:00+01:00</updated>
+      <link rel="alternate" href="https://corcoran.io/2012/03/01/using-judge-with-formtastic" />
+    </entry>
+  
+    <entry>
+      <title>Talking about Judge at LRUG</title>
+      <summary type="html">In January, I gave a talk at the London Ruby User Group about
+Judge. I swore a bit and rambled a bit, as I often do. I&amp;rsquo;ve put the
+presentation slides up here and the talk is available to watch
+again courtesy of Skills Matter, the venue provider for LRUG.
+</summary>
+      <id>https://corcoran.io/2012/02/28/talking-about-judge-at-lrug</id>
+      <author>
+        <name>Joe Corcoran</name>
+        <email>joecorcoran@gmail.com</email>
+      </author>
+      <published>2012-02-28T00:00:00+01:00</published>
+      <updated>2012-02-28T00:00:00+01:00</updated>
+      <link rel="alternate" href="https://corcoran.io/2012/02/28/talking-about-judge-at-lrug" />
+    </entry>
+  
+</feed>
