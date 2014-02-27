@@ -35,7 +35,9 @@ body {
     }
     li {
       display: inline;
-      //font-size: 0.8em;
+      i {
+        font-size: 0.8em;
+      }
     }
   }
 }
@@ -290,13 +292,6 @@ article > footer, .comments {
   }
 }
 
-.about .splash {
-  width: 696px;
-  margin: 0 auto 20px;
-  border: 2px solid $border-blue;
-  display: block;
-}
-
-.about li {
-  list-style-type: square;
+.about {
+  margin-bottom: 80px;
 }
