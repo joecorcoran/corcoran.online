@@ -16,17 +16,18 @@ html {
 }
 
 body {
-  margin: 0 0 80px;
+  margin: 0;
   position: relative;
   > footer {
+    border-top: 1px solid $border-blue;
+    margin-top: 40px;
     width: 100%;
     clear: both;
-    background: transparent;
-    padding: 50px 0 50px;
+    padding: 40px 0 50px;
+    font-family: $franklin-gothic;
     .footer-content {
       width: $content-width;
       margin: 0 auto;
-      border-top: 5px solid $border-blue;
     }
     ul {
       margin: 0;
@@ -34,7 +35,7 @@ body {
     }
     li {
       display: inline;
-      font-size: 0.75em;
+      //font-size: 0.8em;
     }
   }
 }
@@ -123,9 +124,13 @@ article > footer, .comments {
   border-top: 1px solid $border-blue;
   margin-top: 40px;
   padding-top: 40px;
+  font-family: $franklin-gothic;
+  a {
+
+  }
 }
 
-.post, .index {
+.post, .index, .projects, .about {
   z-index: 1;
   width: $content-width;
   margin: 36px auto 0;
@@ -205,6 +210,10 @@ article > footer, .comments {
   content: '\2190\00A0';
 }
 
+.forward:after {
+  content: '\00A0\2192';
+}
+
 .posts article {
   border-top: 1px solid $border-blue;
   position: relative;
@@ -261,6 +270,7 @@ article > footer, .comments {
 }
 
 .projects {
+  margin-bottom: 80px;
   ul {
     margin: 20px 0 0;
     padding: 0;

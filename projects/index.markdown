@@ -1,5 +1,5 @@
 ---
-layout: index
+layout: page
 section: projects
 title: Projects
 ---

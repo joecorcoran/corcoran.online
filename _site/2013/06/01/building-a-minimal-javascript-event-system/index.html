@@ -6,6 +6,7 @@
 <meta name="author" content="Joe Corcoran">
 <script type="text/javascript" src="//use.typekit.net/lbi3uvk.js"></script>
 <script type="text/javascript">try{Typekit.load();}catch(e){}</script>
+<link rel="stylesheet" href="/public/font-awesome.min.css">
 
 <link rel="stylesheet" href="/public/main.min.css" type="text/css" />
 <link rel="alternate" type="application/atom+xml" href="/feed.xml" />
@@ -501,7 +502,7 @@ Finished in 0.01 seconds
 
       <section class="comments">
         <p>
-  <a href="#" id="show_comments">Show comments</a>
+  <a href="#" id="show_comments" class="forward">Show comments</a>
 </p>
 <div id="disqus_thread"></div>
 <script type="text/javascript">
@@ -509,7 +510,7 @@ var disqus_shortname = 'joecorcoran',
     disqus_title     = 'Building a minimal JavaScript event system',
     showComments     = function() {
       var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-      dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+      dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
       (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
     },
     commentsLink = document.getElementById('show_comments');
@@ -522,12 +523,13 @@ commentsLink.onclick = function() {
 <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
 
       </section>
-      <footer>
-        <p>
-          <a href="/articles" class="back">All articles</a>
-        </p>
-      </footer>
     </article>
-    
+    <footer id="footer">
+  <div class="footer-content">
+    <ul>
+      <li><a href="/feed.xml"><i class="fa fa-rss"></i>&nbsp;Subscribe</a></li>
+  </div>
+</footer>
+
   </body>
 </html>

@@ -1,14 +1,15 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Joe Corcoran</title>
+    <title>
+      {% if page.title %}{{ page.title }} :: {% endif %}Joe Corcoran
+    </title>
     {% include head.html %}
   </head>
   <body>
     {% include banner.html %}
-    <div class="index about">
+    <div class="{{page.section}}">
       {{ content }}
     </div>
-    {% include footer.html %}
   </body>
 </html>
