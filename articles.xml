@@ -6,14 +6,14 @@ layout: none
 <feed xmlns="http://www.w3.org/2005/Atom">
   <title>{{ site.title | xml_escape }}</title>
   <subtitle>{% if site.description %}{{ site.description | xml_escape }}{% endif %}</subtitle>
-  <link href="{{ site.url }}/feed.xml" rel="self" />
+  <link href="{{ site.url }}/articles.xml" rel="self" />
   <link href="{{ site.url }}" />
   <id>urn:uuid:6740a17a-2751-4093-bc58-f9294973ae43</id>
   <updated>{{ site.time | date_to_xmlschema }}</updated>
   {% for post in site.posts limit:10 %}
     <entry>
       <title>{{ post.title | xml_escape }}</title>
-      <summary type="html">{{ post.content | strip_html | truncate:500 | xml_escape }}</summary>
+      <content type="html">{{ post.content | xml_escape }}</content>
       <id>{{ site.url }}{{ post.url }}</id>
       <author>
         <name>Joe Corcoran</name>
