@@ -1,1 +1,5 @@
 .ruby-version
+.ruby-gemset
+tmp/
+_site/tmp/
+.sass-cache/
