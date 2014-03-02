@@ -6,9 +6,10 @@ title: Projects
 
 # Pannier
 
-A general-purpose Ruby asset processing tool. Intended as an asset pipeline replacement that can be used in any Rack environment. Work in progress.
+A general-purpose Ruby asset processing tool. Intended as both a command line tool for static sites and an asset pipeline replacement that can be used within any Rack application.
 
 * [GitHub](https://github.com/joecorcoran/pannier)
+* [Rubygems](https://rubygems.org/gems/pannier)
 * [Relish](https://www.relishapp.com/joecorcoran/pannier/docs)
 
 # Judge
@@ -17,6 +18,13 @@ Judge allows easy client side form validation in Rails 3, by porting many `Activ
 
 * [GitHub](https://github.com/joecorcoran/judge)
 * [Rubygems](https://rubygems.org/gems/judge)
+
+# Telepad
+
+A Music Hack Day London 2013 project. Allows the user to make calls and play sounds to eight telephones from a Novation Launchpad.
+
+* [GitHub](https://github.com/joecorcoran/telepad)
+* [npm](https://www.npmjs.org/package/telepad)
 
 # Cities
 
