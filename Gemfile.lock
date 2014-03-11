@@ -1,12 +1,12 @@
 GIT
   remote: git://github.com/joecorcoran/pannier.git
-  revision: df1ab437adb7cf96734cee45b82638f88530343c
+  revision: e9e6da111b1c667e923b9be96f03ed65aaf7e482
   branch: master
   specs:
-    pannier (0.1.0)
-      multi_json (~> 1.7.9)
-      rack (~> 1.5.2)
-      slop (~> 3.4.6)
+    pannier (0.2.0)
+      multi_json (~> 1.7, >= 1.7.9)
+      rack (~> 1.5, >= 1.5.2)
+      slop (~> 3.4, >= 3.4.6)
 
 GEM
   remote: https://rubygems.org/
@@ -47,7 +47,7 @@ GEM
       rb-inotify (>= 0.9)
       rb-kqueue (>= 0.2)
     maruku (0.7.1)
-    multi_json (1.7.9)
+    multi_json (1.9.0)
     net-scp (1.0.4)
       net-ssh (>= 1.99.1)
     net-sftp (2.0.5)
