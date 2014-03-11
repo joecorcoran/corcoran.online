@@ -37,7 +37,7 @@ my own static sites.
 Below is a demonstration of basic Pannier usage. For further details, you can
 check out the [project on GitHub][readme] or read the [documentation][features].
 
-<iframe class="showterm" src="http://showterm.io/d83aa12e9f5eade929b71" height="430"></iframe>
+<iframe class="showterm" src="https://showterm.herokuapp.com/d83aa12e9f5eade929b71" height="430"></iframe>
 
 [sprockets]: https://github.com/sstephenson/sprockets
 [pannier]: https://github.com/joecorcoran/pannier
