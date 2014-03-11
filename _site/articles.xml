@@ -6,7 +6,94 @@
   <link href="https://corcoran.io/articles.xml" rel="self" />
   <link href="https://corcoran.io" />
   <id>urn:uuid:6740a17a-2751-4093-bc58-f9294973ae43</id>
-  <updated>2014-02-28T12:11:48+01:00</updated>
+  <updated>2014-03-11T22:30:05+01:00</updated>
+  
+    <entry>
+      <title>Ruby asset processing with Pannier</title>
+      <content type="html">&lt;p&gt;Sometime last year I was considering the present state of asset processing in
+Ruby. The Rails &lt;em&gt;asset pipeline&lt;/em&gt; &amp;#8212; the &lt;a href=&quot;https://github.com/sstephenson/sprockets&quot;&gt;Sprockets&lt;/a&gt; library plus
+some Rails-specific coupling &amp;#8212; was a source of frustration for friends and
+colleagues. In a moment of folly I decided to write my own Ruby asset processing
+tool. I hoped that doing so would at least help me to understand the space a
+little better. The result is &lt;a href=&quot;https://github.com/joecorcoran/pannier&quot;&gt;Pannier&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;Pannier does the minimum amount of work required
+to process assets and nothing else. Got some Sass files to turn into
+plain old CSS? Want to compile CoffeeScript to JavaScript and then wrap each
+file in an AMD module? Go right ahead. It&amp;rsquo;s really more of an anti-framework
+than a framework. All the hard work will be done by whichever preprocessors
+you choose to use. Pannier just connects the dots.&lt;/p&gt;
+
+&lt;p&gt;The anti-feature I like the most is that there is absolutely no enforced plugin
+ecosystem. No sad list of sub-libraries to browse. No scattergun, half-baked
+package system. One of my favourite concepts from the Ruby world is that any
+&lt;em&gt;callable&lt;/em&gt; Ruby object (block, proc, lambda, object reponding to &lt;code&gt;#call&lt;/code&gt;) can
+be a Rack application. The same applies to &lt;a href=&quot;https://www.relishapp.com/joecorcoran/pannier/docs/asset-modification&quot;&gt;asset modifiers in Pannier&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;Pannier can be mounted within any Rack application, in which case Rack is used
+to serve the assets and some basic helpers are provided for generating &lt;code&gt;&amp;lt;link&amp;gt;&lt;/code&gt;
+and &lt;code&gt;&amp;lt;script&amp;gt;&lt;/code&gt; tags. It can also be used outside of web applications entirely,
+in the same way you might use a &lt;code&gt;Makefile&lt;/code&gt;. I use it in this way on a number of
+my own static sites.&lt;/p&gt;
+
+&lt;p&gt;Below is a demonstration of basic Pannier usage. For further details, you can
+check out the &lt;a href=&quot;https://github.com/joecorcoran/pannier#readme&quot;&gt;project on GitHub&lt;/a&gt; or read the &lt;a href=&quot;https://www.relishapp.com/joecorcoran/pannier/docs&quot;&gt;documentation&lt;/a&gt;.&lt;/p&gt;
+
+&lt;iframe class=&quot;showterm&quot; src=&quot;http://showterm.io/d83aa12e9f5eade929b71&quot; height=&quot;430&quot;&gt;&lt;/iframe&gt;
+</content>
+      <id>https://corcoran.io/2014/03/11/ruby-asset-processing-with-pannier</id>
+      <author>
+        <name>Joe Corcoran</name>
+        <email>joecorcoran@gmail.com</email>
+      </author>
+      <published>2014-03-11T00:00:00+01:00</published>
+      <updated>2014-03-11T00:00:00+01:00</updated>
+      <link rel="alternate" href="https://corcoran.io/2014/03/11/ruby-asset-processing-with-pannier" />
+    </entry>
+  
+    <entry>
+      <title>Howls of asset pipeline</title>
+      <content type="html">&lt;blockquote class=&quot;twitter-tweet&quot; lang=&quot;en&quot;&gt;&lt;p&gt;I really believe asset pipeline is the worst thing that&amp;rsquo;s ever happened to Rails ecosystem in terms of the pain it causes to operations.&lt;/p&gt;&amp;mdash; Oleksiy Kovyrin (@kovyrin) &lt;a href=&quot;https://twitter.com/kovyrin/statuses/443157812135620608&quot;&gt;March 10, 2014&lt;/a&gt;&lt;/blockquote&gt;
+
+&lt;blockquote class=&quot;twitter-tweet&quot; lang=&quot;en&quot;&gt;&lt;p&gt;There&amp;rsquo;s lots of sturm und drang around Sprockets/Rails asset pipeline. What are good, mature alternatives for Ruby?&lt;/p&gt;&amp;mdash; Mark Wunsch (@markwunsch) &lt;a href=&quot;https://twitter.com/markwunsch/statuses/443419196316471296&quot;&gt;March 11, 2014&lt;/a&gt;&lt;/blockquote&gt;
+
+&lt;h2&gt;The pain of it all&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Magically serving local assets
+
+&lt;ul&gt;
+&lt;li&gt;Not a real benefit because it&amp;rsquo;s not real&lt;/li&gt;
+&lt;li&gt;Just serve them, processed, from environment-specific dir&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;Help required
+
+&lt;ul&gt;
+&lt;li&gt;Coupling files to each other&lt;/li&gt;
+&lt;li&gt;Adding yet another dependency&lt;/li&gt;
+&lt;li&gt;Problem that nobody has&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;The Deployment Dilemma
+
+&lt;ul&gt;
+&lt;li&gt;Do you vendor processed assets or process on server?&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;Rails coupling
+
+&lt;ul&gt;
+&lt;li&gt;The opression of convention&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</content>
+      <id>https://corcoran.io/2014/03/11/howls-of-asset-pipeline</id>
+      <author>
+        <name>Joe Corcoran</name>
+        <email>joecorcoran@gmail.com</email>
+      </author>
+      <published>2014-03-11T00:00:00+01:00</published>
+      <updated>2014-03-11T00:00:00+01:00</updated>
+      <link rel="alternate" href="https://corcoran.io/2014/03/11/howls-of-asset-pipeline" />
+    </entry>
   
     <entry>
       <title>Exploring Data, Context and Interaction through prototypes with Io</title>
@@ -1006,55 +1093,6 @@ Finished in 0.01 seconds
       <published>2012-03-07T00:00:00+01:00</published>
       <updated>2012-03-07T00:00:00+01:00</updated>
       <link rel="alternate" href="https://corcoran.io/2012/03/07/using-judge-with-simpleform" />
-    </entry>
-  
-    <entry>
-      <title>Using Judge with Formtastic</title>
-      <content type="html">&lt;p&gt;There&amp;#8217;s now an extension gem to help you use &lt;a href=&quot;http://github.com/joecorcoran/judge&quot;&gt;Judge&lt;/a&gt; for client-side validation from within your &lt;a href=&quot;https://rubygems.org/gems/formtastic&quot;&gt;Formtastic&lt;/a&gt; forms.&lt;/p&gt;
-
-&lt;!--more--&gt;
-
-&lt;p&gt;One of the &lt;em&gt;modi operandi&lt;/em&gt; of Judge is to use the power of the &lt;a href=&quot;http://api.rubyonrails.org/classes/ActionView/Helpers/FormBuilder.html&quot;&gt;FormBuilder&lt;/a&gt; to great effect.  Coding forms is one of the great pains of front-end web development and I feel pretty confident in saying that nobody ever gets it completely right. Formtastic can help take some of the repetition and view clutter out of the process.&lt;/p&gt;
-
-&lt;p&gt;Adding Judge support to Formtastic turned out to be pretty easy. In fact, most of my time was spent marvelling at the Formtastic test suite, which is end-of-level bonkers.&lt;/p&gt;
-
-&lt;h2&gt;Install&lt;/h2&gt;
-
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;ruby&quot;&gt;&lt;span class=&quot;n&quot;&gt;gem&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&amp;quot;judge-formtastic&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&amp;quot;~&amp;gt; 0.1&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;:require&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&amp;quot;judge/formtastic&amp;quot;&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-
-&lt;p&gt;Sorry about the require option. The most recently released version of Bundler (&lt;a href=&quot;https://rubygems.org/gems/bundler/versions/1.0.22&quot;&gt;1.0.22 at time of writing&lt;/a&gt;) doesn&amp;rsquo;t correctly translate hyphen-delimited gem names into file paths before autorequiring. There&amp;rsquo;s a &lt;a href=&quot;https://github.com/carlhuda/bundler/issues/1205&quot;&gt;fix for this&lt;/a&gt; already but I don&amp;rsquo;t know when Bundler 1.1 will be released.&lt;/p&gt;
-
-&lt;p&gt;&lt;em&gt;Update: &lt;a href=&quot;https://rubygems.org/gems/bundler&quot;&gt;Bundler 1.1&lt;/a&gt; was released, so the require option is no longer necessary.&lt;/em&gt;&lt;/p&gt;
-
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;ruby&quot;&gt;&lt;span class=&quot;n&quot;&gt;gem&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&amp;quot;judge-formtastic&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&amp;quot;~&amp;gt; 0.1&amp;quot;&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-</content>
-      <id>https://corcoran.io/2012/03/01/using-judge-with-formtastic</id>
-      <author>
-        <name>Joe Corcoran</name>
-        <email>joecorcoran@gmail.com</email>
-      </author>
-      <published>2012-03-01T00:00:00+01:00</published>
-      <updated>2012-03-01T00:00:00+01:00</updated>
-      <link rel="alternate" href="https://corcoran.io/2012/03/01/using-judge-with-formtastic" />
-    </entry>
-  
-    <entry>
-      <title>Talking about Judge at LRUG</title>
-      <content type="html">&lt;p&gt;In January, I gave a talk at the &lt;a href=&quot;http://lrug.org/&quot;&gt;London Ruby User Group&lt;/a&gt; about
-&lt;a href=&quot;http://judge.joecorcoran.co.uk/&quot;&gt;Judge&lt;/a&gt;. I swore a bit and rambled a bit, as I often do. I&amp;rsquo;ve put the
-&lt;a href=&quot;http://presentations.joecorcoran.co.uk/judge_lrug/&quot;&gt;presentation slides up here&lt;/a&gt; and the talk is &lt;a href=&quot;http://skillsmatter.com/podcast/ajax-ria/judge&quot;&gt;available to watch
-again courtesy of Skills Matter&lt;/a&gt;, the venue provider for LRUG.&lt;/p&gt;
-</content>
-      <id>https://corcoran.io/2012/02/28/talking-about-judge-at-lrug</id>
-      <author>
-        <name>Joe Corcoran</name>
-        <email>joecorcoran@gmail.com</email>
-      </author>
-      <published>2012-02-28T00:00:00+01:00</published>
-      <updated>2012-02-28T00:00:00+01:00</updated>
-      <link rel="alternate" href="https://corcoran.io/2012/02/28/talking-about-judge-at-lrug" />
     </entry>
   
 </feed>
