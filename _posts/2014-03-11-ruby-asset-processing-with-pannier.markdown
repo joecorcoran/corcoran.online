@@ -15,6 +15,8 @@ colleagues. In a moment of folly I decided to write my own Ruby asset processing
 tool. I hoped that doing so would at least help me to understand the space a
 little better. The result is [Pannier][pannier].
 
+<iframe class="showterm" src="https://showterm.herokuapp.com/d83aa12e9f5eade929b71" height="430"></iframe>
+
 Pannier does the minimum amount of work required
 to process assets and nothing else. Got some Sass files to turn into
 plain old CSS? Want to compile CoffeeScript to JavaScript and then wrap each
@@ -34,10 +36,8 @@ and `<script>` tags. It can also be used outside of web applications entirely,
 in the same way you might use a `Makefile`. I use it in this way on a number of
 my own static sites.
 
-Below is a demonstration of basic Pannier usage. For further details, you can
+For further details, you can
 check out the [project on GitHub][readme] or read the [documentation][features].
-
-<iframe class="showterm" src="https://showterm.herokuapp.com/d83aa12e9f5eade929b71" height="430"></iframe>
 
 [sprockets]: https://github.com/sstephenson/sprockets
 [pannier]: https://github.com/joecorcoran/pannier
