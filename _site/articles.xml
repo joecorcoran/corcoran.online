@@ -6,121 +6,7 @@
   <link href="https://corcoran.io/articles.xml" rel="self" />
   <link href="https://corcoran.io" />
   <id>urn:uuid:6740a17a-2751-4093-bc58-f9294973ae43</id>
-  <updated>2014-05-27T00:35:53+02:00</updated>
-  
-    <entry>
-      <title>Moving past the Rails asset pipeline</title>
-      <content type="html">&lt;p&gt;The asset pipeline has some good ideas buried deep inside, but like various
-other parts of Rails it is over-reaching and inflexible. Working with it has
-been an extremely frustrating experience for many of us.&lt;/p&gt;
-
-&lt;p&gt;I&amp;rsquo;m sure a lot of people reading this will know exactly how I feel. In case you
-don&amp;rsquo;t, I will list some of my main issues with the asset pipeline below.&lt;/p&gt;
-
-&lt;p&gt;That said, it is hard to fault the effort of the developers responsible for its
-creation and maintenance &amp;#8212; they have tried hard to to make front-end web
-development with Rails better and their work is appreciated &amp;#8212; but I&amp;rsquo;m
-confident that the result has hindered more people than it has helped.&lt;/p&gt;
-
-&lt;p&gt;&lt;em&gt;tl;dr &amp;#8212; The asset pipeline results in increased cognitive load for
-developers and encourages poor software development practices. You should use
-something simpler.&lt;/em&gt;&lt;/p&gt;
-
-&lt;h2&gt;Directive spaghetti&lt;/h2&gt;
-
-&lt;p&gt;Sprockets directives are the magic comments that live inside your asset files,
-referencing other assets.&lt;/p&gt;
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;javascript language-javascript&quot; data-lang=&quot;javascript&quot;&gt;&lt;span class=&quot;c1&quot;&gt;//= require admin&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;Users can require a single file, a whole directory recursively, and so
-on. At first it might seem like a good idea to explicitly state dependencies in
-this way. Sprockets will order your assets correctly on the page so that your
-JavaScript errors are at least never of the load order-dependent kind.
-(You will always have JavaScript errors. Until you die.)&lt;/p&gt;
-
-&lt;p&gt;This is fine, until you need to use an asset outside of the
-Rails environment, for example in a JavaScript unit test. Sprockets directives
-actively fight against a clean separation of concerns, driving tight coupling
-of front-end code to Ruby infrastructure.&lt;/p&gt;
-
-&lt;h2&gt;Logical complement&lt;/h2&gt;
-
-&lt;p&gt;Sprockets allows users to register numerous directories that contain assets to
-&lt;em&gt;the load path&lt;/em&gt;. The load path is sort of like the Unix environment variable
-&lt;code&gt;PATH&lt;/code&gt; &amp;#8212; it&amp;rsquo;s a list of directories.&lt;/p&gt;
-
-&lt;p&gt;When actually using assets &amp;#8212; including them in a template, requiring them
-in a manifest &amp;#8212; users are encouraged to use a &lt;em&gt;logical path&lt;/em&gt;. The logical
-path of an asset is the path relative to whichever directory from the load path
-contains it. A helper method named &lt;code&gt;asset_path&lt;/code&gt; will take your logical
-path and look through the load path, trying to resolve the full path to the
-file.&lt;/p&gt;
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;erb language-erb&quot; data-lang=&quot;erb&quot;&gt;&lt;span class=&quot;cp&quot;&gt;&amp;lt;%=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;asset_path&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39;widgets/dingus&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;cp&quot;&gt;%&amp;gt;&lt;/span&gt;&lt;span class=&quot;x&quot;&gt;&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;If I am developing an application, I already know which directories contain
-which assets. I can reference them by their full path, their path relative to
-the &lt;code&gt;Rails.root&lt;/code&gt; or in any number of other ways. Pretending to not know the full
-path to a file and then using a helper method to search for it is not valuable
-at all.&lt;/p&gt;
-
-&lt;h2&gt;Engines all the way down&lt;/h2&gt;
-
-&lt;p&gt;When an asset file has multiple extensions that Sprockets can recognise,
-that file will be run through a preprocessing engine for each extension in
-sequence, from right to left. So a file named &lt;code&gt;great_code.js.coffee.erb&lt;/code&gt; would be
-evaluated as ERB first, then as CoffeeScript, then finally delivered as
-JavaScript.&lt;/p&gt;
-
-&lt;p&gt;This can seem like a good idea, especially if you have an environment variable
-like an API key that you want to take from Ruby and inject into JavaScript. In
-practice it&amp;rsquo;s another feature that helps more than it hurts.&lt;/p&gt;
-
-&lt;p&gt;Not only does it encourage tight coupling of otherwise unrelated areas of your
-codebase, but it renders the asset file totally useless without the presence of
-both the Rails environment and the asset pipeline.&lt;/p&gt;
-
-&lt;h2&gt;Frustration over configuration&lt;/h2&gt;
-
-&lt;p&gt;TODO: Bit about being unable to add your own uglifier, no way of switching off file
-name hashing, Rails config options etc.&lt;/p&gt;
-
-&lt;h2&gt;Rip it up and start again&lt;/h2&gt;
-
-&lt;p&gt;If you&amp;rsquo;re lucky enough to be starting with a brand new application, you can use
-the &lt;nobr&gt;&lt;code&gt;--skip-sprockets&lt;/code&gt;&lt;/nobr&gt; option when you create the app.&lt;/p&gt;
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;text language-text&quot; data-lang=&quot;text&quot;&gt;$ rails new appname --skip-sprockets
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;There may still be some lines in your Gemfile to remove, but for the most part
-this will do the trick.&lt;/p&gt;
-
-&lt;p&gt;If your application already exists, you will have some horrible untangling to
-do. Remove the various extension gems, remove the Sprockets directives from your
-assets, remove the config cruft, the Railtie, and so on. Your best bet is to
-check the &lt;a href=&quot;http://guides.rubyonrails.org/asset_pipeline.html&quot;&gt;official Rails guide&lt;/a&gt;.&lt;/p&gt;
-
-&lt;h3&gt;Pannier&lt;/h3&gt;
-
-&lt;p&gt;TODO&lt;/p&gt;
-
-&lt;h3&gt;wake&lt;/h3&gt;
-
-&lt;p&gt;TODO&lt;/p&gt;
-
-&lt;h3&gt;Broccoli&lt;/h3&gt;
-
-&lt;p&gt;TODO&lt;/p&gt;
-
-&lt;p&gt;More?&lt;/p&gt;
-</content>
-      <id>https://corcoran.io/2014/05/27/moving-past-rails-asset-pipeline</id>
-      <author>
-        <name>Joe Corcoran</name>
-        <email>joecorcoran@gmail.com</email>
-      </author>
-      <published>2014-05-27T00:35:29+02:00</published>
-      <updated>2014-05-27T00:35:29+02:00</updated>
-      <link rel="alternate" href="https://corcoran.io/2014/05/27/moving-past-rails-asset-pipeline" />
-    </entry>
+  <updated>2014-05-27T00:45:32+02:00</updated>
   
     <entry>
       <title>Ruby asset processing with Pannier</title>
@@ -1163,6 +1049,38 @@ Finished in 0.01 seconds
       <published>2012-03-07T00:00:00+01:00</published>
       <updated>2012-03-07T00:00:00+01:00</updated>
       <link rel="alternate" href="https://corcoran.io/2012/03/07/using-judge-with-simpleform" />
+    </entry>
+  
+    <entry>
+      <title>Using Judge with Formtastic</title>
+      <content type="html">&lt;p&gt;There&amp;#8217;s now an extension gem to help you use &lt;a href=&quot;http://github.com/joecorcoran/judge&quot;&gt;Judge&lt;/a&gt; for client-side validation from within your &lt;a href=&quot;https://rubygems.org/gems/formtastic&quot;&gt;Formtastic&lt;/a&gt; forms.&lt;/p&gt;
+
+&lt;!--more--&gt;
+
+&lt;p&gt;One of the &lt;em&gt;modi operandi&lt;/em&gt; of Judge is to use the power of the &lt;a href=&quot;http://api.rubyonrails.org/classes/ActionView/Helpers/FormBuilder.html&quot;&gt;FormBuilder&lt;/a&gt; to great effect.  Coding forms is one of the great pains of front-end web development and I feel pretty confident in saying that nobody ever gets it completely right. Formtastic can help take some of the repetition and view clutter out of the process.&lt;/p&gt;
+
+&lt;p&gt;Adding Judge support to Formtastic turned out to be pretty easy. In fact, most of my time was spent marvelling at the Formtastic test suite, which is end-of-level bonkers.&lt;/p&gt;
+
+&lt;h2&gt;Install&lt;/h2&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;ruby&quot;&gt;&lt;span class=&quot;n&quot;&gt;gem&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&amp;quot;judge-formtastic&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&amp;quot;~&amp;gt; 0.1&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;:require&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&amp;quot;judge/formtastic&amp;quot;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Sorry about the require option. The most recently released version of Bundler (&lt;a href=&quot;https://rubygems.org/gems/bundler/versions/1.0.22&quot;&gt;1.0.22 at time of writing&lt;/a&gt;) doesn&amp;rsquo;t correctly translate hyphen-delimited gem names into file paths before autorequiring. There&amp;rsquo;s a &lt;a href=&quot;https://github.com/carlhuda/bundler/issues/1205&quot;&gt;fix for this&lt;/a&gt; already but I don&amp;rsquo;t know when Bundler 1.1 will be released.&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;Update: &lt;a href=&quot;https://rubygems.org/gems/bundler&quot;&gt;Bundler 1.1&lt;/a&gt; was released, so the require option is no longer necessary.&lt;/em&gt;&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;ruby&quot;&gt;&lt;span class=&quot;n&quot;&gt;gem&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&amp;quot;judge-formtastic&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&amp;quot;~&amp;gt; 0.1&amp;quot;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+</content>
+      <id>https://corcoran.io/2012/03/01/using-judge-with-formtastic</id>
+      <author>
+        <name>Joe Corcoran</name>
+        <email>joecorcoran@gmail.com</email>
+      </author>
+      <published>2012-03-01T00:00:00+01:00</published>
+      <updated>2012-03-01T00:00:00+01:00</updated>
+      <link rel="alternate" href="https://corcoran.io/2012/03/01/using-judge-with-formtastic" />
     </entry>
   
 </feed>
