@@ -6,4 +6,4 @@ gem 'yui-compressor',            '~> 0.9.6'
 gem 'sass',                      '~> 3.2.10'
 gem 'rerun',                     '~> 0.8.1'
 
-gem 'pannier', :github => 'joecorcoran/pannier', :branch => 'master'
+gem 'pannier',                   '~> 0.6'
