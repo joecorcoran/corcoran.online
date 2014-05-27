@@ -8,6 +8,11 @@ tags:
   - pannier
 ---
 
+*tl;dr &#8212; The asset pipeline results in increased cognitive load for
+developers and encourages poor software development practices that lead to
+tightly-coupled, untestable front-end code. You should instead use tools with
+more clearly-defined interfaces that are smaller in scope.*
+
 The asset pipeline has some good ideas buried deep inside it, but like various
 other parts of Rails it is inflexible and has too many responsibilities.
 Working with it has been an unrewarding experience for many people.
@@ -19,11 +24,6 @@ confident that the result has hindered more people than it has helped.
 
 I'm sure a lot of people reading this will know exactly how I feel. In case you
 don't, some of my issues with the asset pipeline are listed below.
-
-*tl;dr &#8212; The asset pipeline results in increased cognitive load for
-developers and encourages poor software development practices that lead to
-tightly-coupled, untestable front-end code. You should instead use tools with
-more clearly-defined interfaces that are smaller in scope.*
 
 ## Pragma chamber
 
