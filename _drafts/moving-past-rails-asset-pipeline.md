@@ -37,12 +37,14 @@ Users can require a single file, a whole directory recursively, and so
 on. At first it might seem like a good idea to explicitly state dependencies in
 this way. Sprockets will order your assets correctly on the page so that your
 JavaScript errors are at least never of the load order-dependent kind.
-(You will always have JavaScript errors. Until you die.)
 
 This is fine, until you need to use an asset outside of the
-Rails environment, for example in a JavaScript unit test. Sprockets directives
-actively fight against a clean separation of concerns, driving tight coupling
-of front-end code to Ruby infrastructure.
+Rails environment, for example in a JavaScript unit test. Depending on your test
+environment you can at best expect a complete loss of your dependency graph and
+at worst an explosion at parser level.
+
+Sprockets directives actively fight against a clean separation of concerns,
+driving tight coupling of front-end code to Ruby infrastructure.
 
 ## Logical complement
 
@@ -80,8 +82,9 @@ like an API key that you want to take from Ruby and inject into JavaScript. In
 practice it's another feature that helps more than it hurts.
 
 Not only does it encourage tight coupling of otherwise unrelated areas of your
-codebase, but it renders the asset file totally useless without the presence of
-both the Rails environment and the asset pipeline.
+codebase, but it leaves you with an asset file with no identity &#8212; not
+Ruby, not CoffeeScript, not JavaScript &#8212; which is totally useless without
+the presence of both the Rails environment and the asset pipeline.
 
 ## Frustration over configuration
 
