@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Moving past the Rails asset pipeline :: Joe Corcoran</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="author" content="Joe Corcoran">
+<script type="text/javascript" src="//use.typekit.net/lbi3uvk.js"></script>
+<script type="text/javascript">try{Typekit.load();}catch(e){}</script>
+<link rel="stylesheet" href="/public/fa.min.css">
+
+<link rel="stylesheet" href="/public/main.min.css" type="text/css" />
+<link rel="alternate" type="application/atom+xml" href="/articles.xml" />
+<script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-3245696-4']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>
+
+  </head>
+  <body>
+    <header role="banner" class="banner">
+  <div class="banner-content">
+    <h1><a href="/">Joe Corcoran</a></h1>
+    <nav>
+      <ul>
+        <li><a href="/articles" class="active">Articles</a></li>
+        <li><a href="/projects" >Projects</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+    <article class="post">
+      <header>
+        <h1>Moving past the Rails asset pipeline</h1>
+        <time datetime="2014-05-27T00:00:00+02:00">27 May 2014</time>
+        
+
+  <ul class="tags">
+    
+      <li>
+        <a href="/tags/rails">rails</a>
+      </li>
+    
+      <li>
+        <a href="/tags/ruby">ruby</a>
+      </li>
+    
+      <li>
+        <a href="/tags/asset+pipeline">asset pipeline</a>
+      </li>
+    
+      <li>
+        <a href="/tags/pannier">pannier</a>
+      </li>
+    
+  </ul>
+
+
+      </header>
+      <p>The asset pipeline has some good ideas buried deep inside it, but like various
+other parts of Rails it is inflexible and has too many responsibilities.
+Working with it has been an unrewarding experience for many people.</p>
+
+<p>It is hard to fault the effort of the developers responsible for its
+creation and maintenance &#8212; they have tried hard to to make front-end web
+development with Rails better and their work is appreciated &#8212; but I&rsquo;m
+confident that the result has hindered more people than it has helped.</p>
+
+<p>I&rsquo;m sure a lot of people reading this will know exactly how I feel. In case you
+don&rsquo;t, some of my issues with the asset pipeline are listed below.</p>
+
+<p><em>tl;dr &#8212; The asset pipeline results in increased cognitive load for
+developers and encourages poor software development practices that lead to
+tightly-coupled, untestable front-end code. You should instead use tools with
+more clearly-defined interfaces that are smaller in scope.</em></p>
+
+<h2>Pragma chamber</h2>
+
+<p>Sprockets directives are the magic comments that live inside your asset files,
+referencing other assets.</p>
+<div class="highlight"><pre><code class="javascript language-javascript" data-lang="javascript"><span class="c1">//= require admin</span>
+</code></pre></div>
+<p>Users can require a single file, a whole directory recursively, and so
+on. At first it might seem like a good idea to explicitly state dependencies in
+this way. Sprockets will order your assets correctly on the page so that your
+JavaScript errors are at least never of the load order-dependent kind.</p>
+
+<p>This is fine, until you need to use an asset outside of the
+Rails environment, for example in a JavaScript unit test. Depending on your test
+environment you can at best expect a complete loss of your dependency graph and
+at worst an explosion at parser level.</p>
+
+<p>Sprockets directives actively fight against a clean separation of concerns,
+driving tight coupling of front-end code to the Rails environment.</p>
+
+<h2>Logical complement</h2>
+
+<p>Sprockets allows users to register numerous directories that contain assets to
+<em>the load path</em>. The load path is sort of like the Unix environment variable
+<code>PATH</code> &#8212; it&rsquo;s a list of directories.</p>
+
+<p>When actually using assets &#8212; including them in a template, requiring them
+in a manifest &#8212; users are encouraged to use a <em>logical path</em>. The logical
+path is the path to an asset, relative to whichever directory from the load path
+contains it. A helper method named <code>asset_path</code> will take your logical
+path and look through the load path, trying to resolve the full path to the
+file.</p>
+<div class="highlight"><pre><code class="erb language-erb" data-lang="erb"><span class="cp">&lt;%=</span> <span class="n">asset_path</span><span class="p">(</span><span class="s1">&#39;widgets/dingus&#39;</span><span class="p">)</span> <span class="cp">%&gt;</span><span class="x"></span>
+</code></pre></div>
+<p>If I am developing an application, I already know which directories contain
+which assets. I can reference them by their full path, their path relative to
+the <code>Rails.root</code> or in any number of other ways. Pretending to not know the full
+path to a file and then using a helper method to search for it is not valuable
+at all.</p>
+
+<h2>Engines all the way down</h2>
+
+<p>When an asset file has multiple extensions that Sprockets can recognise,
+that file will be run through a preprocessing engine for each extension in
+sequence, from right to left. So a file named <code>great_code.js.coffee.erb</code> would
+be evaluated as ERB first, then as CoffeeScript, then finally delivered as
+JavaScript.</p>
+
+<p>This can seem like a good idea, especially if you have an environment variable
+like an API key that you want to take from Ruby and inject into JavaScript. In
+practice it&rsquo;s another feature that helps more than it hurts.</p>
+
+<p>Not only does it encourage tight coupling of otherwise unrelated areas of your
+codebase, but it leaves you with an asset file with no identity &#8212; not
+Ruby, not CoffeeScript, not JavaScript &#8212; which is totally useless without
+the presence of both the Rails environment and the asset pipeline.</p>
+
+<h2>Frustration over configuration</h2>
+
+<p>&ldquo;Convention over configuration&rdquo; &#8212; the release of software
+with default behaviour that covers the common case without further setup &#8212;
+is often an accompanied by the reassurance that deviation from the common case
+is possible too, with a bit of extra work.</p>
+
+<p>The problem with the asset pipeline is that it offers dozens of configuration
+options whilst still being weirdly inflexible.</p>
+
+<p>As of writing there is no way to process assets without adding a digest suffix
+to their file names. The assumption is that any file that doesn&rsquo;t need to be
+cache-busted can just be added to the <code>public</code> directory, but it&rsquo;s actually
+another blow for front-end testing as it prevents the use of individual
+preprocessed assets outside of the Rails environment.</p>
+
+<h2>Keep on moving</h2>
+
+<p>With these issues in mind, I believe that any modern Rails application would be
+better built and maintained without the asset pipeline.</p>
+
+<p>If you&rsquo;re lucky enough to be starting with a brand new application, you can use
+the <nobr><code>--skip-sprockets</code></nobr> option when you create the app.</p>
+<div class="highlight"><pre><code class="text language-text" data-lang="text">$ rails new appname --skip-sprockets
+</code></pre></div>
+<p>There may still be some lines in your Gemfile to remove, but for the most part
+this will do the trick.</p>
+
+<p>If your application already exists, you will likely have some untangling to
+do. Remove the various extension gems, remove the Sprockets directives from your
+assets, remove the config cruft, the Railtie, and so on. Check the
+<a href="http://guides.rubyonrails.org/asset_pipeline.html">official Rails guide</a> for tips on disabling the asset pipeline in all
+environments and good luck.</p>
+
+<p>Despite the issues above, I am still of the opinion that a development workflow
+which includes asset preprocessing is a great thing. There are a number of tools
+available that will run your assets through the preprocessors of your choice
+and move them into a different directory, which is really all you need. Four
+very different options are listed below.</p>
+
+<h3>RequireJS</h3>
+
+<p>Regarding JavaScript, if you like the idea of using the AMD module pattern then
+<a href="http://requirejs.org/">RequireJS</a> is your friend. You can use it to load JavaScript modules
+asynchronously, or use the related <code>r.js</code> command to concatenate and uglify.</p>
+
+<p>In my experience the configuration options are sane and you have full access
+to the configuration options of the underlying preprocessor, UglifyJS.</p>
+
+<h3>Pannier</h3>
+
+<p><em>Full disclosure: I am the author of this project.</em></p>
+
+<p><a href="https://github.com/joecorcoran/pannier">Pannier</a> is a Ruby asset processing tool. You can use it as a command line tool
+or mount it inside a Rack application with a single line of code in
+<code>config.ru</code>.</p>
+
+<p>It comes with no preprocessors, but they are easy to include
+through a minimal DSL. You can <a href="/2014/03/11/ruby-asset-processing-with-pannier/">read more about it here</a>. Pannier is
+intended to be as unopinionated as possible. If you&rsquo;re a control freak like me,
+you will consider this a feature.</p>
+
+<h3>wake</h3>
+
+<p>Short for &ldquo;web make&rdquo;, <a href="https://github.com/jcoglan/wake">wake</a> is a tool for optimizing CSS and JavaScript
+and nothing more. All configuration happens in a <code>package.json</code> file at the
+root of your project.</p>
+
+<p>It has most of the preprocessing capability of the asset pipeline but remains
+entirely decoupled from your application.</p>
+
+<h3>Broccoli</h3>
+
+<p><a href="https://github.com/broccolijs/broccoli">Broccoli</a> is an asset processing tool that focuses on compilation speed.
+The <a href="http://www.solitr.com/blog/2014/02/broccoli-first-release/">post from the author</a> about the thinking behind the project is an
+interesting read.</p>
+
+<p>At first glance Broccoli seems like it may be heading towards mainly focussing
+on Ember applications, but the idea of leaning on the file system is strong and
+I&rsquo;m keen to try it out.</p>
+
+    </article>
+    <footer id="footer">
+  <div class="footer-content">
+    <ul>
+      <li>
+        <a href="mailto:joecorcoran@gmail.com"><i class="fa fa-envelope"></i></a>
+      </li>
+      <li>
+        <a href="http://twitter.com/josephcorcoran"><i class="fa fa-twitter"></i></a>
+      </li>
+      <li>
+        <a href="/articles.xml"><i class="fa fa-rss"></i></a>
+      </li>
+  </div>
+</footer>
+
+  </body>
+</html>
