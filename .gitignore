@@ -4,3 +4,5 @@ tmp/
 _site/tmp/
 .sass-cache/
 assets/*.json
+.bundle
+vendor/

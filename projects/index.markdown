@@ -4,6 +4,16 @@ section: projects
 title: Projects
 ---
 
+# Fabrik
+
+An implementation of traits for use in for Ruby 2. Fabrik provides traits that
+can be "flattened" into classes without affecting inheritance,
+as described in [Traits: A Mechanism for
+Fine-grained Reuse](http://scg.unibe.ch/archive/papers/Duca06bTOPLASTraits.pdf).
+
+* [GitHub](https://github.com/joecorcoran/fabrik)
+* [Rubygems](https://rubygems.org/gems/fabrik)
+
 # Pannier
 
 A general-purpose Ruby asset processing tool. Intended as both a command line tool for static sites and an asset pipeline replacement that can be used within any Rack application.

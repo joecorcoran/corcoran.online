@@ -8,4 +8,4 @@ tag_directory: tags
 title: "Joe Corcoran"
 description: "Articles on programming"
 url: "https://corcoran.io"
-exclude: ["Capfile", "Gemfile", "Gemfile.lock", "Pannierfile", "assets", "bin"]
+exclude: ["Capfile", "Gemfile", "Gemfile.lock", "Pannierfile", "assets", "bin", "vendor"]
