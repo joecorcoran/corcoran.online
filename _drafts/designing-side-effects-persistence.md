@@ -9,12 +9,12 @@ tags:
 ---
 
 Web applications that persist data, in 2015, have lots of side-effects. When you
-log on and spout your reckons, your entire social graph *needs* to
-know.
-
-So `create`, `update` and their ilk are often accompanied by lines of code
-which need to run right away, but have little relevance within the current
+log on and shout your reckons, your entire social graph needs to
+know. So `create`, `update` and their ilk are often accompanied by code
+which needs to run right away, but has little relevance within the current
 context.
+
+## Controller cruft
 
 Consider the following controller actions for creating and destroying photos.
 There are side-effects for sending emails, sending mobile device push
@@ -39,6 +39,8 @@ class PhotosController < ApplicationController
 end
 ```
 
+## Callbacks
+
 A common approach in Rails applications is to use callbacks, which see the
 side-effects triggered from within models. The above example with callbacks
 would look as follows.
@@ -56,7 +58,9 @@ class PhotosController < ApplicationController
     # ...
   end
 end
+```
 
+```ruby
 class Photo < ActiveRecord::Base
   after_create :create_mail, :create_search, :create_push
   after_destroy :destroy_search
@@ -84,7 +88,10 @@ end
 Both of the above scenarios bring problems. The first, with the cluttered controller actions, burdens the controller with too much knowledge of other classes and their behaviour. The callback approach simply moves the same
 problem into the model. It can also be too blunt an instrument &#8212; consider
  that photos might be created from multiple places in our application &#8212; we may not really want to trigger the side-effects on *every* `create`, or every
- `destroy`.
+ `destroy`. The issue often becomes clearer when writing unit tests. Excessive mocking
+ is a sure sign that our classes have too many responsibilities.
+
+## Service objects
 
 ```ruby
 class PhotosController < ApplicationController
@@ -117,6 +124,8 @@ class DestroyPhoto
   end
 end
 ```
+
+## Synchronous events
 
 ```ruby
 class PhotosController < ApplicationController
