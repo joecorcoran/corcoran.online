@@ -5,8 +5,7 @@ comments: true
 tags:
   - ruby
   - dsl
-  - "delegator pattern"
-  - "builder pattern"
+  - "design patterns"
   - cucumber
 ---
 
