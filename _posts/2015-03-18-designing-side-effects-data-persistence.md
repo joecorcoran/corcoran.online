@@ -71,19 +71,19 @@ class Photo < ActiveRecord::Base
   private
 
   def create_mail
-    UserMailer.new_photo(@photo).deliver_later
+    UserMailer.new_photo(self).deliver_later
   end
 
   def create_search
-    SearchWorker::Index.perform_async(@photo)
+    SearchWorker::Index.perform_async(self)
   end
 
   def create_push
-    PushWorker::NewPhoto.perform_async(@photo)
+    PushWorker::NewPhoto.perform_async(self)
   end
 
   def destroy_search
-    SearchWorker::Remove.perform_async(@photo)
+    SearchWorker::Remove.perform_async(self)
   end
 end
 ```
@@ -151,8 +151,8 @@ class CreatePhoto
   def self.call(user, attrs = {})
     photo = user.photos.create(attrs)
     UserMailer.new_photo(photo).deliver_later
-    SearchWorker::Index.perform_async(@photo)
-    PushWorker::NewPhoto.perform_async(@photo)
+    SearchWorker::Index.perform_async(photo)
+    PushWorker::NewPhoto.perform_async(photo)
     photo
   end
 end
@@ -162,7 +162,7 @@ end
 class DestroyPhoto
   def self.call(photo)
     photo.destroy
-    SearchWorker::Remove.perform_async(@photo)
+    SearchWorker::Remove.perform_async(photo)
   end
 end
 ```
@@ -207,11 +207,11 @@ end
 ```ruby
 class SearchSubscriber
   def create_photo(photo)
-    SearchWorker::Index.perform_async(@photo)
+    SearchWorker::Index.perform_async(photo)
   end
 
   def destroy_photo(photo)
-    SearchWorker::Remove.perform_async(@photo)
+    SearchWorker::Remove.perform_async(photo)
   end
 end
 ```
@@ -219,7 +219,7 @@ end
 ```ruby
 class PushSubscriber
   def create_photo(photo)
-    PushWorker::NewPhoto.perform_async(@photo)
+    PushWorker::NewPhoto.perform_async(photo)
   end
 end
 ```
