@@ -85,7 +85,7 @@ don&rsquo;t, some of my issues with the asset pipeline are listed below.</p>
 
 <p>Sprockets directives are the magic comments that live inside your asset files,
 referencing other assets.</p>
-<div class="highlight"><pre><code class="javascript language-javascript" data-lang="javascript"><span class="c1">//= require admin</span>
+<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="c1">//= require admin</span>
 </code></pre></div>
 <p>Users can require a single file, a whole directory recursively, and so
 on. At first it might seem like a good idea to explicitly state dependencies in
@@ -112,7 +112,7 @@ path is the path to an asset, relative to whichever directory from the load path
 contains it. A helper method named <code>asset_path</code> will take your logical
 path and look through the load path, trying to resolve the full path to the
 file.</p>
-<div class="highlight"><pre><code class="erb language-erb" data-lang="erb"><span class="cp">&lt;%=</span> <span class="n">asset_path</span><span class="p">(</span><span class="s1">&#39;widgets/dingus&#39;</span><span class="p">)</span> <span class="cp">%&gt;</span><span class="x"></span>
+<div class="highlight"><pre><code class="language-erb" data-lang="erb"><span class="cp">&lt;%=</span> <span class="n">asset_path</span><span class="p">(</span><span class="s1">&#39;widgets/dingus&#39;</span><span class="p">)</span> <span class="cp">%&gt;</span><span class="x"></span>
 </code></pre></div>
 <p>If I am developing an application, I already know which directories contain
 which assets. I can reference them by their full path, their path relative to
@@ -160,7 +160,7 @@ better built and maintained without the asset pipeline.</p>
 
 <p>If you&rsquo;re lucky enough to be starting with a brand new application, you can use
 the <nobr><code>--skip-sprockets</code></nobr> option when you create the app.</p>
-<div class="highlight"><pre><code class="text language-text" data-lang="text">$ rails new appname --skip-sprockets
+<div class="highlight"><pre><code class="language-text" data-lang="text">$ rails new appname --skip-sprockets
 </code></pre></div>
 <p>There may still be some lines in your Gemfile to remove, but for the most part
 this will do the trick.</p>
@@ -223,7 +223,7 @@ I&rsquo;m keen to try it out.</p>
   <div class="footer-content">
     <ul>
       <li>
-        <a href="mailto:joecorcoran@gmail.com"><i class="fa fa-envelope"></i></a>
+        <a href="mailto:joe@corcoran.io"><i class="fa fa-envelope"></i></a>
       </li>
       <li>
         <a href="http://twitter.com/josephcorcoran"><i class="fa fa-twitter"></i></a>

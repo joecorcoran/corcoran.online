@@ -72,7 +72,7 @@ working at first, as it forced me to maintain focus on the end user experience a
 <p>The following code demonstrates the problem on a small scale. I&rsquo;ll leave it up to you to imagine the same situation with four or five times the number of methods.</p>
 
 <p>The main class reponsible for the DSL would look something like this:</p>
-<div class="highlight"><pre><code class="ruby language-ruby" data-lang="ruby"><span class="k">class</span> <span class="nc">Config</span>
+<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="k">class</span> <span class="nc">Config</span>
   <span class="kp">attr_reader</span> <span class="ss">:file_paths</span>
 
   <span class="k">def</span> <span class="nf">initialize</span><span class="p">(</span><span class="o">&amp;</span><span class="n">block</span><span class="p">)</span>
@@ -94,7 +94,7 @@ working at first, as it forced me to maintain focus on the end user experience a
 <span class="k">end</span>
 </code></pre></div>
 <p>Intended use follows the <a href="http://en.wikipedia.org/wiki/Builder_pattern">builder pattern</a>, with some of that <code>instance_eval</code> magic that you either love or hate:</p>
-<div class="highlight"><pre><code class="ruby language-ruby" data-lang="ruby"><span class="no">Config</span><span class="o">.</span><span class="n">new</span> <span class="k">do</span>
+<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="no">Config</span><span class="o">.</span><span class="n">new</span> <span class="k">do</span>
   <span class="n">files</span> <span class="s1">&#39;foo.bar&#39;</span><span class="p">,</span> <span class="s1">&#39;baz/qux.quux&#39;</span>
 <span class="k">end</span>
 </code></pre></div>
@@ -103,7 +103,7 @@ working at first, as it forced me to maintain focus on the end user experience a
 <p>This problem becomes even more obvious when writing unit tests &#8212; we are users of our own code, after all &#8212; and it&rsquo;s necessary to keep on initializing new objects in various states of configuration by using the DSL block. Not to mention that use of mock objects is made practically impossible in this case thanks to the altered scope from <code>instance_eval</code>.</p>
 
 <p>To fix this, I settled on the following solution.</p>
-<div class="highlight"><pre><code class="ruby language-ruby" data-lang="ruby"><span class="nb">require</span> <span class="s1">&#39;delegate&#39;</span>
+<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="nb">require</span> <span class="s1">&#39;delegate&#39;</span>
 
 <span class="k">class</span> <span class="nc">Config</span>
   <span class="k">def</span> <span class="nc">self</span><span class="o">.</span><span class="nf">build</span><span class="p">(</span><span class="o">&amp;</span><span class="n">block</span><span class="p">)</span>
@@ -135,7 +135,7 @@ working at first, as it forced me to maintain focus on the end user experience a
     <span class="k">end</span>
   <span class="k">end</span>
 <span class="k">end</span>
-</code></pre></div><div class="highlight"><pre><code class="ruby language-ruby" data-lang="ruby"><span class="no">Config</span><span class="o">.</span><span class="n">build</span> <span class="k">do</span>
+</code></pre></div><div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="no">Config</span><span class="o">.</span><span class="n">build</span> <span class="k">do</span>
   <span class="n">files</span> <span class="s1">&#39;foo.bar&#39;</span><span class="p">,</span> <span class="s1">&#39;baz/qux.quux&#39;</span>
 <span class="k">end</span>
 </code></pre></div>
@@ -146,14 +146,14 @@ working at first, as it forced me to maintain focus on the end user experience a
 <p>Ruby DSL behavior frequently deviates considerably from the concept of simply <a href="http://www.purl.org/stefan_ram/pub/doc_kay_oop_en">constructing objects and passing messages between them</a>. In the interest of providing a simple user experience, we are tempted to write complex behaviour into a DSL method. Separating our concerns presents the opportunity to keep a watchful eye on this complexity as it inevitably grows.</p>
 
 <p>Cleaning up like this also allows for better unit testing. In the example above, the action of adding paths can be isolated without having to touch the DSL at all. What&rsquo;s more, the user can ignore the DSL completely if they wish.</p>
-<div class="highlight"><pre><code class="ruby language-ruby" data-lang="ruby"><span class="n">config</span> <span class="o">=</span> <span class="no">Config</span><span class="o">.</span><span class="n">new</span>
+<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="n">config</span> <span class="o">=</span> <span class="no">Config</span><span class="o">.</span><span class="n">new</span>
 <span class="n">config</span><span class="o">.</span><span class="n">add_paths</span><span class="p">(</span><span class="s1">&#39;foo.bar&#39;</span><span class="p">,</span> <span class="s1">&#39;baz/qux.quux&#39;</span><span class="p">)</span>
 <span class="n">config</span><span class="o">.</span><span class="n">save!</span>
 </code></pre></div>
 <p>A combination of unit tests for the non-DSL methods and acceptance tests for the DSL methods seems like a good fit to me.</p>
 
 <p>It turns out this behavior is easy to extract into a module for reuse too.</p>
-<div class="highlight"><pre><code class="ruby language-ruby" data-lang="ruby"><span class="nb">require</span> <span class="s1">&#39;delegate&#39;</span>
+<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="nb">require</span> <span class="s1">&#39;delegate&#39;</span>
 
 <span class="k">module</span> <span class="nn">DSL</span>
   <span class="k">def</span> <span class="nf">build</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">block</span><span class="p">)</span>
@@ -169,7 +169,7 @@ working at first, as it forced me to maintain focus on the end user experience a
     <span class="nb">self</span><span class="o">.</span><span class="n">const_set</span><span class="p">(</span><span class="s1">&#39;DSLDelegator&#39;</span><span class="p">,</span> <span class="n">delegator_klass</span><span class="p">)</span>
   <span class="k">end</span>
 <span class="k">end</span>
-</code></pre></div><div class="highlight"><pre><code class="ruby language-ruby" data-lang="ruby"><span class="k">class</span> <span class="nc">Config</span>
+</code></pre></div><div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="k">class</span> <span class="nc">Config</span>
   <span class="kp">extend</span> <span class="no">DSL</span>
   <span class="c1"># ...</span>
   <span class="n">dsl</span> <span class="k">do</span>
@@ -186,7 +186,7 @@ working at first, as it forced me to maintain focus on the end user experience a
   <div class="footer-content">
     <ul>
       <li>
-        <a href="mailto:joecorcoran@gmail.com"><i class="fa fa-envelope"></i></a>
+        <a href="mailto:joe@corcoran.io"><i class="fa fa-envelope"></i></a>
       </li>
       <li>
         <a href="http://twitter.com/josephcorcoran"><i class="fa fa-twitter"></i></a>

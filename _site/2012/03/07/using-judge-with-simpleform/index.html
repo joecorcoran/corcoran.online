@@ -72,24 +72,21 @@
 
 <h2>Install</h2>
 
-<div class="highlight"><pre><code class="ruby"><span class="n">gem</span> <span class="s2">&quot;judge-simple_form&quot;</span><span class="p">,</span> <span class="s2">&quot;~&gt; 0.1&quot;</span><span class="p">,</span> <span class="ss">:require</span> <span class="o">=&gt;</span> <span class="s2">&quot;judge/simple_form&quot;</span>
-</code></pre></div>
+<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="n">gem</span> <span class="s2">&quot;judge-simple_form&quot;</span><span class="p">,</span> <span class="s2">&quot;~&gt; 0.1&quot;</span><span class="p">,</span> <span class="ss">:require</span> <span class="o">=&gt;</span> <span class="s2">&quot;judge/simple_form&quot;</span></code></pre></div>
 
 <p><a href="/2012/03/01/using-judge-with-formtastic">Read here</a> why the require option is necessary.</p>
 
 <p><em>Update: <a href="https://rubygems.org/gems/bundler">Bundler 1.1</a> was released, so the require option is no longer necessary.</em></p>
 
-<div class="highlight"><pre><code class="ruby"><span class="n">gem</span> <span class="s2">&quot;judge-simple_form&quot;</span><span class="p">,</span> <span class="s2">&quot;~&gt; 0.1&quot;</span>
-</code></pre></div>
+<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="n">gem</span> <span class="s2">&quot;judge-simple_form&quot;</span><span class="p">,</span> <span class="s2">&quot;~&gt; 0.1&quot;</span></code></pre></div>
 
 <h2>Usage</h2>
 
 <p>Add <code>:validate => true</code> to the inputs you want to validate on the front-end.</p>
 
-<div class="highlight"><pre><code class="ruby"><span class="o">&lt;</span><span class="sx">%= simple_form_for(@user) do |f| %&gt;</span>
+<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="o">&lt;</span><span class="sx">%= simple_form_for(@user) do |f| %&gt;</span>
 <span class="sx">  &lt;%=</span> <span class="n">f</span><span class="o">.</span><span class="n">input</span> <span class="ss">:name</span><span class="p">,</span> <span class="ss">:validate</span> <span class="o">=&gt;</span> <span class="kp">true</span> <span class="sx">%&gt;</span>
-<span class="sx">&lt;% end %&gt;</span>
-</code></pre></div>
+<span class="sx">&lt;% end %&gt;</span></code></pre></div>
 
 <h2>Feedback</h2>
 
@@ -100,7 +97,7 @@
   <div class="footer-content">
     <ul>
       <li>
-        <a href="mailto:joecorcoran@gmail.com"><i class="fa fa-envelope"></i></a>
+        <a href="mailto:joe@corcoran.io"><i class="fa fa-envelope"></i></a>
       </li>
       <li>
         <a href="http://twitter.com/josephcorcoran"><i class="fa fa-twitter"></i></a>

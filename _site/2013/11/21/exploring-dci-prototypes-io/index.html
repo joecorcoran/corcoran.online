@@ -90,7 +90,7 @@ code reuse and object composition in a more flexible way than class inheritance.
 
 <p>One of the proposed benefits of traits and prototypes is the ability to
 change the &ldquo;behaviour mode&rdquo; of any data type instance at runtime through dynamic
-inheritance. Figure 5 in the paper demonstrates quite neatly the authors&#39;
+inheritance. Figure 5 in the paper demonstrates quite neatly the authors&rsquo;
 investigation into dynamic inheritance with <a href="http://selflanguage.org/">Self</a>.</p>
 
 <p>Which brings us back to the idea of roles. Roles in the DCI sense are easily
@@ -105,42 +105,42 @@ bank transfer &#8212; using Io.</p>
 
 <p>An <code>Account</code> object, cloned from the basic <code>Object</code>, forms the basis of a bank
 account. Any clones will be initialised with an arbitrary balance.</p>
-<div class="highlight"><pre><code class="io language-io" data-lang="io"><span class="n">Account</span> <span class="o">:=</span> <span class="nb">Object</span> <span class="k">clone</span> <span class="k">do</span><span class="o">(</span>
+<div class="highlight"><pre><code class="language-io" data-lang="io"><span class="n">Account</span> <span class="o">:=</span> <span class="nb">Object</span> <span class="k">clone</span> <span class="k">do</span><span class="o">(</span>
   <span class="n">init</span> <span class="o">:=</span> <span class="k">method</span><span class="o">(</span><span class="n">self</span> <span class="n">balance</span> <span class="o">:=</span> <span class="mf">100</span><span class="o">)</span>
 <span class="o">)</span>
 </code></pre></div>
 <p>Here&rsquo;s a traits object that handles deposits.</p>
-<div class="highlight"><pre><code class="io language-io" data-lang="io"><span class="n">DepositingAccount</span> <span class="o">:=</span> <span class="nb">Object</span> <span class="k">clone</span> <span class="k">do</span><span class="o">(</span>
+<div class="highlight"><pre><code class="language-io" data-lang="io"><span class="n">DepositingAccount</span> <span class="o">:=</span> <span class="nb">Object</span> <span class="k">clone</span> <span class="k">do</span><span class="o">(</span>
   <span class="n">deposit</span> <span class="o">:=</span> <span class="k">method</span><span class="o">(</span><span class="n">amount</span><span class="o">,</span> <span class="n">balance</span> <span class="o">=</span> <span class="n">balance</span> <span class="o">+</span> <span class="n">amount</span><span class="o">)</span>
 <span class="o">)</span>
 </code></pre></div>
 <p>A data object is cloned from <code>Account</code> and the traits object <code>DepositingAccount</code>
 is injected into it.</p>
-<div class="highlight"><pre><code class="io language-io" data-lang="io"><span class="n">account</span> <span class="o">::=</span> <span class="n">Account</span> <span class="k">clone</span>
+<div class="highlight"><pre><code class="language-io" data-lang="io"><span class="n">account</span> <span class="o">::=</span> <span class="n">Account</span> <span class="k">clone</span>
 <span class="n">account</span> <span class="n">appendProto</span><span class="o">(</span><span class="n">DepositingAccount</span><span class="o">)</span>
 </code></pre></div>
 <p>Inheritance is most often achieved through cloning objects but through direct
 manipulation of the prototype list, objects can inherit from multiple others.</p>
-<div class="highlight"><pre><code class="io language-io" data-lang="io"><span class="n">account</span> <span class="n">protos</span>
+<div class="highlight"><pre><code class="language-io" data-lang="io"><span class="n">account</span> <span class="n">protos</span>
   <span class="c1">#==&gt; list(Account_0x7fae4acaa610, DepositingAccount_0x7fae4aca0af0)</span>
 </code></pre></div>
 <p>The data object can carry out its role&hellip;</p>
-<div class="highlight"><pre><code class="io language-io" data-lang="io"><span class="n">account</span> <span class="n">deposit</span><span class="o">(</span><span class="mf">10</span><span class="o">)</span>
+<div class="highlight"><pre><code class="language-io" data-lang="io"><span class="n">account</span> <span class="n">deposit</span><span class="o">(</span><span class="mf">10</span><span class="o">)</span>
 <span class="n">account</span> <span class="n">balance</span>
   <span class="c1">#==&gt; 110</span>
 </code></pre></div>
 <p>&hellip;and the depositing capability can be removed afterwards.</p>
-<div class="highlight"><pre><code class="io language-io" data-lang="io"><span class="n">account</span> <span class="n">removeProto</span><span class="o">(</span><span class="n">DepositingAccount</span><span class="o">)</span>
+<div class="highlight"><pre><code class="language-io" data-lang="io"><span class="n">account</span> <span class="n">removeProto</span><span class="o">(</span><span class="n">DepositingAccount</span><span class="o">)</span>
 </code></pre></div>
 <p>With a traits object that adds withdrawal behaviour, it&rsquo;s easy to write the
 context for a simplified bank transfer. In this case it&rsquo;s just a <code>transfer</code>
 method in place of whatever controller or service would assemble the objects
 in the real world.</p>
-<div class="highlight"><pre><code class="io language-io" data-lang="io"><span class="n">WithdrawingAccount</span> <span class="o">:=</span> <span class="nb">Object</span> <span class="k">clone</span> <span class="k">do</span><span class="o">(</span>
+<div class="highlight"><pre><code class="language-io" data-lang="io"><span class="n">WithdrawingAccount</span> <span class="o">:=</span> <span class="nb">Object</span> <span class="k">clone</span> <span class="k">do</span><span class="o">(</span>
   <span class="n">canWithdraw</span> <span class="o">:=</span> <span class="k">method</span><span class="o">(</span><span class="n">amount</span><span class="o">,</span> <span class="n">balance</span> <span class="o">&gt;=</span> <span class="n">amount</span><span class="o">)</span>
   <span class="n">withdraw</span> <span class="o">:=</span> <span class="k">method</span><span class="o">(</span><span class="n">amount</span><span class="o">,</span> <span class="n">balance</span> <span class="o">=</span> <span class="n">balance</span> <span class="o">-</span> <span class="n">amount</span><span class="o">)</span>
 <span class="o">)</span>
-</code></pre></div><div class="highlight"><pre><code class="io language-io" data-lang="io"><span class="n">transfer</span> <span class="o">:=</span> <span class="k">method</span><span class="o">(</span><span class="n">amount</span><span class="o">,</span> <span class="n">from</span><span class="o">,</span> <span class="n">to</span><span class="o">,</span>
+</code></pre></div><div class="highlight"><pre><code class="language-io" data-lang="io"><span class="n">transfer</span> <span class="o">:=</span> <span class="k">method</span><span class="o">(</span><span class="n">amount</span><span class="o">,</span> <span class="n">from</span><span class="o">,</span> <span class="n">to</span><span class="o">,</span>
   <span class="n">from</span> <span class="n">appendProto</span><span class="o">(</span><span class="n">WithdrawingAccount</span><span class="o">)</span>
   <span class="n">to</span> <span class="n">appendProto</span><span class="o">(</span><span class="n">DepositingAccount</span><span class="o">)</span>
 
@@ -177,7 +177,7 @@ system was more flexible?</p>
   <div class="footer-content">
     <ul>
       <li>
-        <a href="mailto:joecorcoran@gmail.com"><i class="fa fa-envelope"></i></a>
+        <a href="mailto:joe@corcoran.io"><i class="fa fa-envelope"></i></a>
       </li>
       <li>
         <a href="http://twitter.com/josephcorcoran"><i class="fa fa-twitter"></i></a>

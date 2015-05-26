@@ -65,7 +65,7 @@
 <!--more-->
 
 <p><code>Enumerator#each_with_index</code> allows us to iterate through a collection of objects, with access to the index of each object.</p>
-<div class="highlight"><pre><code class="ruby language-ruby" data-lang="ruby"><span class="n">numbers</span> <span class="o">=</span> <span class="o">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="o">]</span>
+<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="n">numbers</span> <span class="o">=</span> <span class="o">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="o">]</span>
 <span class="n">numbers</span><span class="o">.</span><span class="n">each_with_index</span> <span class="k">do</span> <span class="o">|</span><span class="n">number</span><span class="p">,</span> <span class="n">idx</span><span class="o">|</span>
   <span class="nb">puts</span> <span class="s2">&quot;</span><span class="si">#{</span><span class="n">number</span><span class="si">}</span><span class="s2"> at index </span><span class="si">#{</span><span class="n">idx</span><span class="si">}</span><span class="s2">&quot;</span>
 <span class="k">end</span>
@@ -74,14 +74,14 @@
 <span class="c1"># etc.</span>
 </code></pre></div>
 <p>Passing the index into the block like that can be really useful, but <code>#each_with_index</code> is on its own; other common <code>Enumerable</code> methods are not afforded this kind of special extended treatment. Thankfully though, some of these methods return an <code>Enumerator</code> when they are used without a block.</p>
-<div class="highlight"><pre><code class="ruby language-ruby" data-lang="ruby"><span class="n">numbers</span><span class="o">.</span><span class="n">map</span> <span class="c1"># =&gt; #&lt;Enumerator: [1, 2, 3, 4, 5]:map&gt;</span>
+<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="n">numbers</span><span class="o">.</span><span class="n">map</span> <span class="c1"># =&gt; #&lt;Enumerator: [1, 2, 3, 4, 5]:map&gt;</span>
 </code></pre></div>
 <p>This means we can chain <code>Enumerator</code> methods like <code>#with_index</code>.</p>
-<div class="highlight"><pre><code class="ruby language-ruby" data-lang="ruby"><span class="n">numbers</span><span class="o">.</span><span class="n">map</span><span class="o">.</span><span class="n">with_index</span>
+<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="n">numbers</span><span class="o">.</span><span class="n">map</span><span class="o">.</span><span class="n">with_index</span>
 <span class="c1"># =&gt; #&lt;Enumerator: #&lt;Enumerator: [1, 2, 3, 4, 5]:map&gt;:with_index&gt;</span>
 </code></pre></div>
 <p>It&rsquo;s especially useful in places where you might otherwise use a placeholder array.</p>
-<div class="highlight"><pre><code class="ruby language-ruby" data-lang="ruby"><span class="n">cities</span>    <span class="o">=</span> <span class="o">[</span><span class="s1">&#39;New York City&#39;</span><span class="p">,</span> <span class="s1">&#39;Oslo&#39;</span><span class="o">]</span>
+<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="n">cities</span>    <span class="o">=</span> <span class="o">[</span><span class="s1">&#39;New York City&#39;</span><span class="p">,</span> <span class="s1">&#39;Oslo&#39;</span><span class="o">]</span>
 <span class="n">countries</span> <span class="o">=</span> <span class="o">[</span><span class="s1">&#39;USA&#39;</span><span class="p">,</span> <span class="s1">&#39;Norway&#39;</span><span class="o">]</span>
 
 <span class="n">places_1</span> <span class="o">=</span> <span class="o">[]</span>
@@ -106,7 +106,7 @@
   <div class="footer-content">
     <ul>
       <li>
-        <a href="mailto:joecorcoran@gmail.com"><i class="fa fa-envelope"></i></a>
+        <a href="mailto:joe@corcoran.io"><i class="fa fa-envelope"></i></a>
       </li>
       <li>
         <a href="http://twitter.com/josephcorcoran"><i class="fa fa-twitter"></i></a>

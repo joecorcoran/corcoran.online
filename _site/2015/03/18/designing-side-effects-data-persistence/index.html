@@ -39,7 +39,7 @@
     <article class="post">
       <header>
         <h1>Designing the side-effects of data persistence</h1>
-        <time datetime="2015-03-18T00:00:00+00:00">18 March 2015</time>
+        <time datetime="2015-03-18T00:00:00+01:00">18 March 2015</time>
         
 
   <ul class="tags">
@@ -74,7 +74,7 @@ The controller actions also send emails, send mobile device push
 notifications and update the application search index. Although the real work
 will be done asynchronously (in this case via <a href="http://sidekiq.org">Sidekiq</a>), the
 controller kicks everything off.</p>
-<div class="highlight"><pre><code class="ruby language-ruby" data-lang="ruby"><span class="k">class</span> <span class="nc">PhotosController</span> <span class="o">&lt;</span> <span class="no">ApplicationController</span>
+<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="k">class</span> <span class="nc">PhotosController</span> <span class="o">&lt;</span> <span class="no">ApplicationController</span>
   <span class="k">def</span> <span class="nf">create</span>
     <span class="vi">@photo</span> <span class="o">=</span> <span class="n">current_user</span><span class="o">.</span><span class="n">photos</span><span class="o">.</span><span class="n">create</span><span class="p">(</span><span class="n">photo_params</span><span class="p">)</span>
     <span class="no">UserMailer</span><span class="o">.</span><span class="n">new_photo</span><span class="p">(</span><span class="vi">@photo</span><span class="p">)</span><span class="o">.</span><span class="n">deliver_later</span>
@@ -97,7 +97,7 @@ controller kicks everything off.</p>
 <a href="http://api.rubyonrails.org/classes/ActiveRecord/Callbacks.html"><code>ActiveRecord</code> callbacks</a>, which trigger side-effects whenever
 model instances change. Moving the side-effects into callbacks, the above
 example would look as follows.</p>
-<div class="highlight"><pre><code class="ruby language-ruby" data-lang="ruby"><span class="k">class</span> <span class="nc">PhotosController</span> <span class="o">&lt;</span> <span class="no">ApplicationController</span>
+<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="k">class</span> <span class="nc">PhotosController</span> <span class="o">&lt;</span> <span class="no">ApplicationController</span>
   <span class="k">def</span> <span class="nf">create</span>
     <span class="vi">@photo</span> <span class="o">=</span> <span class="n">current_user</span><span class="o">.</span><span class="n">photos</span><span class="o">.</span><span class="n">create</span><span class="p">(</span><span class="n">photo_params</span><span class="p">)</span>
     <span class="c1"># ...</span>
@@ -109,7 +109,7 @@ example would look as follows.</p>
     <span class="c1"># ...</span>
   <span class="k">end</span>
 <span class="k">end</span>
-</code></pre></div><div class="highlight"><pre><code class="ruby language-ruby" data-lang="ruby"><span class="k">class</span> <span class="nc">Photo</span> <span class="o">&lt;</span> <span class="no">ActiveRecord</span><span class="o">::</span><span class="no">Base</span>
+</code></pre></div><div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="k">class</span> <span class="nc">Photo</span> <span class="o">&lt;</span> <span class="no">ActiveRecord</span><span class="o">::</span><span class="no">Base</span>
   <span class="n">after_create</span> <span class="ss">:create_mail</span><span class="p">,</span> <span class="ss">:create_search</span><span class="p">,</span> <span class="ss">:create_push</span>
   <span class="n">after_destroy</span> <span class="ss">:destroy_search</span>
 
@@ -149,10 +149,10 @@ When a unit test contains numerous assertions about side-effects rather than
 the main purpose of the class, it&rsquo;s tempting to just turn to mocks. Your
 mileage may vary, but more than a few lines of mocking or stubbing can be
 a sign that our design isn&rsquo;t quite right.</p>
-<div class="highlight"><pre><code class="ruby language-ruby" data-lang="ruby"><span class="n">describe</span> <span class="no">PhotosController</span> <span class="k">do</span>
+<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="n">describe</span> <span class="no">PhotosController</span> <span class="k">do</span>
   <span class="n">describe</span> <span class="s1">&#39;POST :create&#39;</span> <span class="k">do</span>
     <span class="n">before</span> <span class="k">do</span>
-      <span class="n">allow</span><span class="p">(</span><span class="no">UserMailer</span><span class="p">)</span><span class="o">.</span><span class="n">to</span> <span class="n">receive</span><span class="p">(</span><span class="ss">:new_photo</span><span class="p">)</span> <span class="p">{</span> <span class="n">double</span><span class="p">(</span><span class="n">deliver_later</span><span class="p">:</span> <span class="kp">true</span><span class="p">)</span> <span class="p">}</span>
+      <span class="n">allow</span><span class="p">(</span><span class="no">UserMailer</span><span class="p">)</span><span class="o">.</span><span class="n">to</span> <span class="n">receive</span><span class="p">(</span><span class="ss">:new_photo</span><span class="p">)</span> <span class="p">{</span> <span class="n">double</span><span class="p">(</span><span class="ss">deliver_later</span><span class="p">:</span> <span class="kp">true</span><span class="p">)</span> <span class="p">}</span>
       <span class="n">allow</span><span class="p">(</span><span class="no">SearchWorker</span><span class="o">::</span><span class="no">Index</span><span class="p">)</span><span class="o">.</span><span class="n">to</span> <span class="n">receive</span><span class="p">(</span><span class="ss">:perform_async</span><span class="p">)</span>
       <span class="n">allow</span><span class="p">(</span><span class="no">PushWorker</span><span class="o">::</span><span class="no">NewPhoto</span><span class="p">)</span><span class="o">.</span><span class="n">to</span> <span class="n">receive</span><span class="p">(</span><span class="ss">:perform_async</span><span class="p">)</span>
     <span class="k">end</span>
@@ -173,7 +173,7 @@ create- and destroy-service classes which take on two responsibilities:</p>
 </ol>
 
 <p>In the following example, a service class has strictly one class method.</p>
-<div class="highlight"><pre><code class="ruby language-ruby" data-lang="ruby"><span class="k">class</span> <span class="nc">PhotosController</span> <span class="o">&lt;</span> <span class="no">ApplicationController</span>
+<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="k">class</span> <span class="nc">PhotosController</span> <span class="o">&lt;</span> <span class="no">ApplicationController</span>
   <span class="k">def</span> <span class="nf">create</span>
     <span class="vi">@photo</span> <span class="o">=</span> <span class="no">CreatePhoto</span><span class="o">.</span><span class="n">call</span><span class="p">(</span><span class="n">current_user</span><span class="p">,</span> <span class="n">photo_params</span><span class="p">)</span>
     <span class="c1"># ...</span>
@@ -185,7 +185,7 @@ create- and destroy-service classes which take on two responsibilities:</p>
     <span class="c1"># ...</span>
   <span class="k">end</span>
 <span class="k">end</span>
-</code></pre></div><div class="highlight"><pre><code class="ruby language-ruby" data-lang="ruby"><span class="k">class</span> <span class="nc">CreatePhoto</span>
+</code></pre></div><div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="k">class</span> <span class="nc">CreatePhoto</span>
   <span class="k">def</span> <span class="nc">self</span><span class="o">.</span><span class="nf">call</span><span class="p">(</span><span class="n">user</span><span class="p">,</span> <span class="n">attrs</span> <span class="o">=</span> <span class="p">{})</span>
     <span class="n">photo</span> <span class="o">=</span> <span class="n">user</span><span class="o">.</span><span class="n">photos</span><span class="o">.</span><span class="n">create</span><span class="p">(</span><span class="n">attrs</span><span class="p">)</span>
     <span class="no">UserMailer</span><span class="o">.</span><span class="n">new_photo</span><span class="p">(</span><span class="n">photo</span><span class="p">)</span><span class="o">.</span><span class="n">deliver_later</span>
@@ -194,7 +194,7 @@ create- and destroy-service classes which take on two responsibilities:</p>
     <span class="n">photo</span>
   <span class="k">end</span>
 <span class="k">end</span>
-</code></pre></div><div class="highlight"><pre><code class="ruby language-ruby" data-lang="ruby"><span class="k">class</span> <span class="nc">DestroyPhoto</span>
+</code></pre></div><div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="k">class</span> <span class="nc">DestroyPhoto</span>
   <span class="k">def</span> <span class="nc">self</span><span class="o">.</span><span class="nf">call</span><span class="p">(</span><span class="n">photo</span><span class="p">)</span>
     <span class="n">photo</span><span class="o">.</span><span class="n">destroy</span>
     <span class="no">SearchWorker</span><span class="o">::</span><span class="no">Remove</span><span class="o">.</span><span class="n">perform_async</span><span class="p">(</span><span class="n">photo</span><span class="p">)</span>
@@ -213,7 +213,7 @@ publish a message at the point of record creation/update, then any interested
 subscriber can act whenever the message is published. In the following example,
 we imagine a <code>publish</code> method which sends messages to all subscribers that
 are able to respond.</p>
-<div class="highlight"><pre><code class="ruby language-ruby" data-lang="ruby"><span class="k">class</span> <span class="nc">PhotosController</span> <span class="o">&lt;</span> <span class="no">ApplicationController</span>
+<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="k">class</span> <span class="nc">PhotosController</span> <span class="o">&lt;</span> <span class="no">ApplicationController</span>
   <span class="k">def</span> <span class="nf">create</span>
     <span class="vi">@photo</span> <span class="o">=</span> <span class="n">current_user</span><span class="o">.</span><span class="n">photos</span><span class="o">.</span><span class="n">create</span><span class="p">(</span><span class="n">photo_params</span><span class="p">)</span>
     <span class="n">publish</span><span class="p">(</span><span class="ss">:create_photo</span><span class="p">,</span> <span class="vi">@photo</span><span class="p">)</span>
@@ -226,12 +226,12 @@ are able to respond.</p>
     <span class="n">publish</span><span class="p">(</span><span class="ss">:destroy_photo</span><span class="p">,</span> <span class="vi">@photo</span><span class="p">)</span>
   <span class="k">end</span>
 <span class="k">end</span>
-</code></pre></div><div class="highlight"><pre><code class="ruby language-ruby" data-lang="ruby"><span class="k">class</span> <span class="nc">MailSubscriber</span>
+</code></pre></div><div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="k">class</span> <span class="nc">MailSubscriber</span>
   <span class="k">def</span> <span class="nf">create_photo</span><span class="p">(</span><span class="n">photo</span><span class="p">)</span>
     <span class="no">UserMailer</span><span class="o">.</span><span class="n">new_photo</span><span class="p">(</span><span class="n">photo</span><span class="p">)</span><span class="o">.</span><span class="n">deliver_later</span>
   <span class="k">end</span>
 <span class="k">end</span>
-</code></pre></div><div class="highlight"><pre><code class="ruby language-ruby" data-lang="ruby"><span class="k">class</span> <span class="nc">SearchSubscriber</span>
+</code></pre></div><div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="k">class</span> <span class="nc">SearchSubscriber</span>
   <span class="k">def</span> <span class="nf">create_photo</span><span class="p">(</span><span class="n">photo</span><span class="p">)</span>
     <span class="no">SearchWorker</span><span class="o">::</span><span class="no">Index</span><span class="o">.</span><span class="n">perform_async</span><span class="p">(</span><span class="n">photo</span><span class="p">)</span>
   <span class="k">end</span>
@@ -240,7 +240,7 @@ are able to respond.</p>
     <span class="no">SearchWorker</span><span class="o">::</span><span class="no">Remove</span><span class="o">.</span><span class="n">perform_async</span><span class="p">(</span><span class="n">photo</span><span class="p">)</span>
   <span class="k">end</span>
 <span class="k">end</span>
-</code></pre></div><div class="highlight"><pre><code class="ruby language-ruby" data-lang="ruby"><span class="k">class</span> <span class="nc">PushSubscriber</span>
+</code></pre></div><div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="k">class</span> <span class="nc">PushSubscriber</span>
   <span class="k">def</span> <span class="nf">create_photo</span><span class="p">(</span><span class="n">photo</span><span class="p">)</span>
     <span class="no">PushWorker</span><span class="o">::</span><span class="no">NewPhoto</span><span class="o">.</span><span class="n">perform_async</span><span class="p">(</span><span class="n">photo</span><span class="p">)</span>
   <span class="k">end</span>
@@ -265,7 +265,7 @@ events and <a href="http://api.rubyonrails.org/classes/ActiveSupport/Subscriber.
 by being attached to an event namespace. However the <code>ActiveSupport</code>
 implementation is better suited to instrumentation &#8212; it is most commonly
 used for logging and timing.</p>
-<div class="highlight"><pre><code class="ruby language-ruby" data-lang="ruby"><span class="k">class</span> <span class="nc">PhotosController</span> <span class="o">&lt;</span> <span class="no">ApplicationController</span>
+<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="k">class</span> <span class="nc">PhotosController</span> <span class="o">&lt;</span> <span class="no">ApplicationController</span>
   <span class="kp">include</span> <span class="no">ActiveSupport</span><span class="o">::</span><span class="no">Notifications</span>
 
   <span class="k">def</span> <span class="nf">create</span>
@@ -280,13 +280,13 @@ used for logging and timing.</p>
     <span class="n">instrument</span><span class="p">(</span><span class="s1">&#39;destroy_photo.photo_app&#39;</span><span class="p">,</span> <span class="ss">photo</span><span class="p">:</span> <span class="vi">@photo</span><span class="p">)</span>
   <span class="k">end</span>
 <span class="k">end</span>
-</code></pre></div><div class="highlight"><pre><code class="ruby language-ruby" data-lang="ruby"><span class="k">class</span> <span class="nc">MailSubscriber</span> <span class="o">&lt;</span> <span class="no">ActiveSupport</span><span class="o">::</span><span class="no">Subscriber</span>
+</code></pre></div><div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="k">class</span> <span class="nc">MailSubscriber</span> <span class="o">&lt;</span> <span class="no">ActiveSupport</span><span class="o">::</span><span class="no">Subscriber</span>
   <span class="k">def</span> <span class="nf">create_photo</span><span class="p">(</span><span class="n">event</span><span class="p">)</span>
     <span class="no">UserMailer</span><span class="o">.</span><span class="n">new_photo</span><span class="p">(</span><span class="n">event</span><span class="o">.</span><span class="n">payload</span><span class="o">[</span><span class="ss">:photo</span><span class="o">]</span><span class="p">)</span><span class="o">.</span><span class="n">deliver_later</span>
   <span class="k">end</span>
 <span class="k">end</span>
 <span class="no">MailSubscriber</span><span class="o">.</span><span class="n">attach_to</span> <span class="ss">:photo_app</span>
-</code></pre></div><div class="highlight"><pre><code class="ruby language-ruby" data-lang="ruby"><span class="k">class</span> <span class="nc">SearchSubscriber</span> <span class="o">&lt;</span> <span class="no">ActiveSupport</span><span class="o">::</span><span class="no">Subscriber</span>
+</code></pre></div><div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="k">class</span> <span class="nc">SearchSubscriber</span> <span class="o">&lt;</span> <span class="no">ActiveSupport</span><span class="o">::</span><span class="no">Subscriber</span>
   <span class="k">def</span> <span class="nf">create_photo</span><span class="p">(</span><span class="n">event</span><span class="p">)</span>
     <span class="no">SearchWorker</span><span class="o">::</span><span class="no">Index</span><span class="o">.</span><span class="n">perform_async</span><span class="p">(</span><span class="n">event</span><span class="o">.</span><span class="n">payload</span><span class="o">[</span><span class="ss">:photo</span><span class="o">]</span><span class="p">)</span>
   <span class="k">end</span>
@@ -296,7 +296,7 @@ used for logging and timing.</p>
   <span class="k">end</span>
 <span class="k">end</span>
 <span class="no">SearchSubscriber</span><span class="o">.</span><span class="n">attach_to</span> <span class="ss">:photo_app</span>
-</code></pre></div><div class="highlight"><pre><code class="ruby language-ruby" data-lang="ruby"><span class="k">class</span> <span class="nc">PushSubscriber</span> <span class="o">&lt;</span> <span class="no">ActiveSupport</span><span class="o">::</span><span class="no">Subscriber</span>
+</code></pre></div><div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="k">class</span> <span class="nc">PushSubscriber</span> <span class="o">&lt;</span> <span class="no">ActiveSupport</span><span class="o">::</span><span class="no">Subscriber</span>
   <span class="k">def</span> <span class="nf">create_photo</span><span class="p">(</span><span class="n">event</span><span class="p">)</span>
     <span class="no">PushWorker</span><span class="o">::</span><span class="no">NewPhoto</span><span class="o">.</span><span class="n">perform_async</span><span class="p">(</span><span class="n">event</span><span class="o">.</span><span class="n">payload</span><span class="o">[</span><span class="ss">:photo</span><span class="o">]</span><span class="p">)</span>
   <span class="k">end</span>
@@ -311,7 +311,7 @@ used for logging and timing.</p>
   <div class="footer-content">
     <ul>
       <li>
-        <a href="mailto:joecorcoran@gmail.com"><i class="fa fa-envelope"></i></a>
+        <a href="mailto:joe@corcoran.io"><i class="fa fa-envelope"></i></a>
       </li>
       <li>
         <a href="http://twitter.com/josephcorcoran"><i class="fa fa-twitter"></i></a>
