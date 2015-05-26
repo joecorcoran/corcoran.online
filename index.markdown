@@ -9,4 +9,4 @@ I'm currently working on a new music video discovery platform at [tape.tv](http:
 
 I'm interested in programming languages, music, colour science, and interface design. When I'm not thinking about that stuff you will often find me playing football or riding a bike.
 
-You can [email me](mailto:joecorcoran@gmail.com) or reach me on [Twitter](http://twitter.com/josephcorcoran).
+You can [email me](mailto:joe@corcoran.io) or find me on [Twitter](http://twitter.com/josephcorcoran).
