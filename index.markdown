@@ -3,7 +3,7 @@ layout: page
 section: about
 ---
 
-# Hello
+# Hello!
 
 I'm a software developer, mostly working on web applications. I have spent most of my life so far in Manchester and London, UK, but I currently live in Berlin, Germany where I work at [tape.tv](http://tape.tv).
 
