@@ -5,7 +5,7 @@ $link: #0074D9;
 $link-active: #001f3f;
 $muted: #AAA;
 $aqua: #7FDBFF;
-$content-width: 800px;
+$content-width: 780px;
 $calluna: 'calluna', Georgia, Times New Roman, serif;
 $franklin-gothic: 'franklin-gothic-urw', Helvetica, Arial, sans-serif;
 
@@ -14,7 +14,7 @@ html {
   color: $txt;
   font-weight: 400;
   background: $bg;
-  font-size: 18px;
+  font-size: 20px;
 }
 
 body {
@@ -106,7 +106,8 @@ iframe.showterm {
 
 .post, .index, .projects, .about {
   z-index: 1;
-  width: $content-width;
+  width: 90%;
+  max-width: $content-width;
   margin: 4em auto 0;
 }
 
@@ -121,6 +122,11 @@ iframe.showterm {
       position: absolute;
       width: 20%;
       color: $muted;
+
+      @media (max-width: $content-width) {
+        width: 100%;
+        position: static;
+      }
     }
     .tags {
       margin: 0;
@@ -142,6 +148,12 @@ iframe.showterm {
           content: "\2014";
         }
       }
+
+      @media (max-width: $content-width) {
+        padding-left: 0;
+        text-align: left;
+        margin-top: 0.7rem;
+      }
     }
   }
 }
@@ -156,7 +168,8 @@ iframe.showterm {
   font-weight: 300;
   letter-spacing: 0.5px;
   .banner-content {
-    width: $content-width;
+    width: 90%;
+    max-width: $content-width;
     margin: 1rem auto;
     position: relative;
   }
@@ -204,7 +217,8 @@ iframe.showterm {
   font-size: 1.6em;
   margin: 4em 0 0;
   .footer-content {
-    width: $content-width;
+    width: 90%;
+    max-width: $content-width;
     margin: 1rem auto;
     text-align: center;
   }
@@ -217,6 +231,10 @@ iframe.showterm {
     }
   }
 }
+
+$time-width: $content-width * 0.2;
+$time-left: $time-width * 1.1;
+$time-break: $content-width + ($time-left * 2);
 
 .posts {
   article {
@@ -233,15 +251,22 @@ iframe.showterm {
     time {
       display: block;
       position: absolute;
-      left: -22.5%;
+      left: -#{$time-left};
       top: 2rem;
-      width: 20%;
+      width: $time-width;
       padding: 0;
       text-align: right;
       font-family: $calluna;
       font-style: italic;
       font-weight: 400;
       color: $muted;
+
+      @media (max-width: #{$time-break}) {
+        position: static;
+        width: 100%;
+        margin-bottom: 0.7rem;
+        text-align: left;
+      }
     }
     .content {
       display: block;
