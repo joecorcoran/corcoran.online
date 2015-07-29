@@ -9,7 +9,7 @@ layout: none
   <link href="{{ site.url }}/articles.xml" rel="self" />
   <link href="{{ site.url }}" />
   <id>urn:uuid:6740a17a-2751-4093-bc58-f9294973ae43</id>
-  <updated>{{ site.time | date_to_xmlschema }}</updated>
+  {% for post in site.posts limit:1 %}<updated>{{ post.date | date_to_xmlschema }}</updated>{% endfor %}
   {% for post in site.posts limit:10 %}
     <entry>
       <title>{{ post.title | xml_escape }}</title>
