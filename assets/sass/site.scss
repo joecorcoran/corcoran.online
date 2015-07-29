@@ -308,3 +308,7 @@ $time-break: $content-width + ($time-left * 2);
     }
   }
 }
+
+.tag-name {
+  font-style: italic;
+}
