@@ -3,10 +3,12 @@ layout: page
 section: about
 ---
 
-I'm a web application developer and I live in Berlin, Germany.
+# Hello
 
-I'm currently working on a new music video discovery platform at [tape.tv](http://next.tape.tv). I write and maintain a bunch of [open source software projects](/projects) and I sometimes [write about programming](/articles) too.
+I'm a software developer, mostly working on web applications. I have spent most of my life so far in Manchester and London, UK, but I currently live in Berlin, Germany where I work at [tape.tv](http://tape.tv).
 
-I'm interested in programming languages, music, colour science, and interface design. When I'm not thinking about that stuff you will often find me playing football or riding a bike.
+I write and maintain some [open source software projects](/projects) and I sometimes [write](/articles) about software development and people. I'm also a coach at [Ruby Monstas](http://rubymonstas.org/), which is a weekly [Rails Girls Berlin](http://railsgirlsberlin.de/) study group.
 
-You can [email me](mailto:joe@corcoran.io) or find me on [Twitter](http://twitter.com/josephcorcoran).
+I'm interested in programming languages, music, football and design. When I'm not thinking about that stuff you will often find me playing football, riding a bike or cooking vegetarian food.
+
+You can [write to me](mailto:joe@corcoran.io) or [shout at me on Twitter](http://twitter.com/josephcorcoran).
