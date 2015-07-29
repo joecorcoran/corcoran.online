@@ -1,54 +1,32 @@
-$bg-blue: #285777;
-$border-blue: #224D67;
-$link-blue: #94C5DB;
-$muted-link-blue: #4E8BA7;
+$bg: #FFF;
+$txt: #111;
+$border: #EEE;
+$link: #0074D9;
+$link-active: #001f3f;
+$muted: #AAA;
+$aqua: #7FDBFF;
 $content-width: 800px;
 $calluna: 'calluna', Georgia, Times New Roman, serif;
 $franklin-gothic: 'franklin-gothic-urw', Helvetica, Arial, sans-serif;
 
 html {
-  font-size: 22px;
   font-family: $calluna;
-  color: #EEE;
-  line-height: 1.6em;
+  color: $txt;
   font-weight: 400;
-  background: $bg-blue;
+  background: $bg;
+  font-size: 18px;
 }
 
 body {
   margin: 0;
   position: relative;
-  > footer {
-    border-top: 1px solid $border-blue;
-    margin-top: 40px;
-    width: 100%;
-    clear: both;
-    padding: 40px 0 50px;
-    font-family: $franklin-gothic;
-    .footer-content {
-      width: $content-width;
-      margin: 0 auto;
-    }
-    ul {
-      margin: 0;
-      padding: 0;
-    }
-    li {
-      display: inline-block;
-      padding-right: 1.5em;
-      line-height: 1.5em;
-      a {
-        display: inline-block;
-      }
-      i {
-        font-size: 1.5em;
-      }
-    }
-  }
 }
 
 p {
-  margin: 0 0 1em;
+  text-align: justify;
+  font-size: 1em;
+  line-height: 1.5em;
+  margin: 0 0 1rem;
 }
 
 strong, b {
@@ -56,62 +34,58 @@ strong, b {
 }
 
 a, a code {
-  color: $link-blue;
+  color: $link;
   text-decoration: none;
-  .muted {
-    font-size: 0.75em;
-    color: $muted-link-blue;
+  &:hover, &:hover code {
+    text-decoration: underline;
   }
 }
 
-a:hover, a:hover code {
-  color: #FFF;
-  .muted {
-    color: #FFF;
+ul, ol {
+  margin: 0 0 1rem;
+  padding: 0;
+  li {
+    list-style-position: outside;
+    padding: 0;
+    margin: 0;
+    line-height: 1.5em;
   }
-}
-
-h1, h2, h3, h4 {
-  font-family: $franklin-gothic;
-  font-weight: 500;
-  //margin-top: 1em;
-  margin-bottom: 0.5em;
-  line-height: 1.1em;
 }
 
 h1 {
-  font-size: 2.2em;
+  font-family: $calluna;
+  font-weight: 600;
+  font-size: 3em;
+  margin: 0 0 3rem;
+}
+
+h2, h3, h4, h5, h6 {
+  font-weight: 400;
+  margin: 1em 0 0.3em;
 }
 
 h2 {
-  font-size: 1.7em;
+  font-size: 1.8em;
 }
 
 h3 {
+  font-size: 1.6em;
+}
+
+h4, h5, h6 {
   font-size: 1.4em;
-}
-
-h4 {
-  font-size: 1.2em;
-}
-
-ul {
-  padding-left: 20px;
 }
 
 code {
   font-family: Consolas, 'Liberation Mono', Courier, monospace;
-  color: #FFF;
   font-size: 1em;
+  line-height: 1.5em;
 }
 
 pre {
-  padding: 10px 15px;
+  padding: 1rem 1.4rem 1.4rem;
   overflow-x: auto;
-  line-height: 1.2em;
-  code {
-    font-size: 0.8em;
-  }
+  margin: 0 0 1em;
 }
 
 .highlight pre {
@@ -119,7 +93,7 @@ pre {
 }
 
 .gist {
-  font-size: 16px;
+  font-size: 1em;
   line-height: 1.5em;
 }
 
@@ -130,58 +104,69 @@ iframe.showterm {
   margin: 0 0 1em;
 }
 
-time {
-  font-weight: 300;
-}
-
-article > footer, .comments {
-  border-top: 1px solid $border-blue;
-  margin-top: 40px;
-  padding-top: 40px;
-  font-family: $franklin-gothic;
-  a {
-
-  }
-}
-
 .post, .index, .projects, .about {
   z-index: 1;
   width: $content-width;
-  margin: 36px auto 0;
+  margin: 4em auto 0;
 }
 
-.post header {
-  time {
-    display: block;
-    margin-bottom: 10px;
-  }
-  .tags {
-    margin-bottom: 20px;
+.post {
+  header {
+    width: 100%;
+    position: relative;
+    margin: 0 0 1rem;
+    time {
+      font-family: $calluna;
+      font-style: italic;
+      position: absolute;
+      width: 30%;
+      color: $muted;
+    }
+    .tags {
+      margin: 0;
+      padding: 0;
+      text-align: right;
+      padding-left: 30%;
+      font-family: $franklin-gothic;
+      font-weight: 300;
+      letter-spacing: 0.5px;
+      list-style-type: none;
+      li {
+        display: inline-block;
+        margin-left: 0.6rem;
+        a {
+          color: $muted;
+        }
+      }
+    }
   }
 }
 
 .banner {
   z-index: 2;
-  background: $bg-blue;
-  border-bottom: 1px solid $border-blue;
+  background: $bg;
+  border-bottom: 1px solid $border;
   width: 100%;
-  padding: 40px 0;
   font-family: $franklin-gothic;
-  font-size: 1em;
-  color: #F5F5F5;
-  line-height: 1em;
-  h1 {
-    font-size: inherit;
-    line-height: inherit;
+  font-size: 1.6em;
+  font-weight: 300;
+  .banner-content {
+    width: $content-width;
+    margin: 1rem auto;
+    position: relative;
+  }
+  .name {
+    line-height: 1.5em;
+    display: block;
     padding: 0;
     margin: 0;
-    position: absolute;
     top: 0;
     left: 0;
-    font-weight: 400;
+    position: absolute;
   }
   nav {
-    font-weight: 400;
+    position: relative;
+    padding-left: 40%;
     ul {
       margin: 0;
       padding: 0;
@@ -196,114 +181,94 @@ article > footer, .comments {
       padding-left: 20px;
       display: inline-block;
     }
-    .active {
-      color: $link-blue;
-    }
   }
-  a {
-    color: #EEE;
-    display: inline-block;
-    padding: 0 2px 0;
-    &:hover {
-      color: #FFF;
-    }
+  a.active {
+    color: $link-active;
   }
-}
-
-.banner-content {
-  width: $content-width;
-  margin: 0 auto;
-  position: relative;
 }
 
 .top-nav li:first-child a {
   padding-left: 0;
 }
 
-.back:before {
-  content: '\2190\00A0';
-}
-
-.forward:after {
-  content: '\00A0\2192';
-}
-
-.posts article {
-  border-top: 1px solid $border-blue;
-  position: relative;
-  padding: 10px 0 15px;
-  &:first-child {
-    border: 0;
-    padding-top: 0;
-    time {
-      top: 0;
+.footer {
+  border-top: 1px solid $border;
+  width: 100%;
+  clear: both;
+  font-family: $franklin-gothic;
+  font-size: 1.6em;
+  margin: 4em 0 0;
+  .footer-content {
+    width: $content-width;
+    margin: 1rem auto;
+    text-align: center;
+  }
+  li {
+    display: inline-block;
+    margin-right: 1rem;
+    a {
+      display: inline-block;
+      color: $muted;
     }
   }
-  time {
-    display: block;
-    position: absolute;
-    top: 10px;
-    left: 0;
-    width: 200px;
-    padding: 0;
-  }
-  .content {
-    display: block;
-    padding-left: 220px;
-    > a {
-      color: #EEE;
-      &:hover {
-        color: $link-blue;
+}
+
+.posts {
+  margin-top: 5em;
+  article {
+    border-top: 1px solid $border;
+    position: relative;
+    padding: 2em 0;
+    &:first-child {
+      padding-top: 0;
+      border: 0;
+      time {
+        top: 0;
+      }
+    }
+    time {
+      display: block;
+      position: absolute;
+      left: -22.5%;
+      top: 2rem;
+      width: 20%;
+      padding: 0;
+      text-align: right;
+      font-family: $calluna;
+      font-style: italic;
+      font-weight: 400;
+      color: $muted;
+    }
+    .content {
+      display: block;
+      font-weight: 600;
+      .tags {
+        list-style-type: none;
+        font-family: $franklin-gothic;
+        font-weight: 300;
+        letter-spacing: 0.5px;
+        margin: 0.6rem 0 0;
+        li {
+          display: inline;
+          margin-right: 0.6rem;
+          a {
+            color: $muted;
+          }
+        }
       }
     }
   }
 }
 
-.tags {
-  margin: 0;
-  padding: 0;
-  font-family: $franklin-gothic;
-  font-style: italic;
-}
-
-.tags li {
-  display: inline;
-  font-size: 0.75em;
-  color: #666;
-  font-weight: 400;
-}
-
-.tags a {
-  padding: 1px 6px 3px;
-  background: $border-blue;
-  border-radius: 2px;
-}
-
-.tags a:hover {
-  color: #FFF;
-}
-
 .projects {
-  margin-bottom: 80px;
   ul {
-    margin: 20px 0 80px;
-    padding: 0;
-    font-family: $franklin-gothic;
-  }
-  li {
-    display: inline;
-    margin: 0;
-    padding: 0;
-    a {
-      padding: 6px 12px;
-      background: $border-blue;
-      white-space: nowrap;
-      display: inline-block;
-      border-radius: 3px;
+    li {
+      list-style-type: none;
+      display: inline;
+      margin-right: 1em;
+      a {
+        font-weight: 600;
+      }
     }
   }
-}
-
-.about {
-  margin-bottom: 80px;
 }

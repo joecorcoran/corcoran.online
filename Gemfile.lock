@@ -1,10 +1,6 @@
 GEM
   remote: https://rubygems.org/
   specs:
-    POpen4 (0.1.4)
-      Platform (>= 0.4.0)
-      open4
-    Platform (0.4.0)
     blankslate (2.1.2.4)
     capistrano (2.15.5)
       highline
@@ -84,8 +80,8 @@ GEM
       open4
       thor
     redcarpet (3.2.3)
-    rerun (0.8.1)
-      listen (>= 1.0.3)
+    rerun (0.10.0)
+      listen (~> 2.7, >= 2.7.3)
     safe_yaml (1.0.4)
     sass (3.2.19)
     slop (3.6.0)
@@ -95,8 +91,7 @@ GEM
     toml (0.1.2)
       parslet (~> 1.5.0)
     yajl-ruby (1.2.1)
-    yui-compressor (0.9.6)
-      POpen4 (>= 0.1.4)
+    yui-compressor (0.12.0)
 
 PLATFORMS
   ruby
@@ -105,6 +100,9 @@ DEPENDENCIES
   jekyll (~> 2.5)
   pannier (~> 0.6)
   recap (~> 1.0.5)
-  rerun (~> 0.8.1)
+  rerun (~> 0.10)
   sass (~> 3.2.10)
-  yui-compressor (~> 0.9.6)
+  yui-compressor (~> 0.12)
+
+BUNDLED WITH
+   1.10.5

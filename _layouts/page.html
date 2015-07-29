@@ -1,9 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>
-      {% if page.title %}{{ page.title }} :: {% endif %}Joe Corcoran
-    </title>
+    <title>{% if page.title %}{{ page.title }} :: {% endif %}Joe Corcoran</title>
     {% include head.html %}
   </head>
   <body>
@@ -11,5 +9,6 @@
     <div class="{{page.section}}">
       {{ content }}
     </div>
+    {% include article_footer.html %}
   </body>
 </html>
