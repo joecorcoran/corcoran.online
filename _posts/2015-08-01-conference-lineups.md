@@ -15,7 +15,7 @@ online soon.
 
 [Eurucamp](http://eurucamp.org) is certainly the best conference
 I have ever attended in terms of diversity of speakers and attendees. The
-organisers work hard to foster an atmosphere of humility and inclusion. However,
+organisers work hard to foster an atmosphere of friendship and inclusion. However,
 I want to add to Marta's talk by mentioning something small that has been
 bothering me about the way we discuss technology conferences in general.
 
