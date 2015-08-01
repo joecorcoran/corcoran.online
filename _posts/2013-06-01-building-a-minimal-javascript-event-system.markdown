@@ -8,7 +8,7 @@ tags:
   - tutorial
 ---
 
-*This article is intended to encourage front-end developers to design and build software thoughtfully. The content assumes a basic knowledge of JavaScript and comfort running simple commands like `cd` at the command line. I hope the test examples in this article are straightforward, but if you're not familiar with writing tests first, or even testing your code at all, you might want to [read a little about it first](http://en.wikipedia.org/wiki/Test-driven_development). The general idea is that we make an assertion about how our code should behave in the form of a test. We then write some code, run the test and repeat this loop until the test passes.*
+*This article assumes a basic knowledge of JavaScript and comfort running simple commands like `cd` at the command line. I hope the test examples in this article are straightforward, but if you're not familiar with writing tests first, or even testing your code at all, you might want to [read a little about it first](http://en.wikipedia.org/wiki/Test-driven_development). The general idea is that we make an assertion about how our code should behave in the form of a test. We then write some code, run the test and repeat this loop until the test passes.*
 
 ## Events
 
@@ -26,7 +26,7 @@ We'll use the JavaScript testing framework Jasmine to describe our event behavio
 
 Let's start with an object that contains two functions, `on` and `trigger`. We have chosen these names by loose convention; we hope they will be recognised by programmers who have worked with events before.
 
-We'll use the `on` function to instruct our object to listen for specific events. So `object.on('foo', callback)`, will mean *on hearing the `'foo'` event happen, call the `callback` function*. 
+We'll use the `on` function to instruct our object to listen for specific events. So `object.on('foo', callback)`, will mean *on hearing the `'foo'` event happen, call the `callback` function*.
 
 We'll use the `trigger` function to make events happen. So `object.trigger('foo', data)` will mean *tell `object` that the `'foo'` event has happened and to pass `data` to the callback function*.
 
