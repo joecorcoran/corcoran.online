@@ -52,6 +52,13 @@ ul, ol {
   }
 }
 
+blockquote {
+  font-style: italic;
+  font-size: 1.5em;
+  margin-left: 1em;
+  color: $muted;
+}
+
 h1 {
   font-family: $calluna;
   font-weight: 600;
