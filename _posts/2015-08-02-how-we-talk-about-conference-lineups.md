@@ -56,7 +56,7 @@ really attractive when:
    all attendees to feel comfortable, happy and valued by each other.
 
 Some great steps have been made to encourage diversity at conferences already.
-[eurucamp has an anonymous process](https://cfp.eurucamp.org/guide).
+[eurucamp has an anonymous talk proposal process](https://cfp.eurucamp.org/guide).
 The Ruby Manor organisers [wrote an entire web application](http://vestibule.rubymanor.org/the-vestibule-process)
 to guide the conference content. But as non-organisers we don't need to be
 passive. As attendees, our job is obviously to vote with our
