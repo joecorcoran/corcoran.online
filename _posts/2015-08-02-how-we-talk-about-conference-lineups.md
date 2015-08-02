@@ -46,14 +46,14 @@ in technology circles; some great, some average and some
 largely forgettable. In my experience, the hit rate has been largely the same for
 speakers of whom I had previously never heard.
 
-So what really constitutes a great conference? I would consider a conference to
-be really great, if:
+So what really constitutes a great conference lineup? I would consider a
+conference to be really attractive, if:
 
 1. The speakers are as diverse as possible;
 1. The subjects of the talks are as diverse as possible, within the constraints of the
    conference theme;
-1. The conference allows all attendees to feel comfortable, happy and
-   valued by each other.
+1. The conference literature is explicit about the organisers' intentions for
+   all attendees to feel comfortable, happy and valued by each other.
 
 Some great steps have been made to encourage diversity at conferences already.
 [Eurucamp has an anonymous process](https://cfp.eurucamp.org/guide).
