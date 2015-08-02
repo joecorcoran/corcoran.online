@@ -59,10 +59,11 @@ Some great steps have been made to encourage diversity at conferences already.
 [Eurucamp has an anonymous process](https://cfp.eurucamp.org/guide).
 The Ruby Manor organisers [wrote an entire web application](http://vestibule.rubymanor.org/the-vestibule-process)
 to guide the conference content. But as non-organisers we don't need to be
-passive. As attendees, our job is to vote with our
+passive. As attendees, our job is obviously to vote with our
 money. Within our means &#8212; or the means of our company perks &#8212; we can
-choose to attend the conferences that best reflect our social values! Let's
-reward conferences like Eurucamp, which promote diversity over heroes.
+choose to attend the conferences that best reflect our social values! But we can
+also change the way we talk about conference to promote events like Eurucamp, which
+value diversity over heroes.
 
 ## Further reading
 
