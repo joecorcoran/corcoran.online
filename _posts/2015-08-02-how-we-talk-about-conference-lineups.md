@@ -1,6 +1,6 @@
 ---
 layout: default
-title: "On conference lineups"
+title: "How we talk about conference lineups"
 tags:
   - conferences
   - diversity
