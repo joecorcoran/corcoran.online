@@ -46,8 +46,8 @@ in technology circles; some great, some average and some
 largely forgettable. In my experience, the hit rate has been largely the same for
 speakers of whom I had previously never heard.
 
-So what really constitutes a great conference lineup? I would consider a
-conference to be really attractive, if:
+So what really constitutes a great conference lineup? For me, a conference looks
+really attractive when:
 
 1. The speakers are as diverse as possible;
 1. The subjects of the talks are as diverse as possible, within the constraints of the
