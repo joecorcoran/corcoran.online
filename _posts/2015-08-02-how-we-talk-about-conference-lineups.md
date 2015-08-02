@@ -8,7 +8,7 @@ tags:
 ---
 
 [Marta Paciorkowska](http://twitter.com/a_meba) spoke this weekend at
-[Eurucamp 2015](http://2015.eurucamp.org/speakers/#marta-paciorkowska) about how
+[eurucamp 2015](http://2015.eurucamp.org/speakers/#marta-paciorkowska) about how
 showmanship, comedy and egos are impairing the exchange of ideas at technology conferences.
 
 Marta argued that presentational gimmicks &#8212; jokes, stunts, memes &#8212;
@@ -18,7 +18,7 @@ people from participating. It was a really thought-provoking talk and
 raised a lot of interesting points. I hope there will be a video available
 online soon so I can link to it here.
 
-[Eurucamp](http://eurucamp.org) is certainly the best conference
+[eurucamp](http://eurucamp.org) is certainly the best conference
 I have ever attended in terms of diversity of speakers and attendees. The
 organisers work hard to foster an atmosphere of friendship and inclusion. However,
 I want to add to Marta's argument by mentioning something small that has been
@@ -56,13 +56,13 @@ really attractive when:
    all attendees to feel comfortable, happy and valued by each other.
 
 Some great steps have been made to encourage diversity at conferences already.
-[Eurucamp has an anonymous process](https://cfp.eurucamp.org/guide).
+[eurucamp has an anonymous process](https://cfp.eurucamp.org/guide).
 The Ruby Manor organisers [wrote an entire web application](http://vestibule.rubymanor.org/the-vestibule-process)
 to guide the conference content. But as non-organisers we don't need to be
 passive. As attendees, our job is obviously to vote with our
 money. Within our means &#8212; or the means of our company perks &#8212; we can
 choose to attend the conferences that best reflect our social values! But we can
-also change the way we talk about conferences to promote events like Eurucamp, which
+also change the way we talk about conferences to promote events like eurucamp, which
 value diversity over heroes.
 
 ## Further reading
