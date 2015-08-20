@@ -15,8 +15,8 @@ Marta argued that presentational gimmicks &#8212; jokes, stunts, memes &#8212;
 have become the focus of conference talks at the expense of ideas. As a result
 of this, the perceived pressure to be entertaining discourages under-represented
 people from participating. It was a really thought-provoking talk and
-raised a lot of interesting points. I hope there will be a video available
-online soon so I can link to it here.
+raised a lot of interesting points. You should
+[watch it on Confreaks](http://confreaks.tv/videos/eurucamp2015-a-case-against-showmanship).
 
 [eurucamp](http://eurucamp.org) is certainly the best conference
 I have ever attended in terms of diversity of speakers and attendees. The
@@ -69,3 +69,5 @@ value diversity over heroes.
 
 * Anjuan Simmons, [*Making Tech Spaces Safe for Diverse Faces*](https://modelviewculture.com/pieces/making-tech-spaces-safe-for-diverse-faces)
 * Ashe Dryden, [*Increasing Diversity at Your Conference*](http://www.ashedryden.com/blog/increasing-diversity-at-your-conference)
+
+*Updated on 20 August 2015 to include the Confreaks video link.*
