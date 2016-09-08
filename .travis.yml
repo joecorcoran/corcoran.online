@@ -4,7 +4,7 @@ script:
   - bundle exec jekyll build
   - bundle exec pannier process
 before_deploy:
-  - tar -czvf site.tar.gz _site
+  - tar -C _site -czvf site.tar.gz .
 deploy:
   provider: releases
   api_key: $GITHUB_TOKEN
