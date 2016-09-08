@@ -3,6 +3,9 @@ rvm: 2.3
 script:
   - bundle exec jekyll build
   - bundle exec pannier process
+branches:
+  except:
+    - /^build-/
 before_deploy:
   - tar -C _site -czvf site.tar.gz .
   - export TRAVIS_TAG=build-${TRAVIS_BUILD_NUMBER}
