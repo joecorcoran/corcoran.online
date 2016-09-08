@@ -223,11 +223,26 @@ iframe.showterm {
   font-family: $franklin-gothic;
   font-size: 1.6em;
   margin: 4em 0 0;
-  .footer-content {
+  .footer-icons, .footer-build-release {
     width: 90%;
     max-width: $content-width;
     margin: 1rem auto;
     text-align: center;
+  }
+  .footer-build-release {
+    font-size: 0.7rem;
+    margin: 0 auto 1rem;
+    font-family: $calluna;
+    li {
+      margin: 0;
+      & + li::before {
+        color: $border;
+        content: "\2014";
+      }
+    }
+    a {
+      color: $muted;
+    }
   }
   li {
     display: inline-block;
