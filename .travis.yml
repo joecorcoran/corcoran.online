@@ -5,11 +5,11 @@ script:
   - bundle exec pannier process
 before_deploy:
   - tar -C _site -czvf site.tar.gz .
+  - export TRAVIS_TAG=build-${TRAVIS_BUILD_NUMBER}
 deploy:
   provider: releases
   api_key: $GITHUB_TOKEN
   file: site.tar.gz
   skip_cleanup: true
-  name: $TRAVIS_BUILD_NUMBER
   on:
     branch: master
