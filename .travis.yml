@@ -1,8 +1,8 @@
 language: ruby
 rvm: 2.3
 script:
-  - bundle exec jekyll build
   - bundle exec pannier process
+  - bundle exec jekyll build
 branches:
   except:
     - /^build-/
