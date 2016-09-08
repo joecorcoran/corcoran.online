@@ -10,5 +10,6 @@ deploy:
   api_key: $GITHUB_TOKEN
   file: site.tar.gz
   skip_cleanup: true
+  release_number: $TRAVIS_BUILD_NUMBER
   on:
     branch: master
