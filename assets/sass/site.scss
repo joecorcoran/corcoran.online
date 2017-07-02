@@ -29,6 +29,10 @@ p {
   margin: 0 0 1rem;
 }
 
+sup {
+  line-height: 1em;
+}
+
 strong, b {
   font-weight: 700;
 }
@@ -93,6 +97,15 @@ pre {
   padding: 1rem 1.4rem 1.4rem;
   overflow-x: auto;
   margin: 0 0 1em;
+}
+
+.footnotes {
+  margin-top: 2em;
+  font-style: italic;
+
+  em {
+    font-style: normal;
+  }
 }
 
 .highlight pre {

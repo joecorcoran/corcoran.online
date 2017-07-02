@@ -1,6 +1,6 @@
 markdown: redcarpet
 redcarpet:
-  extensions: ["no_intra_emphasis", "fenced_code_blocks", "strikethrough", "superscript", "smart"]
+  extensions: ["no_intra_emphasis", "fenced_code_blocks", "strikethrough", "superscript", "smart", "footnotes"]
 highlighter: pygments
 permalink: /:year/:month/:day/:title
 tag_layout: tag
