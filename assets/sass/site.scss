@@ -68,6 +68,10 @@ h1 {
   font-weight: 600;
   font-size: 3em;
   margin: 0 0 3rem;
+
+  @media (max-width: $content-width) {
+    margin: 0 0 2rem;
+  }
 }
 
 h2, h3, h4, h5, h6 {
@@ -103,8 +107,23 @@ pre {
   margin-top: 2em;
   font-style: italic;
 
+  hr {
+    border: none;
+    border-top: 1px solid #EEE;
+  }
+
+  ol {
+    margin-top: 1.5em;
+  }
+
   em {
     font-style: normal;
+  }
+
+  @media (max-width: $content-width) {
+    ol li {
+      list-style-position: inside;
+    }
   }
 }
 
@@ -128,7 +147,11 @@ iframe.showterm {
   z-index: 1;
   width: 90%;
   max-width: $content-width;
-  margin: 4em auto 0;
+  margin: 4rem auto 0;
+
+  @media (max-width: $content-width) {
+    margin: 2rem auto 0;
+  }
 }
 
 .post {
@@ -201,6 +224,11 @@ iframe.showterm {
     top: 0;
     left: 0;
     position: absolute;
+
+
+    @media (max-width: $content-width) {
+      position: static;
+    }
   }
   nav {
     position: relative;
@@ -218,6 +246,19 @@ iframe.showterm {
     a {
       padding-left: 20px;
       display: inline-block;
+    }
+
+
+    @media (max-width: $content-width) {
+      padding-left: 0;
+
+      ul {
+        text-align: left;
+      }
+      a {
+        padding-left: 0;
+        padding-right: 10px;
+      }
     }
   }
   a.active {
