@@ -5,7 +5,8 @@ highlighter: pygments
 permalink: /:year/:month/:day/:title
 tag_layout: tag
 tag_directory: tags
-title: "Joe Corcoran"
-description: "Articles on programming"
-url: "https://corcoran.io"
+title: Joe Corcoran
+description: Articles
+url: https://corcoran.online
+email: joe@corcoran.online
 exclude: ["Gemfile", "Gemfile.lock", ".assets.rb", "assets", "bin", "vendor"]
