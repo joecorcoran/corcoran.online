@@ -103,14 +103,17 @@ pre {
   margin: 0 0 1em;
 }
 
+hr {
+  border: 1px solid #eee;
+  margin: 2rem 5rem 2.5rem;
+}
+
 .footnotes {
   margin-top: 2em;
   font-style: italic;
+  border-top: 1px solid #eee;
 
-  hr {
-    border: none;
-    border-top: 1px solid #EEE;
-  }
+  p { text-align: left; }
 
   ol {
     margin-top: 1.5em;
@@ -143,7 +146,7 @@ iframe.showterm {
   margin: 0 0 1em;
 }
 
-.post, .index, .projects, .about {
+.post, .index, .projects, .about, .slides {
   z-index: 1;
   width: 90%;
   max-width: $content-width;
@@ -154,7 +157,7 @@ iframe.showterm {
   }
 }
 
-.post {
+.post, .slides {
   header {
     width: 100%;
     position: relative;
@@ -387,4 +390,30 @@ $time-break: $content-width + ($time-left * 2);
 
 .tag-name {
   font-style: italic;
+}
+
+.slides {
+  .slide {
+    display: inline-block;
+    width: 100%;
+    border-top: 1px solid #eee;
+    padding: 1.5rem 0 0;
+    img {
+      width: calc(50% - 1rem);
+      float: left;
+      box-shadow: 0 3px 5px rgba(0, 0, 0, 0.2);
+      margin-bottom: 1.5rem;
+    }
+    p { padding-left: 50%; }
+    blockquote {
+      padding-left: 50%;
+      margin: 0 0 1rem;
+      text-align: justify;
+    }
+  }
+  .image-credits {
+    border-top: 1px solid #eee;
+    padding-top: 1.5rem;
+    margin-top: 1rem;
+  }
 }

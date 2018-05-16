@@ -69,6 +69,7 @@ GEM
     redcarpet (3.4.0)
     rerun (0.11.0)
       listen (~> 3.0)
+    rouge (2.2.1)
     safe_yaml (1.0.4)
     sass (3.2.19)
     sawyer (0.8.1)
@@ -87,8 +88,9 @@ DEPENDENCIES
   jekyll (~> 2.5)
   pannier (~> 0.6)
   rerun (~> 0.10)
+  rouge
   sass (~> 3.2.10)
   yui-compressor (~> 0.12)
 
 BUNDLED WITH
-   1.15.1
+   1.15.4

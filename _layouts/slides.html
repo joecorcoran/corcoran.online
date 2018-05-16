@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>{{page.title}} :: Joe Corcoran</title>
+    {% include head.html %}
+  </head>
+  <body>
+    {% include banner.html %}
+    <article class="slides">
+      <header>
+        <h1>{{page.title}}</h1>
+        <time datetime="{{ page.date | date_to_xmlschema }}">{{ page.date | date: "%d %B %Y" }}</time>
+        {% include tags.html %}
+      </header>
+      {{ content }}
+    </article>
+    {% include article_footer.html %}
+  </body>
+</html>

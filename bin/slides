@@ -1,0 +1,13 @@
+#!/usr/bin/env ruby
+
+name = ARGV[0]
+number = ARGV[1].to_i
+
+output = (1..number).map do |n|
+  %Q{<div class="slide">
+  <img src="/public/#{name}/#{n}.png" title="Slide number #{n}">
+  <p markdown="1">&nbsp;</p>
+</div>}
+end
+
+puts output.join "\n\n"
