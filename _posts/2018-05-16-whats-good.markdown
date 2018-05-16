@@ -14,15 +14,15 @@ amending the text to suit the article format.*
 
 [ior]: https://2018.isleofruby.org
 
-[^boot]: [Interview with Jacob Thornton](https://www.theframeworkproject.com/interviews/jacob-thornton), _The Framework Project_ (2018).
+[^boot]: The Framework Project, [_Jacob Thornton_](https://www.theframeworkproject.com/interviews/jacob-thornton) (2018).
 [^pg]: Paul Graham, [_Frighteningly Ambitious Startup Ideas_](http://paulgraham.com/ambitious.html) (2012).
 [^plan1]: Lucas Aerospace Combine Shop Steward Committee, _Corporate Plan_ (1976), p. 7.
 [^ou1]: Open University, _The Story of the Lucas Aerospace Shop Stewards Alternative Corporate Plan_ (1978).
 [^plan2]: Lucas Aerospace Combine Shop Steward Committee, _Corporate Plan_ (1976), p. 7.
-[^wainwright1]: Wainwright & Elliott, _The Lucas Plan: A New Trade Unionism in the Making?_, (London, Allison & Busby, 1982), p. 10.
+[^wainwright1]: Wainwright & Elliott, _The Lucas Plan: A New Trade Unionism in the Making?_ (London, Allison & Busby, 1982), p. 10.
 [^plan3]: Lucas Aerospace Combine Shop Steward Committee, _Corporate Plan_, p. 8.
 [^plan4]: Ibid.
-[^leguin]: Ursula K. Le Guin, _Dancing at the Edge of the World_, (New York City, Grove Press, 1989).
+[^leguin]: Ursula K. Le Guin, _Dancing at the Edge of the World_ (New York City, Grove Press, 1989).
 
 <div class="slide">
   <img src="/static/images/whats-good/1.png" title="Slide number 1">
