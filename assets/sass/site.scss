@@ -403,10 +403,18 @@ $time-break: $content-width + ($time-left * 2);
       float: left;
       box-shadow: 0 3px 5px rgba(0, 0, 0, 0.2);
       margin-bottom: 1.5rem;
+      @media (max-width: $content-width) {
+        width: 100%;
+        float: none;
+      }
     }
-    p { padding-left: 50%; }
-    blockquote {
+    p, blockquote {
       padding-left: 50%;
+      @media (max-width: $content-width) {
+        padding-left: 0;
+      }
+    }
+    blockquote {
       margin: 0 0 1rem;
       text-align: justify;
     }
