@@ -17,7 +17,7 @@ amending the text to suit the article format.*
 [^boot]: The Framework Project, [_Jacob Thornton_](https://www.theframeworkproject.com/interviews/jacob-thornton) (2018).
 [^pg]: Paul Graham, [_Frighteningly Ambitious Startup Ideas_](http://paulgraham.com/ambitious.html) (2012).
 [^plan1]: Lucas Aerospace Combine Shop Steward Committee, _Corporate Plan_ (1976), p. 7.
-[^ou1]: Open University, _The Story of the Lucas Aerospace Shop Stewards Alternative Corporate Plan_ (1978).
+[^ou1]: Open University, [_The Story of the Lucas Aerospace Shop Stewards Alternative Corporate Plan_](https://www.youtube.com/watch?v=0pgQqfpub-c) (1978).
 [^plan2]: Lucas Aerospace Combine Shop Steward Committee, _Corporate Plan_ (1976), p. 7.
 [^wainwright1]: Wainwright & Elliott, _The Lucas Plan: A New Trade Unionism in the Making?_ (London, Allison & Busby, 1982), p. 10.
 [^plan3]: Lucas Aerospace Combine Shop Steward Committee, _Corporate Plan_, p. 8.
