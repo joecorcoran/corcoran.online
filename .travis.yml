@@ -1,5 +1,5 @@
 language: ruby
-rvm: 2.3
+rvm: 2.7
 branches:
   except:
     - /^[0-9]+$/
@@ -8,6 +8,7 @@ before_script:
   - 'export TRAVIS_TAG=${TRAVIS_BUILD_NUMBER}'
   - 'echo "release_path: https://github.com/$TRAVIS_REPO_SLUG/releases/tag/$TRAVIS_TAG" >> _data/build.yml'
   - 'echo "build_path: https://travis-ci.org/$TRAVIS_REPO_SLUG/builds/$TRAVIS_BUILD_ID" >> _data/build.yml'
+  - bundle update --bundler
 script:
   - bundle exec pannier process
   - bundle exec jekyll build
