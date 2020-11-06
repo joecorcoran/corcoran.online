@@ -1,10 +1,9 @@
-$bg: #FFF;
+$bg: #FFFFF8;
 $txt: #111;
 $border: #EEE;
-$link: #0074D9;
-$link-active: #001f3f;
+$link: #1B7D7D;
+$link-active: #1B7D7D;
 $muted: #AAA;
-$aqua: #7FDBFF;
 $content-width: 780px;
 $calluna: 'calluna', Georgia, Times New Roman, serif;
 $franklin-gothic: 'franklin-gothic-urw', Helvetica, Arial, sans-serif;
@@ -14,7 +13,7 @@ html {
   color: $txt;
   font-weight: 400;
   background: $bg;
-  font-size: 20px;
+  font-size: 22px;
 }
 
 body {
