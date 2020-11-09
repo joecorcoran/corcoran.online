@@ -1,6 +1,6 @@
 <header role="banner" class="banner">
   <div class="banner-content">
-    <a class="name{% if page.section == 'about' %} active{% endif %}" href="/" >Joe Corcoran</a>
+    <div class="name"><a href="/" class="{% if page.section == 'about' %} active{% endif %}">Joe Corcoran</a></div>
     <nav>
       <ul>
         <li><a href="/articles" {% if page.layout == 'default' or page.section == 'articles' %}class="active"{% endif %}>Articles</a></li>

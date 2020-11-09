@@ -13,7 +13,7 @@ html {
   color: $txt;
   font-weight: 400;
   background: $bg;
-  font-size: 22px;
+  font-size: 24px;
 }
 
 body {
@@ -208,33 +208,30 @@ iframe.showterm {
   background: $bg;
   border-bottom: 1px solid $border;
   width: 100%;
-  font-family: $franklin-gothic;
   font-size: 1.2em;
   font-weight: 300;
+  font-style: italic;
   letter-spacing: 0.5px;
   .banner-content {
     width: 90%;
     max-width: $content-width;
     margin: 1rem auto;
     position: relative;
+    display: flex;
   }
   .name {
     line-height: 1.5em;
     display: block;
     padding: 0;
     margin: 0;
-    top: 0;
-    left: 0;
-    position: absolute;
-
+    flex-grow: 1;
 
     @media (max-width: $content-width) {
       position: static;
     }
   }
   nav {
-    position: relative;
-    padding-left: 40%;
+    flex-grow: 2;
     ul {
       margin: 0;
       padding: 0;
@@ -287,6 +284,7 @@ iframe.showterm {
   }
   .footer-build-release {
     font-size: 0.7rem;
+    font-style: italic;
     margin: 0 auto 1rem;
     font-family: $calluna;
     li {
@@ -307,6 +305,9 @@ iframe.showterm {
       display: inline-block;
       color: $muted;
     }
+  }
+  .li:last-of-type {
+    margin-right: 0;
   }
 }
 
