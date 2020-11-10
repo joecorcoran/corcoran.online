@@ -165,7 +165,7 @@ iframe.showterm {
       font-family: $calluna;
       font-style: italic;
       position: absolute;
-      width: 20%;
+      min-width: 30%;
       color: $muted;
 
       @media (max-width: $content-width) {
@@ -221,6 +221,7 @@ iframe.showterm {
   }
   .name {
     line-height: 1.5em;
+    font-style: normal;
     display: block;
     padding: 0;
     margin: 0;
