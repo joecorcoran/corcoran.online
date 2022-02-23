@@ -8,3 +8,4 @@ assets/*.json
 vendor/
 _site/
 public/
+.jekyll-cache

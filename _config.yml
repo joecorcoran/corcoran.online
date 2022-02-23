@@ -11,3 +11,5 @@ description: Articles
 url: https://corcoran.online
 email: joe@corcoran.online
 exclude: ["Gemfile", "Gemfile.lock", ".assets.rb", "assets", "bin", "vendor"]
+plugins:
+  - jekyll-gist
