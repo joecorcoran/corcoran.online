@@ -79,7 +79,7 @@ GEM
     pathutil (0.16.2)
       forwardable-extended (~> 2.6)
     public_suffix (4.0.6)
-    rack (1.6.8)
+    rack (1.6.13)
     rb-fsevent (0.10.2)
     rb-inotify (0.9.10)
       ffi (>= 0.5.0, < 2)
@@ -109,7 +109,6 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  ffi (~> 1.15)
   jekyll (~> 4.2)
   jekyll-gist
   pannier (~> 0.6)
