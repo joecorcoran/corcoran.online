@@ -1,0 +1,28 @@
+name: Release
+on: push
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Setup
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: 2.7.5
+          bundler-cache: true
+      - name: Build
+        run: |
+          echo "release_path: $GITHUB_SERVER_URL/$GITHUB_REPOSITORY/releases/tag/$GITHUB_RUN_ID" >> _data/build.yml
+          echo "build_path: $GITHUB_SERVER_URL/$GITHUB_REPOSITORY/actions/runs/$GITHUB_RUN_ID" >> _data/build.yml
+          bundle exec pannier process
+          bundle exec jekyll build
+          tar -C _site -czvf site.tar.gz .
+      - name: Release
+        uses: softprops/action-gh-release@v1
+        with:
+          files: site.tar.gz
+          name: ${{ github.run_id }}
+          draft: false
+          prerelease: false
+            
