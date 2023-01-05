@@ -5,15 +5,14 @@ $link: #1B7D7D;
 $link-active: #00A2A2;
 $muted: #AAA;
 $content-width: 780px;
-$calluna: 'calluna', Georgia, Times New Roman, serif;
-$franklin-gothic: 'franklin-gothic-urw', Helvetica, Arial, sans-serif;
+$inter: 'Inter', sans-serif;
 
 html {
-  font-family: $calluna;
+  font-family: $inter;
   color: $txt;
-  font-weight: 400;
+  font-weight: 300;
   background: $bg;
-  font-size: 24px;
+  font-size: 20px;
 }
 
 body {
@@ -22,7 +21,7 @@ body {
 }
 
 p {
-  text-align: justify;
+  text-align: left;
   font-size: 1em;
   line-height: 1.5em;
   margin: 0 0 1rem;
@@ -63,8 +62,8 @@ blockquote {
 }
 
 h1 {
-  font-family: $calluna;
-  font-weight: 600;
+  font-family: $inter;
+  font-weight: 500;
   font-size: 3em;
   margin: 0 0 3rem;
 
@@ -162,7 +161,7 @@ iframe.showterm {
     position: relative;
     margin: 0 0 1rem;
     time {
-      font-family: $calluna;
+      font-family: $inter;
       font-style: italic;
       position: absolute;
       min-width: 30%;
@@ -179,7 +178,7 @@ iframe.showterm {
       text-align: right;
       padding-left: 20%;
       font-size: 0.9rem;
-      font-family: $franklin-gothic;
+      font-family: $inter;
       font-weight: 300;
       letter-spacing: 0.7px;
       list-style-type: none;
@@ -210,7 +209,6 @@ iframe.showterm {
   width: 100%;
   font-size: 1.2em;
   font-weight: 300;
-  font-style: italic;
   letter-spacing: 0.5px;
   .banner-content {
     width: 90%;
@@ -274,7 +272,7 @@ iframe.showterm {
   border-top: 1px solid $border;
   width: 100%;
   clear: both;
-  font-family: $franklin-gothic;
+  font-family: $inter;
   font-size: 1.6em;
   margin: 4em 0 0;
   .footer-icons, .footer-build-release {
@@ -287,7 +285,7 @@ iframe.showterm {
     font-size: 0.7rem;
     font-style: italic;
     margin: 0 auto 1rem;
-    font-family: $calluna;
+    font-family: $inter;
     li {
       margin: 0;
       & + li::before {
@@ -336,9 +334,9 @@ $time-break: $content-width + ($time-left * 2);
       width: $time-width;
       padding: 0;
       text-align: right;
-      font-family: $calluna;
+      font-family: $inter;
       font-style: italic;
-      font-weight: 400;
+      font-weight: 300;
       color: $muted;
 
       @media (max-width: #{$time-break}) {
@@ -350,10 +348,10 @@ $time-break: $content-width + ($time-left * 2);
     }
     .content {
       display: block;
-      font-weight: 600;
+      font-weight: 500;
       .tags {
         list-style-type: none;
-        font-family: $franklin-gothic;
+        font-family: $inter;
         font-size: 0.9rem;
         font-weight: 300;
         letter-spacing: 0.7px;
@@ -417,7 +415,7 @@ $time-break: $content-width + ($time-left * 2);
     }
     blockquote {
       margin: 0 0 1rem;
-      text-align: justify;
+      text-align: left;
     }
   }
   .image-credits {
