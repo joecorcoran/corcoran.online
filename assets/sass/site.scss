@@ -5,14 +5,16 @@ $link: #1B7D7D;
 $link-active: #00A2A2;
 $muted: #AAA;
 $content-width: 780px;
-$inter: 'Inter', sans-serif;
 
 html {
-  font-family: $inter;
+  font-family: 'Inter', sans-serif;
   color: $txt;
   font-weight: 300;
   background: $bg;
   font-size: 20px;
+}
+@supports (font-variation-settings: normal) {
+  html { font-family: 'Inter var', sans-serif; }
 }
 
 body {
@@ -62,7 +64,6 @@ blockquote {
 }
 
 h1 {
-  font-family: $inter;
   font-weight: 500;
   font-size: 3em;
   margin: 0 0 3rem;
@@ -162,7 +163,6 @@ iframe.showterm {
     margin: 0 0 1rem;
     time {
       font-size: 0.8rem;
-      font-family: $inter;
       position: absolute;
       min-width: 30%;
       color: $muted;
@@ -178,7 +178,6 @@ iframe.showterm {
       text-align: right;
       padding-left: 20%;
       font-size: 0.8rem;
-      font-family: $inter;
       font-weight: 300;
       letter-spacing: 0.7px;
       list-style-type: none;
@@ -270,7 +269,6 @@ iframe.showterm {
   border-top: 1px solid $border;
   width: 100%;
   clear: both;
-  font-family: $inter;
   font-size: 1.6em;
   margin: 4em 0 0;
   .footer-icons, .footer-build-release {
@@ -283,7 +281,6 @@ iframe.showterm {
     font-size: 0.7rem;
     font-style: italic;
     margin: 0 auto 1rem;
-    font-family: $inter;
     li {
       margin: 0;
       & + li::before {
@@ -332,7 +329,6 @@ $time-break: $content-width + ($time-left * 2);
       width: $time-width;
       padding: 0;
       text-align: right;
-      font-family: $inter;
       font-weight: 300;
       font-size: 0.8rem;
       color: $muted;
@@ -349,7 +345,6 @@ $time-break: $content-width + ($time-left * 2);
       font-weight: 500;
       .tags {
         list-style-type: none;
-        font-family: $inter;
         font-size: 0.8rem;
         font-weight: 300;
         letter-spacing: 0.7px;

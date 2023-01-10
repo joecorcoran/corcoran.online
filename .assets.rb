@@ -23,16 +23,16 @@ package :sass do
   behave :compress
 end
 
-package :fa do
+package :fonts do
   input  'fonts'
   assets '*.css'
 
-  concat 'fa.min.css'
+  concat 'fonts.min.css'
   behave :compress
 end
 
 package :fonts do
   input  'fonts'
   output 'fonts'
-  assets '**/*'
+  assets '**/*.{otf,woff,woff2,eot}'
 end
